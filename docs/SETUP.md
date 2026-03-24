@@ -1,8 +1,3 @@
----
-title: Setup Guide
-layout: default
-nav_order: 2
----
 
 # Setup Guide
 
@@ -88,12 +83,23 @@ The launcher requires an encrypted `config.bin` — it will not load plaintext `
 
 Contact the CrespoGuard team to generate your `config.bin`, or if you have the admin build:
 
-```powershell
-# From your client directory (where modules.json lives):
-& "path\to\admin\RFLauncher.exe" --encrypt-config
-```
+=== "PowerShell"
 
-This reads `modules.json` from the current directory and writes `System\Launcher\Config\config.bin`. Delete `modules.json` from the client directory afterward — players should never have the plaintext config.
+    ```powershell
+    # From your client directory (where modules.json lives):
+    & "path\to\admin\RFLauncher.exe" --encrypt-config
+    ```
+
+=== "Git Bash"
+
+    ```bash
+    "/c/path/to/admin/RFLauncher.exe" --encrypt-config
+    ```
+
+This reads `modules.json` from the current directory and writes `System\Launcher\Config\config.bin`.
+
+!!! warning "Delete modules.json after encrypting"
+    Players should never have the plaintext config. Delete `modules.json` from the client directory after generating `config.bin`.
 
 ### Step 5: Copy to Client Directory
 

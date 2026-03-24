@@ -1,8 +1,3 @@
----
-title: Theming & Branding
-layout: default
-nav_order: 4
----
 
 # Theming & Branding
 
@@ -189,7 +184,8 @@ The default launcher has a sci-fi aesthetic with scan lines, floating particles,
 | Dense UI | 14.0 | 20.0 | 11.0 |
 | Large text (accessibility) | 18.0 | 28.0 | 15.0 |
 
-> **Note**: The launcher uses 3 font slots: body (all UI text), bold (emphasized text), and title (panel headers, server name). The body font is also used at a smaller size for captions and status text.
+!!! note "Font slots"
+    The launcher uses 3 font slots: body (all UI text), bold (emphasized text), and title (panel headers, server name). The body font is also used at a smaller size for captions and status text.
 
 ## Layout
 

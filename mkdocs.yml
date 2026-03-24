@@ -1,0 +1,92 @@
+site_name: CrespoGuard
+site_description: Documentation for RF Online server owners deploying the CrespoGuard launcher and security suite.
+site_url: https://crespocyberconsultingllc.github.io/crespoguard-docs/
+repo_url: https://github.com/CrespoCyberConsultingLLC/crespoguard-docs
+repo_name: crespoguard-docs
+edit_uri: ""
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: deep purple
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: deep purple
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Setup Guide: SETUP.md
+    - Creating config.bin: CONFIG_CREATION.md
+    - Assets: ASSETS.md
+  - Configuration:
+    - Config Reference: CONFIG_REFERENCE.md
+    - Theming & Branding: THEMING.md
+  - Features:
+    - Feature Comparison: FEATURES.md
+    - Premium Tiers: PREMIUM_TIERS.md
+  - Deployment:
+    - Distribution Guide: DEPLOYMENT.md
+    - Launcher + Relay: COMMUNITY_RELAY.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/CrespoCyberConsultingLLC
+  generator: false
+
+copyright: "&copy; 2026 Crespo Cyber Consulting LLC. All rights reserved."

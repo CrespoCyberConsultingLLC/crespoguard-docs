@@ -1,8 +1,3 @@
----
-title: Creating config.bin
-layout: default
-nav_order: 3.5
----
 
 # Creating config.bin
 
@@ -214,4 +209,5 @@ Client Root/
             └── config.bin              ← GENERATED (distribute to players)
 ```
 
-> **Important:** Delete `modules.json` from the client directory after encrypting. Players should never have access to the plaintext config. Only keep it in your admin/build environment.
+!!! warning "Delete modules.json after encrypting"
+    Delete `modules.json` from the client directory after encrypting. Players should never have access to the plaintext config. Only keep it in your admin/build environment.

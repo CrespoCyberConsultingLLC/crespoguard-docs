@@ -1,8 +1,3 @@
----
-title: Assets
-layout: default
-nav_order: 6
----
 
 # Asset Preparation Guide
 
@@ -138,7 +133,8 @@ System/
 - [Font Squirrel](https://www.fontsquirrel.com/) — curated free fonts
 - [DaFont](https://www.dafont.com/) — themed/decorative fonts
 
-> **Important**: Only use fonts you have the license to distribute. Google Fonts are all open-source licensed (OFL/Apache).
+!!! tip "Font licensing"
+    Only use fonts you have the license to distribute. Google Fonts are all open-source licensed (OFL/Apache).
 
 ### CJK Support
 

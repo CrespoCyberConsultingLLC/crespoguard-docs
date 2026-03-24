@@ -1,8 +1,3 @@
----
-title: Launcher + Relay Setup
-layout: default
-nav_order: 8
----
 
 # Community Edition: Launcher + Relay Integration
 
@@ -46,15 +41,20 @@ Players never see your real login/zone server IP — the relay masks it.
 
 Both the launcher and relay need the same 256-bit key. Generate one:
 
-```bash
-# Python (any OS)
-python -c "import secrets; print(secrets.token_hex(32))"
+=== "Python (any OS)"
 
-# PowerShell (Windows)
--join ((1..32) | ForEach-Object { '{0:x2}' -f (Get-Random -Max 256) })
-```
+    ```bash
+    python -c "import secrets; print(secrets.token_hex(32))"
+    ```
 
-Save the generated key — you'll use it in both configs. It must be identical in both.
+=== "PowerShell (Windows)"
+
+    ```powershell
+    -join ((1..32) | ForEach-Object { '{0:x2}' -f (Get-Random -Max 256) })
+    ```
+
+!!! info "Same key in both configs"
+    Save the generated key — you'll use it in both `modules.json` and `server.json`. They must be identical.
 
 ### Step 2: Configure the Relay (server.json)
 
@@ -214,7 +214,8 @@ Community tier supports IP-based bans. Create `bans.json` next to the relay:
 ]
 ```
 
-> **Note:** At Community tier, `hwid` field is used for IP addresses. HWID-based bans require Guard+ tier.
+!!! note
+     At Community tier, `hwid` field is used for IP addresses. HWID-based bans require Guard+ tier.
 
 The relay hot-reloads `bans.json` every 30 seconds — no restart needed.
 
