@@ -25,6 +25,7 @@
 | **Edge Relay Mode** | — | — | — | Yes |
 | **PROXY Protocol v1** | — | — | — | Yes |
 | **Health Check Endpoint** | — | — | — | Yes |
+| **Sirin SDK Integration** | — | Yes | Yes | Yes |
 
 
 ## Shield Tier ($30/mo)
