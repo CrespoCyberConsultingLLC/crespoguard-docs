@@ -177,6 +177,9 @@ No. CrespoGuard's security runs in the launcher process and uses system-level AP
 **Will it work with my custom/modified RF_Online.bin?**
 The launcher will work with any binary. Client Guard DLL features depend on finding known code patterns in the game executable. If your binary is heavily modified, some features may not activate. They fail safely — never a crash.
 
+**Does it work with Sirin servers?**
+The Community Edition does not include Sirin SDK integration. If your server uses `sirin-launcher.dll` for authentication, you'll need a Guard+ tier license which includes Sirin support. Standard RF Online login protocol servers work out of the box with the Community Edition.
+
 ### Multi-Player Households
 
 **Will the anti-cheat flag multiple players in the same house?**

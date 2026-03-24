@@ -151,6 +151,9 @@ Just set your server IP in `modules.json` and you're done:
 !!! warning "No encryption in direct mode"
     Direct connections use RF Online's built-in XOR cipher, which is trivially breakable. Player credentials are not secured in transit, and your real server IP is exposed to all players. This is fine for local testing but **not recommended for production**.
 
+!!! note "Sirin servers not supported in Community Edition"
+    Servers using the Sirin SDK require `sirin-launcher.dll` which is not included in the Community Edition. Sirin integration is available with a Guard+ tier license. If your server uses Sirin for authentication, contact the CrespoGuard team for licensing.
+
 ### Encrypted Relay (Recommended)
 
 The CrespoGuard Relay encrypts all login traffic, hides your server IP, and adds rate limiting and IP bans. Included free in the Community tier.
