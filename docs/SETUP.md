@@ -131,15 +131,37 @@ Launch `RFLauncher.exe` from the client directory. You should see:
 - Your branding in the status bar
 - Login form connecting to your server IP
 
-## Server-Side Setup (Optional)
+## Connection Modes
 
-If using the encrypted relay (SecureLogin), deploy the server component:
+### Direct Connection (Simplest — No Relay)
+
+By default, the launcher connects directly to your LoginServer using the standard RF Online protocol. No relay, no PSK, no extra setup.
+
+Just set your server IP in `modules.json` and you're done:
+
+```json
+{
+  "ServerConfig": {
+    "LoginServerIp": "YOUR.SERVER.IP",
+    "LoginServerPort": 10001
+  }
+}
+```
+
+!!! warning "No encryption in direct mode"
+    Direct connections use RF Online's built-in XOR cipher, which is trivially breakable. Player credentials are not secured in transit, and your real server IP is exposed to all players. This is fine for local testing but **not recommended for production**.
+
+### Encrypted Relay (Recommended)
+
+The CrespoGuard Relay encrypts all login traffic, hides your server IP, and adds rate limiting and IP bans. Included free in the Community tier.
 
 1. Copy `Server/CrespoGuardRelay.exe` and `Server/server.json` to your server machine
 2. Generate a shared PSK: `python -c "import secrets; print(secrets.token_hex(32))"`
 3. Set the same PSK in both `modules.json` (`SecureLogin.SecureLoginPSK`) and `server.json`
 4. Run `CrespoGuardRelay.exe` on the server
 5. Set `"EnableSecureLogin": true` in modules.json and re-encrypt
+
+For the full relay walkthrough with architecture diagrams and deployment layouts, see [Launcher + Relay Setup](COMMUNITY_RELAY.md).
 
 ## Next Steps
 
