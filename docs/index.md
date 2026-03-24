@@ -1,7 +1,7 @@
-
-# CrespoGuard
-
-**The professional launcher and security suite for RF Online private servers.**
+<div align="center">
+  <img src="assets/banner.png" alt="CrespoGuard" width="700">
+  <p><strong>The professional launcher and security suite for RF Online private servers.</strong></p>
+</div>
 
 CrespoGuard replaces the stock RF Online launcher with a modern, fully customizable client that your players will actually want to use — and a security layer that protects your server from day one.
 
