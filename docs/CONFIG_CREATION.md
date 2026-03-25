@@ -71,9 +71,9 @@ Start from the template or create a new file. Minimal working example:
 
 See [CONFIG_REFERENCE.md](CONFIG_REFERENCE.md) for every field and its default value.
 
-## Step 2: Add Secure Login (Optional)
+## Step 2: Add Secure Login (Guard+ Only — Optional)
 
-If using the CrespoGuard Relay for encrypted connections:
+If using the CrespoGuard Relay in CGRD encrypted mode (Guard+ tier). **Community edition users skip this step** — the Community relay uses transparent TCP proxy mode (set `SirinProxy: true` in `server.json`) and doesn't need SecureLogin in the launcher config.
 
 ```json
 {

@@ -175,7 +175,7 @@ When a player launches:
 
 ## Server-Side Deployment
 
-### CrespoGuard Relay (Encrypted Tunnel)
+### CrespoGuard Relay
 
 Deploy on your server machine:
 
@@ -185,7 +185,24 @@ Server/
 └── server.json
 ```
 
-**server.json**:
+**Community Edition (transparent proxy):**
+```json
+{
+  "ServerName": "Your Server",
+  "ListenIP": "0.0.0.0",
+  "ListenPort": 10002,
+  "TargetIP": "127.0.0.1",
+  "TargetPort": 10001,
+  "SirinProxy": true,
+  "PublicIP": "YOUR_PUBLIC_IP",
+  "MaskServerIP": true,
+  "MaxClients": 30,
+  "DashboardEnabled": true,
+  "DashboardPort": 8081
+}
+```
+
+**Guard+ (encrypted tunnel):**
 ```json
 {
   "ServerName": "Your Server",
@@ -194,23 +211,23 @@ Server/
   "TargetIP": "127.0.0.1",
   "TargetPort": 10001,
   "PSK": "same_key_as_modules_json",
-  "MaxClients": 100,
+  "MaxClients": 75,
   "DashboardEnabled": true,
-  "DashboardPort": 8080
+  "DashboardPort": 8081
 }
 ```
 
-Run: `CrespoGuardRelay.exe`
+Run: `CrespoGuardRelay.exe server.json`
 
-The relay sits between players and your login server, encrypting all traffic with AES-256-GCM.
+For Community setup details, see [Community Relay Setup](COMMUNITY_RELAY.md).
 
 ### Firewall Rules
 
 | Port | Protocol | Direction | Purpose |
 |------|----------|-----------|---------|
-| 10001 | TCP | Inbound | Login server (or relay) |
+| 10001/10002 | TCP | Inbound | Login server / relay |
 | 27780 | TCP | Inbound | Zone server |
-| 8080 | TCP | Inbound (optional) | Relay dashboard (restrict to admin IPs) |
+| 8081 | TCP | Inbound (optional) | Relay dashboard (restrict to admin IPs!) |
 
 ## Updating Your Deployment
 
