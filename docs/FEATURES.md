@@ -15,7 +15,7 @@
 | Effect controls (scan lines, particles, glow) | Yes | Yes |
 | Configurable window size and layout | Yes | Yes |
 | Multi-language support (8 languages) | Yes | Yes |
-| Encrypted login (AES-256-GCM tunnel) | Yes | Yes |
+| Encrypted login (AES-256-GCM tunnel) | — | Yes |
 | Account manager (save/switch accounts) | Yes | Yes |
 | Auto-update system (patch server) | — | Yes |
 | World selection with status indicators | Yes | Yes |
@@ -81,7 +81,8 @@ These use pattern-scanned addresses from the game binary. Requires RF Online 2.2
 
 | Component | Community | Premium |
 |-----------|:---------:|:-------:|
-| CrespoGuard Relay (encrypted tunnel) | Yes | Yes |
+| CrespoGuard Relay (transparent proxy) | Yes | Yes |
+| CrespoGuard Relay (CGRD encrypted tunnel) | — | Yes |
 | CrespoGuard LoginServer (drop-in replacement) | — | Yes |
 | CrespoGuard ZoneMod (52 modules, 91+ hooks) | — | Yes |
 | ZoneMod web dashboard | — | Yes |
@@ -94,10 +95,10 @@ CrespoGuard uses a tiered licensing model for server components:
 
 | Tier | Price | Max Players | Key Features |
 |------|-------|-------------|-------------|
-| **Community** | Free | 50 | Launcher, relay (IP bans, rate limiting), anti-cheat suite (manual updates) |
-| **Guard** | $15/mo | 50 | + Dashboard, license check, announcements, server IP masking, HWID bans |
-| **Shield** | $30/mo | 200 | + Multi-zone proxy, file logging |
-| **Fortress** | $50-75/mo | 500 | + Edge relay mode, PROXY protocol, health check endpoint |
+| **Community** | Free | 30 | Transparent TCP proxy (Sirin mode), server IP masking, read-only dashboard, IP bans, rate limiting |
+| **Guard** | $19/mo | 75 | + CGRD encrypted tunnel, dashboard write ops (kick/ban), HWID bans, announcements, telemetry |
+| **Shield** | $49/mo | 250 | + Multi-zone proxy, file logging |
+| **Fortress** | $79/mo | 500 | + Edge relay mode, PROXY protocol, health check endpoint |
 
 Client-side premium features (combat automation, chat overlay) require a Guard+ tier license.
 

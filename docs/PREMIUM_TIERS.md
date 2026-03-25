@@ -7,15 +7,18 @@
 
 | | Community | Guard | Shield | Fortress |
 |---|:---------:|:-----:|:------:|:--------:|
-| **Price** | Free | $15/mo | $30/mo | $50-75/mo |
-| **Max Players** | 50 | 50 | 200 | 500 |
-| **Encrypted Relay** | Yes | Yes | Yes | Yes |
+| **Price** | Free | $19/mo | $49/mo | $79/mo |
+| **Max Players** | 30 | 75 | 250 | 500 |
+| **Transparent TCP Proxy** | Yes | Yes | Yes | Yes |
+| **Server IP Masking** | Yes | Yes | Yes | Yes |
+| **Dashboard (read-only)** | Yes | Yes | Yes | Yes |
 | **Rate Limiting + IP Bans** | Yes | Yes | Yes | Yes |
+| **IP Ban Management (dashboard)** | Yes | Yes | Yes | Yes |
 | **Anti-Cheat Suite** | Yes | Yes | Yes | Yes |
-| **Dashboard** | — | Yes | Yes | Yes |
+| **CGRD Encrypted Tunnel** | — | Yes | Yes | Yes |
+| **Dashboard Write Ops (kick/ban)** | — | Yes | Yes | Yes |
 | **HWID Bans** | — | Yes | Yes | Yes |
 | **Announcements** | — | Yes | Yes | Yes |
-| **Server IP Masking** | — | Yes | Yes | Yes |
 | **License Validation** | — | Yes | Yes | Yes |
 | **Telemetry (SOC)** | — | Yes | Yes | Yes |
 | **Combat Automation** | — | Yes | Yes | Yes |
@@ -25,12 +28,11 @@
 | **Edge Relay Mode** | — | — | — | Yes |
 | **PROXY Protocol v1** | — | — | — | Yes |
 | **Health Check Endpoint** | — | — | — | Yes |
-| **Sirin SDK Integration** | — | Yes | Yes | Yes |
 
 
-## Shield Tier ($30/mo)
+## Shield Tier ($49/mo)
 
-Everything in Guard, plus multi-zone proxy and file logging. Designed for servers with 50-200 concurrent players.
+Everything in Guard, plus multi-zone proxy and file logging. Designed for servers with 75-250 concurrent players.
 
 ### Multi-Zone Proxy
 
@@ -89,10 +91,10 @@ Useful for post-incident analysis and compliance. File grows without rotation �
 
 | Your Situation | Recommended Tier |
 |---------------|-----------------|
-| Small community, < 50 players, just need a launcher | **Community** (Free) |
-| Want HWID bans, dashboard, combat features | **Guard** ($15/mo) |
-| 50-200 players, need zone IP masking | **Shield** ($30/mo) |
-| 200+ players, multi-region, load balancing | **Fortress** ($50-75/mo) |
+| Small community, < 30 players, need IP protection | **Community** (Free) |
+| Want HWID bans, encrypted tunnel, combat features | **Guard** ($19/mo) |
+| 75-250 players, need zone IP masking | **Shield** ($49/mo) |
+| 250+ players, multi-region, load balancing | **Fortress** ($79/mo) |
 
 ## Activation
 
