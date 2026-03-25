@@ -53,6 +53,10 @@ nav:
   - Features:
     - Feature Comparison: FEATURES.md
     - Premium Tiers: PREMIUM_TIERS.md
+  - JS Scripting:
+    - Quickstart: scripting/QUICKSTART.md
+    - Event Reference: scripting/EVENTS.md
+    - API Reference: scripting/API.md
   - Deployment:
     - Distribution Guide: DEPLOYMENT.md
     - Launcher + Relay: COMMUNITY_RELAY.md
