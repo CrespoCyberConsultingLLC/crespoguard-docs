@@ -53,6 +53,10 @@ nav:
   - Features:
     - Feature Comparison: FEATURES.md
     - Premium Tiers: PREMIUM_TIERS.md
+  - Modules:
+    - Module Catalog: modules/CATALOG.md
+    - Configuration Guide: modules/CONFIGURATION.md
+    - GM Commands: modules/GM_COMMANDS.md
   - JS Scripting:
     - Quickstart: scripting/QUICKSTART.md
     - Event Reference: scripting/EVENTS.md
