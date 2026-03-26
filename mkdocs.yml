@@ -65,6 +65,11 @@ nav:
     - Quickstart: scripting/QUICKSTART.md
     - Event Reference: scripting/EVENTS.md
     - API Reference: scripting/API.md
+  - RF Dev Tool:
+    - Overview: devtool/OVERVIEW.md
+    - Quick Start: devtool/QUICKSTART.md
+    - Visual Editors: devtool/EDITORS.md
+    - Reference: devtool/REFERENCE.md
   - Deployment:
     - Distribution Guide: DEPLOYMENT.md
     - Launcher + Relay: COMMUNITY_RELAY.md
