@@ -52,6 +52,7 @@ nav:
     - Deployment: launcher/DEPLOYMENT.md
     - Relay Setup: launcher/RELAY.md
   - ZoneMod:
+    - Setup Guide: zonemod/SETUP.md
     - Module Catalog: zonemod/CATALOG.md
     - Configuration Guide: zonemod/CONFIGURATION.md
     - GM Commands: zonemod/GM_COMMANDS.md

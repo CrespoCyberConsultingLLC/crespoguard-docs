@@ -131,63 +131,22 @@ Launch `RFLauncher.exe` from the client directory. You should see:
 - Your branding in the status bar
 - Login form connecting to your server IP
 
-## Connection Modes
+## Connection Mode
 
-### Direct Connection (Simplest — No Relay)
+By default, the launcher connects directly to your LoginServer. For production,
+use the CrespoGuard Relay to hide your server IP and add security.
 
-By default, the launcher connects directly to your LoginServer using the standard RF Online protocol. No relay, no PSK, no extra setup.
-
-Just set your server IP in `modules.json` and you're done:
-
-```json
-{
-  "ServerConfig": {
-    "LoginServerIp": "YOUR.SERVER.IP",
-    "LoginServerPort": 10001
-  }
-}
-```
-
-!!! warning "No encryption in direct mode"
-    Direct connections use RF Online's built-in XOR cipher, which is trivially breakable. Player credentials are not secured in transit, and your real server IP is exposed to all players. This is fine for local testing but **not recommended for production**.
-
-### Community Relay — Transparent Proxy (Recommended)
-
-The CrespoGuard Relay runs as a transparent TCP proxy, hides your server IP, and adds rate limiting, IP bans, and a read-only dashboard. Free for up to 30 players. **Works with any vanilla RF Online client — no CrespoGuard Launcher required.**
-
-1. Copy `Server/CrespoGuardRelay.exe` and `Server/server.json` to your server machine
-2. Set `"SirinProxy": true` in `server.json`
-3. Set `"PublicIP"` and `"MaskServerIP": true`
-4. Run `CrespoGuardRelay.exe server.json`
-5. Point your client to the relay IP instead of directly to the game server
-
-No PSK, no launcher changes, no encryption keys needed.
-
-For the full setup guide with deployment layouts and dashboard access, see [Community Relay Setup](COMMUNITY_RELAY.md).
-
-### Encrypted Relay (Guard+ Tier)
-
-At Guard tier ($19/mo) and above, the relay supports CGRD encrypted tunnel mode with AES-256-GCM encryption. This requires the CrespoGuard Launcher with a matching PSK.
-
-1. Copy `Server/CrespoGuardRelay.exe` and `Server/server.json` to your server machine
-2. Generate a shared PSK: `python -c "import secrets; print(secrets.token_hex(32))"`
-3. Set the same PSK in both `modules.json` (`SecureLogin.SecureLoginPSK`) and `server.json`
-4. Run `CrespoGuardRelay.exe` on the server
-5. Set `"EnableSecureLogin": true` in modules.json and re-encrypt
-
-For full encrypted relay documentation, see [Premium Tiers](PREMIUM_TIERS.md).
-
-### Sirin Server Compatibility
-
-The Community relay's transparent proxy mode works with Sirin servers out of the box — it passes TCP traffic unmodified. Guard+ tiers add full Sirin SDK integration in the launcher for enhanced authentication bridging.
+!!! tip "Recommended: Use the Relay"
+    See [Relay Setup](RELAY.md) for the full guide on transparent proxy,
+    encrypted tunnel, and edge relay modes.
 
 ## Next Steps
 
-- [CONFIG_REFERENCE.md](CONFIG_REFERENCE.md) — Full configuration reference
-- [THEMING.md](THEMING.md) — Colors, fonts, effects, and layout customization
-- [FEATURES.md](FEATURES.md) — Community vs Premium feature comparison
-- [ASSETS.md](ASSETS.md) — Logo, background, font, and music specifications
-- [DEPLOYMENT.md](DEPLOYMENT.md) — Packaging and distributing to players
+- [Config Reference](CONFIG_REFERENCE.md) — Every `modules.json` field documented
+- [Theming & Branding](THEMING.md) — Colors, fonts, effects, and layout
+- [Assets](ASSETS.md) — Logo, background, font, and music specs
+- [Deployment](DEPLOYMENT.md) — Packaging and distributing to players
+- [Relay Setup](RELAY.md) — Protect your server IP with the relay
 
 ## Troubleshooting
 
