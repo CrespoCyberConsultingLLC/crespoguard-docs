@@ -123,7 +123,7 @@ reload.
 !!! warning "Review generated code"
     AI-generated scripts should always be reviewed before deployment. The AI
     may use incorrect event names or API calls. Cross-check with the
-    [Event Reference](../scripting/EVENTS.md) and [API Reference](../scripting/API.md).
+    [Event Reference](../zonemod/EVENTS.md) and [API Reference](../zonemod/API.md).
 
 ---
 
@@ -229,4 +229,4 @@ what's the difference between drop_protection and loot_protection?
 
 - [AI Overview](OVERVIEW.md) — architecture, safety, and requirements
 - [Retraining Guide](RETRAINING.md) — how the feedback loop improves the model
-- [JS Scripting Quickstart](../scripting/QUICKSTART.md) — write your own scripts
+- [JS Scripting Quickstart](../zonemod/SCRIPTING.md) — write your own scripts

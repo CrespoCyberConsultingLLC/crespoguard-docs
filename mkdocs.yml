@@ -43,36 +43,33 @@ theme:
 
 nav:
   - Home: index.md
-  - Getting Started:
-    - Setup Guide: SETUP.md
-    - Creating config.bin: CONFIG_CREATION.md
-    - Assets: ASSETS.md
-  - Configuration:
-    - Config Reference: CONFIG_REFERENCE.md
-    - Theming & Branding: THEMING.md
-  - Features:
-    - Feature Comparison: FEATURES.md
-    - Premium Tiers: PREMIUM_TIERS.md
-  - Modules:
-    - Module Catalog: modules/CATALOG.md
-    - Configuration Guide: modules/CONFIGURATION.md
-    - GM Commands: modules/GM_COMMANDS.md
+  - Launcher:
+    - Setup Guide: launcher/SETUP.md
+    - Creating config.bin: launcher/CONFIG_CREATION.md
+    - Config Reference: launcher/CONFIG_REFERENCE.md
+    - Theming & Branding: launcher/THEMING.md
+    - Assets: launcher/ASSETS.md
+    - Deployment: launcher/DEPLOYMENT.md
+    - Relay Setup: launcher/RELAY.md
+  - ZoneMod:
+    - Module Catalog: zonemod/CATALOG.md
+    - Configuration Guide: zonemod/CONFIGURATION.md
+    - GM Commands: zonemod/GM_COMMANDS.md
+    - JS Scripting: zonemod/SCRIPTING.md
+    - Event Reference: zonemod/EVENTS.md
+    - API Reference: zonemod/API.md
   - AI Assistant:
     - Overview: ai/OVERVIEW.md
     - Usage Guide: ai/USAGE.md
     - Retraining: ai/RETRAINING.md
-  - JS Scripting:
-    - Quickstart: scripting/QUICKSTART.md
-    - Event Reference: scripting/EVENTS.md
-    - API Reference: scripting/API.md
   - RF Dev Tool:
     - Overview: devtool/OVERVIEW.md
     - Quick Start: devtool/QUICKSTART.md
     - Visual Editors: devtool/EDITORS.md
     - Reference: devtool/REFERENCE.md
-  - Deployment:
-    - Distribution Guide: DEPLOYMENT.md
-    - Launcher + Relay: COMMUNITY_RELAY.md
+  - Features:
+    - Feature Comparison: FEATURES.md
+    - Premium Tiers: PREMIUM_TIERS.md
 
 plugins:
   - search

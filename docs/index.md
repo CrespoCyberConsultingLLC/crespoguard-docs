@@ -18,7 +18,7 @@ Every server has its own identity. CrespoGuard is built from the ground up to di
 - **Your effects** — scan lines, particles, and glow can be dialed up for cyberpunk or turned off completely for a clean, professional feel
 - **Your layout** — configurable window size and sidebar width to fit your branding
 
-One binary, infinite identities. See [Theming & Branding](THEMING.md) for 6 ready-made color presets.
+One binary, infinite identities. See [Theming & Branding](launcher/THEMING.md) for 6 ready-made color presets.
 
 ### Security That Works Without the Game Binary
 
@@ -133,26 +133,26 @@ These appear in the in-game options panel. On Community tier they're visible but
 
 | Step | Guide |
 |------|-------|
-| 1. Configure your server | [Setup Guide](SETUP.md) — running in 5 minutes |
-| 2. Brand your launcher | [Theming & Branding](THEMING.md) — colors, fonts, effects |
-| 3. Create config.bin | [Creating config.bin](CONFIG_CREATION.md) — encryption walkthrough |
-| 4. Prepare assets | [Assets](ASSETS.md) — logo, background, font, music specs |
-| 5. Deploy to players | [Deployment](DEPLOYMENT.md) — packaging, auto-updates, versioning |
+| 1. Configure your server | [Setup Guide](launcher/SETUP.md) — running in 5 minutes |
+| 2. Brand your launcher | [Theming & Branding](launcher/THEMING.md) — colors, fonts, effects |
+| 3. Create config.bin | [Creating config.bin](launcher/CONFIG_CREATION.md) — encryption walkthrough |
+| 4. Prepare assets | [Assets](launcher/ASSETS.md) — logo, background, font, music specs |
+| 5. Deploy to players | [Deployment](launcher/DEPLOYMENT.md) — packaging, auto-updates, versioning |
 
-**Setting up the relay?** See [Community Relay Setup](COMMUNITY_RELAY.md) for the free transparent proxy guide, or [Premium Tiers](PREMIUM_TIERS.md) for encrypted tunnel setup.
+**Setting up the relay?** See [Community Relay Setup](launcher/RELAY.md) for the free transparent proxy guide, or [Premium Tiers](PREMIUM_TIERS.md) for encrypted tunnel setup.
 
 ## Documentation
 
 | Document | Description |
 |----------|-------------|
-| [Setup Guide](SETUP.md) | Quick start — configure and test in 5 minutes |
-| [Configuration Reference](CONFIG_REFERENCE.md) | Every `modules.json` field documented (12 sections) |
-| [Creating config.bin](CONFIG_CREATION.md) | Step-by-step encryption guide with examples |
-| [Theming & Branding](THEMING.md) | Colors, fonts, effects, layout — 6 ready-made presets |
+| [Setup Guide](launcher/SETUP.md) | Quick start — configure and test in 5 minutes |
+| [Configuration Reference](launcher/CONFIG_REFERENCE.md) | Every `modules.json` field documented (12 sections) |
+| [Creating config.bin](launcher/CONFIG_CREATION.md) | Step-by-step encryption guide with examples |
+| [Theming & Branding](launcher/THEMING.md) | Colors, fonts, effects, layout — 6 ready-made presets |
 | [Features](FEATURES.md) | Community vs Premium comparison tables |
-| [Assets](ASSETS.md) | Logo, background, font, music, and language file specs |
-| [Deployment](DEPLOYMENT.md) | Packaging, distribution, auto-updates, and versioning |
-| [Community Relay Setup](COMMUNITY_RELAY.md) | Free transparent proxy — hide your IP in 5 minutes |
+| [Assets](launcher/ASSETS.md) | Logo, background, font, music, and language file specs |
+| [Deployment](launcher/DEPLOYMENT.md) | Packaging, distribution, auto-updates, and versioning |
+| [Community Relay Setup](launcher/RELAY.md) | Free transparent proxy — hide your IP in 5 minutes |
 | [Premium Tiers](PREMIUM_TIERS.md) | Guard / Shield / Fortress detailed reference |
 
 ## Requirements
