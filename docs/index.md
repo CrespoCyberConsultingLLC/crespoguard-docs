@@ -104,13 +104,13 @@ CrespoGuard isn't a one-size-fits-all tool — it's a platform designed around h
 
 ### Free to Start, Scales When You Need It
 
-The Community Edition is **free** and gives your players a fully branded, professional launcher with the complete anti-cheat suite, multi-client support, Discord Rich Presence, and the CrespoGuard Relay for up to 30 players — including DDoS protection and the full dashboard — from day one. No trial period, no feature crippling, no nag screens.
+The Community Edition is **free** and gives your players a fully branded, professional launcher with the complete anti-cheat suite, multi-client support, Discord Rich Presence, and the CrespoGuard Relay for up to 30 players — including DDoS protection, auto-update, anonymous telemetry, and the full dashboard — from day one. No trial period, no feature crippling, no nag screens.
 
 When you need higher player caps or advanced features, Premium tiers add HWID bans, bin-dependent gameplay features, kick/announcements, and multi-region edge relays:
 
 | Tier | Price | Players | What It Adds |
 |------|-------|---------|-------------|
-| **Community** | Free | 30 | Launcher + anti-cheat + relay (30 players) + DDoS protection + dashboard |
+| **Community** | Free | 30 | Launcher + anti-cheat + relay (30 players) + DDoS protection + auto-update + telemetry + dashboard |
 | **Guard** | $19/mo | 75 | CrespoGuard Relay (encrypted tunnel, IP masking, dashboard, HWID bans), all bin-dependent features (with ZoneMod) |
 | **Shield** | $49/mo | 250 | Multi-zone proxy, file logging |
 | **Fortress** | $79/mo | 500 | Edge relays, PROXY protocol, health checks |

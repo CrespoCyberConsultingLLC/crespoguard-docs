@@ -133,4 +133,40 @@ Tier upgrades are instant — purchase the higher tier, activate the new code, a
 
 The Community Edition includes the CrespoGuard Relay for up to 30 concurrent players. You get encrypted transport, IP masking, DDoS protection (rate limiting, GeoIP filtering, Threat Intel blocklist, auto-ban with progressive backoff), and full dashboard access — all at no cost.
 
-The 30-player cap is a hard limit. When you need more capacity, HWID bans, kick, announcements, or bin-dependent gameplay features, upgrade to Guard tier ($19/mo, 75 players).
+The 30-player cap is a **hard limit enforced at the binary level**. It cannot be bypassed by editing the config file — the relay binary itself rejects connections beyond 30. When you need more capacity, HWID bans, kick, announcements, or bin-dependent gameplay features, upgrade to Guard tier ($19/mo, 75 players).
+
+## Auto-Update
+
+The relay checks for new versions on startup. When a newer version is available, it downloads the update via HTTPS (curl), verifies the SHA-256 checksum of the downloaded binary, replaces itself, and restarts automatically. No manual intervention required.
+
+```json
+{
+    "AutoUpdateEnabled": true
+}
+```
+
+`AutoUpdateEnabled` defaults to `true`. Set to `false` in `server.json` to disable.
+
+## Telemetry
+
+The relay sends anonymous usage statistics on startup and every 24 hours. **No personally identifiable information (PII) is collected.** Telemetry data includes:
+
+- Relay version
+- Operating system
+- Player cap (max clients)
+- Enabled features
+- Peak player count
+- Connection statistics
+- DDoS protection statistics
+
+```json
+{
+    "TelemetryEnabled": true
+}
+```
+
+`TelemetryEnabled` defaults to `true`. Opt out by setting it to `false` in `server.json`.
+
+## Auto-Generated API Key
+
+On first run, if no `DashboardApiKey` is set in `server.json`, the relay automatically generates a secure 128-bit random key using the operating system's cryptographically secure pseudorandom number generator (CSPRNG) and saves it to the config file. This ensures the dashboard API is protected from the moment the relay starts — no manual key generation needed.

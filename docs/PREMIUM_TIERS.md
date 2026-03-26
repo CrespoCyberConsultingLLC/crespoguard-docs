@@ -31,7 +31,7 @@
 | **Dashboard (kick, HWID bans, announcements)** | — | Yes | Yes | Yes |
 | **Relay Auto-Update** | Yes | Yes | Yes | Yes |
 | **License Validation** | Yes | Yes | Yes | Yes |
-| **Telemetry (SOC)** | — | Yes | Yes | Yes |
+| **Telemetry (anonymous usage stats)** | Yes | Yes | Yes | Yes |
 | **Bin-Dependent Features ¹** | — | Yes | Yes | Yes |
 | **Combat Automation ¹** | — | Yes | Yes | Yes |
 | **Chat Overlay ¹** | — | Yes | Yes | Yes |
@@ -105,7 +105,7 @@ Useful for post-incident analysis and compliance. File grows without rotation �
 
 | Your Situation | Recommended Tier |
 |---------------|-----------------|
-| Launcher + anti-cheat + relay (up to 30 players) + DDoS protection + dashboard | **Community** (Free) |
+| Launcher + anti-cheat + relay (up to 30 players) + DDoS protection + auto-update + telemetry + dashboard | **Community** (Free) |
 | Need relay (IP masking, encrypted tunnel, HWID bans, dashboard) + bin-dependent features | **Guard** ($19/mo) |
 | 75-250 players, need zone IP masking, file logging | **Shield** ($49/mo) |
 | 250+ players, multi-region, edge relays, load balancing | **Fortress** ($79/mo) |
