@@ -57,6 +57,10 @@ nav:
     - Module Catalog: modules/CATALOG.md
     - Configuration Guide: modules/CONFIGURATION.md
     - GM Commands: modules/GM_COMMANDS.md
+  - AI Assistant:
+    - Overview: ai/OVERVIEW.md
+    - Usage Guide: ai/USAGE.md
+    - Retraining: ai/RETRAINING.md
   - JS Scripting:
     - Quickstart: scripting/QUICKSTART.md
     - Event Reference: scripting/EVENTS.md

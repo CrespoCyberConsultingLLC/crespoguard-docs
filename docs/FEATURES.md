@@ -88,6 +88,7 @@ These use pattern-scanned addresses from the game binary. Requires RF Online 2.2
 | ZoneMod web dashboard | — | Yes |
 | SOC unified dashboard | — | Yes |
 | HWID ban system | — | Yes |
+| [AI Assistant](ai/OVERVIEW.md) (local LLM config helper) | — | Yes |
 
 ## Tier System
 
