@@ -133,12 +133,13 @@ Launch `RFLauncher.exe` from the client directory. You should see:
 
 ## Connection Mode
 
-By default, the launcher connects directly to your LoginServer. For production,
-use the CrespoGuard Relay to hide your server IP and add security.
+By default, the launcher connects directly to your LoginServer. This is the standard setup for the Community Edition.
 
-!!! tip "Recommended: Use the Relay"
-    See [Relay Setup](RELAY.md) for the full guide on transparent proxy,
-    encrypted tunnel, and edge relay modes.
+For production servers that need IP masking, encrypted transport, and HWID bans, add the CrespoGuard Relay (Guard+ tier, $19/mo).
+
+!!! tip "Recommended for Production: Use the Relay"
+    See [Relay Overview](RELAY.md) for what the relay provides and how to set it up.
+    The relay requires a Guard+ tier license.
 
 ## Next Steps
 
@@ -146,7 +147,7 @@ use the CrespoGuard Relay to hide your server IP and add security.
 - [Theming & Branding](THEMING.md) — Colors, fonts, effects, and layout
 - [Assets](ASSETS.md) — Logo, background, font, and music specs
 - [Deployment](DEPLOYMENT.md) — Packaging and distributing to players
-- [Relay Setup](RELAY.md) — Protect your server IP with the relay
+- [Relay Overview](RELAY.md) — Protect your server IP with the relay (Guard+ tier)
 
 ## Troubleshooting
 

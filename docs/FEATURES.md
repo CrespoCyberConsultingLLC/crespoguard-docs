@@ -15,7 +15,7 @@
 | Effect controls (scan lines, particles, glow) | Yes | Yes |
 | Configurable window size and layout | Yes | Yes |
 | Multi-language support (8 languages) | Yes | Yes |
-| Encrypted login (AES-256-GCM tunnel) | — | Yes |
+| Encrypted login (AES-256-GCM tunnel, requires relay) | — | Yes |
 | Account manager (save/switch accounts) | Yes | Yes |
 | Auto-update system (patch server) | — | Yes |
 | World selection with status indicators | Yes | Yes |
@@ -79,42 +79,43 @@ These use pattern-scanned addresses from the game binary. Requires RF Online 2.2
 
 ### Server Components
 
-| Component | Community | Premium |
-|-----------|:---------:|:-------:|
-| CrespoGuard Relay (transparent proxy) | Yes | Yes |
-| CrespoGuard Relay (CGRD encrypted tunnel) | — | Yes |
+| Component | Community | Premium (Guard+) |
+|-----------|:---------:|:----------------:|
+| CrespoGuard Relay (encrypted tunnel, IP masking) | — | Yes |
+| CrespoGuard Relay dashboard | — | Yes |
+| HWID ban system | — | Yes |
 | CrespoGuard LoginServer (drop-in replacement) | — | Yes |
 | CrespoGuard ZoneMod (52 modules, 91+ hooks) | — | Yes |
 | ZoneMod web dashboard | — | Yes |
 | SOC unified dashboard | — | Yes |
-| HWID ban system | — | Yes |
 | [AI Assistant](ai/OVERVIEW.md) (local LLM config helper) | — | Yes |
 
 ## Tier System
 
-CrespoGuard uses a tiered licensing model for server components:
+CrespoGuard uses a tiered licensing model:
 
 | Tier | Price | Max Players | Key Features |
 |------|-------|-------------|-------------|
-| **Community** | Free | 30 | Transparent TCP proxy (Sirin mode), server IP masking, read-only dashboard, IP bans, rate limiting |
-| **Guard** | $19/mo | 75 | + CGRD encrypted tunnel, dashboard write ops (kick/ban), HWID bans, announcements, telemetry |
+| **Community** | Free | — | Launcher + ClientGuard + anti-cheat suite (no relay, no server component) |
+| **Guard** | $19/mo | 75 | + CrespoGuard Relay (encrypted tunnel, IP masking, dashboard, HWID bans) |
 | **Shield** | $49/mo | 250 | + Multi-zone proxy, file logging |
 | **Fortress** | $79/mo | 500 | + Edge relay mode, PROXY protocol, health check endpoint |
 
 Client-side premium features (combat automation, chat overlay) require a Guard+ tier license.
 
-Server-side tools (LoginServer, ZoneMod, SOC dashboard) are available at Guard+ tiers.
+All server-side components (relay, LoginServer, ZoneMod, dashboards, HWID bans) require a Guard+ tier.
 
 ## What's Premium (Summary)
 
 Premium features fall into four categories:
 
-1. **Combat automation** (bin-dependent) — Auto-loot, auto-target, auto-attack, combat assist, speed modification, bot patches
-2. **Chat overlay** (bin-dependent) — Custom chat window with history, message filtering
-3. **Edge relay routing** (Fortress tier) — Geographic latency optimization with multi-region relay nodes
-4. **Server-side tools** (Guard+) — LoginServer, ZoneMod (52 hook modules), dashboards, HWID ban system
+1. **Relay & server protection** (Guard+) — CrespoGuard Relay with encrypted tunnel, IP masking, dashboard, rate limiting, HWID bans
+2. **Combat automation** (bin-dependent) — Auto-loot, auto-target, auto-attack, combat assist, speed modification, bot patches
+3. **Chat overlay** (bin-dependent) — Custom chat window with history, message filtering
+4. **Edge relay routing** (Fortress tier) — Geographic latency optimization with multi-region relay nodes
+5. **Server-side tools** (Guard+) — LoginServer, ZoneMod (52 hook modules), SOC dashboard
 
-Everything else — the launcher, branding, encrypted relay, full anti-cheat suite, security, and all non-combat client guard features — is included in the Community Edition.
+The Community Edition is the free launcher + ClientGuard + anti-cheat suite. It includes branding, all non-combat client guard features, and the full security scanning suite. No server-side component is included.
 
 ## Auto-Loot: Two Tiers for Player Monetization
 

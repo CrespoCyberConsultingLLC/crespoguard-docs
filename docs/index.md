@@ -29,7 +29,7 @@ Most anti-cheat solutions hook deeply into the game executable — which means t
 - **Cheat window title scanning** — detects known cheat tool windows
 - **Proxy DLL detection** — catches known injection methods
 - **VM detection** — blocks virtual machines while keeping Wine/Linux players safe
-- **IP protection** — transparent relay hides your real server IP from players (Community); encrypted AES-256-GCM tunnel available at Guard+
+- **IP protection** — the CrespoGuard Relay (Guard+ tier) hides your real server IP with an encrypted AES-256-GCM tunnel
 
 All of this runs in the launcher process. No game binary patching. No conflicts with existing protections. Works on any RF Online version.
 
@@ -37,9 +37,9 @@ All of this runs in the launcher process. No game binary patching. No conflicts 
 
 CrespoGuard uses a **layered defense model** — multiple independent security systems that reinforce each other. Bypassing one layer doesn't compromise the others.
 
-**Layer 1: Relay Transport**
+**Layer 1: Relay Transport (Guard+ Tier)**
 
-All login traffic between players and your server travels through the CrespoGuard Relay. At Community tier, this is a transparent TCP proxy that hides your real server IP — players never see your actual address. At Guard+ tier, the relay uses AES-256-GCM authenticated encryption with a pre-shared key, meaning traffic can't be intercepted, replayed, or tampered with in transit.
+With the CrespoGuard Relay (available at Guard tier and above), all login traffic between players and your server travels through an encrypted tunnel. The relay uses AES-256-GCM authenticated encryption with a pre-shared key, meaning traffic can't be intercepted, replayed, or tampered with in transit. Players never see your real server IP — they only see the relay address.
 
 **Layer 2: Config Tamper Protection**
 
@@ -104,14 +104,14 @@ CrespoGuard isn't a one-size-fits-all tool — it's a platform designed around h
 
 ### Free to Start, Scales When You Need It
 
-The Community Edition is **free** and includes everything above. No trial period, no feature crippling, no nag screens. Your players get a professional launcher experience from day one.
+The Community Edition is **free** and gives your players a fully branded, professional launcher with the complete anti-cheat suite from day one. No trial period, no feature crippling, no nag screens.
 
-When your server grows, Premium tiers add combat automation for your players, server management dashboards, HWID bans, and multi-region edge relays:
+When you need server-side protection, the CrespoGuard Relay starts at $19/mo. Premium tiers add relay transport, IP masking, HWID bans, combat automation, dashboards, and multi-region edge relays:
 
 | Tier | Price | Players | What It Adds |
 |------|-------|---------|-------------|
-| **Community** | Free | 30 | Full launcher + transparent TCP relay + IP masking + read-only dashboard + anti-cheat |
-| **Guard** | $19/mo | 75 | CGRD encrypted tunnel, dashboard write ops, HWID bans, combat features |
+| **Community** | Free | — | Launcher + ClientGuard + anti-cheat suite |
+| **Guard** | $19/mo | 75 | CrespoGuard Relay (encrypted tunnel, IP masking, dashboard, HWID bans), combat features |
 | **Shield** | $49/mo | 250 | Multi-zone proxy, file logging |
 | **Fortress** | $79/mo | 500 | Edge relays, PROXY protocol, health checks |
 
@@ -139,7 +139,7 @@ These appear in the in-game options panel. On Community tier they're visible but
 | 4. Prepare assets | [Assets](launcher/ASSETS.md) — logo, background, font, music specs |
 | 5. Deploy to players | [Deployment](launcher/DEPLOYMENT.md) — packaging, auto-updates, versioning |
 
-**Setting up the relay?** See [Community Relay Setup](launcher/RELAY.md) for the free transparent proxy guide, or [Premium Tiers](PREMIUM_TIERS.md) for encrypted tunnel setup.
+**Setting up the relay?** The CrespoGuard Relay requires a Guard+ tier license ($19/mo). See [Relay Overview](launcher/RELAY.md) for what it provides and [Premium Tiers](PREMIUM_TIERS.md) for tier details.
 
 ## Documentation
 
@@ -152,7 +152,7 @@ These appear in the in-game options panel. On Community tier they're visible but
 | [Features](FEATURES.md) | Community vs Premium comparison tables |
 | [Assets](launcher/ASSETS.md) | Logo, background, font, music, and language file specs |
 | [Deployment](launcher/DEPLOYMENT.md) | Packaging, distribution, auto-updates, and versioning |
-| [Community Relay Setup](launcher/RELAY.md) | Free transparent proxy — hide your IP in 5 minutes |
+| [CrespoGuard Relay](launcher/RELAY.md) | Relay overview — encrypted tunnel, IP masking (Guard+ tier) |
 | [Premium Tiers](PREMIUM_TIERS.md) | Guard / Shield / Fortress detailed reference |
 
 ## Requirements
@@ -178,7 +178,7 @@ No. CrespoGuard's security runs in the launcher process and uses system-level AP
 The launcher will work with any binary. Client Guard DLL features depend on finding known code patterns in the game executable. If your binary is heavily modified, some features may not activate. They fail safely — never a crash.
 
 **Does it work with Sirin servers?**
-The Community Edition's relay runs in transparent TCP proxy mode (Sirin-compatible) — it works with any RF Online server, including Sirin servers. Guard+ tiers add full Sirin SDK integration in the launcher, bridging Sirin's authentication through the CGRD encrypted relay for enhanced security.
+The CrespoGuard Launcher (Community Edition) works with any RF Online server, including Sirin servers — no relay required. If you add the CrespoGuard Relay (Guard+ tier), it provides encrypted transport and IP masking with full Sirin SDK integration in the launcher, bridging Sirin's authentication through the CGRD encrypted tunnel.
 
 ### Multi-Player Households
 

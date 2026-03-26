@@ -8,15 +8,15 @@
 | | Community | Guard | Shield | Fortress |
 |---|:---------:|:-----:|:------:|:--------:|
 | **Price** | Free | $19/mo | $49/mo | $79/mo |
-| **Max Players** | 30 | 75 | 250 | 500 |
-| **Transparent TCP Proxy** | Yes | Yes | Yes | Yes |
-| **Server IP Masking** | Yes | Yes | Yes | Yes |
-| **Dashboard (read-only)** | Yes | Yes | Yes | Yes |
-| **Rate Limiting + IP Bans** | Yes | Yes | Yes | Yes |
-| **IP Ban Management (dashboard)** | Yes | Yes | Yes | Yes |
+| **Max Players** | — | 75 | 250 | 500 |
+| **Launcher + Branding** | Yes | Yes | Yes | Yes |
+| **ClientGuard (bin-independent)** | Yes | Yes | Yes | Yes |
 | **Anti-Cheat Suite** | Yes | Yes | Yes | Yes |
+| **CrespoGuard Relay** | — | Yes | Yes | Yes |
 | **CGRD Encrypted Tunnel** | — | Yes | Yes | Yes |
-| **Dashboard Write Ops (kick/ban)** | — | Yes | Yes | Yes |
+| **Server IP Masking** | — | Yes | Yes | Yes |
+| **Rate Limiting + IP Bans** | — | Yes | Yes | Yes |
+| **Dashboard (full)** | — | Yes | Yes | Yes |
 | **HWID Bans** | — | Yes | Yes | Yes |
 | **Announcements** | — | Yes | Yes | Yes |
 | **License Validation** | — | Yes | Yes | Yes |
@@ -91,10 +91,10 @@ Useful for post-incident analysis and compliance. File grows without rotation �
 
 | Your Situation | Recommended Tier |
 |---------------|-----------------|
-| Small community, < 30 players, need IP protection | **Community** (Free) |
-| Want HWID bans, encrypted tunnel, combat features | **Guard** ($19/mo) |
-| 75-250 players, need zone IP masking | **Shield** ($49/mo) |
-| 250+ players, multi-region, load balancing | **Fortress** ($79/mo) |
+| Launcher + anti-cheat only, no relay needed | **Community** (Free) |
+| Need relay (IP masking, encrypted tunnel, HWID bans, dashboard) | **Guard** ($19/mo) |
+| 75-250 players, need zone IP masking, file logging | **Shield** ($49/mo) |
+| 250+ players, multi-region, edge relays, load balancing | **Fortress** ($79/mo) |
 
 ## Activation
 

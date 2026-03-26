@@ -175,9 +175,9 @@ When a player launches:
 
 ## Server-Side Deployment
 
-### CrespoGuard Relay
+### CrespoGuard Relay (Guard+ Tier)
 
-Deploy on your server machine:
+The relay is a paid server-side component starting at Guard tier ($19/mo). Deploy on your server machine:
 
 ```
 Server/
@@ -185,24 +185,7 @@ Server/
 └── server.json
 ```
 
-**Community Edition (transparent proxy):**
-```json
-{
-  "ServerName": "Your Server",
-  "ListenIP": "0.0.0.0",
-  "ListenPort": 10002,
-  "TargetIP": "127.0.0.1",
-  "TargetPort": 10001,
-  "SirinProxy": true,
-  "PublicIP": "YOUR_PUBLIC_IP",
-  "MaskServerIP": true,
-  "MaxClients": 30,
-  "DashboardEnabled": true,
-  "DashboardPort": 8081
-}
-```
-
-**Guard+ (encrypted tunnel):**
+**Configuration:**
 ```json
 {
   "ServerName": "Your Server",
@@ -212,6 +195,8 @@ Server/
   "TargetPort": 10001,
   "PSK": "same_key_as_modules_json",
   "MaxClients": 75,
+  "PublicIP": "YOUR_PUBLIC_IP",
+  "MaskServerIP": true,
   "DashboardEnabled": true,
   "DashboardPort": 8081
 }
@@ -219,7 +204,7 @@ Server/
 
 Run: `CrespoGuardRelay.exe server.json`
 
-For Community setup details, see [Community Relay Setup](COMMUNITY_RELAY.md).
+For full relay setup details, see [CrespoGuard Relay](RELAY.md).
 
 ### Firewall Rules
 
