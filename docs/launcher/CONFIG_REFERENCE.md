@@ -127,7 +127,7 @@ Language settings.
 
 ## SecurityCheck
 
-Client-side security features. Community edition includes basic checks.
+Client-side security features. Community edition includes the full anti-cheat suite.
 
 ```json
 {

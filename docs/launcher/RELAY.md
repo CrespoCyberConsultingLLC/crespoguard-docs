@@ -131,6 +131,6 @@ Tier upgrades are instant — purchase the higher tier, activate the new code, a
 
 ## Community Edition (No Relay)
 
-The Community Edition is the free CrespoGuard Launcher with ClientGuard and the anti-cheat suite. It does not include the relay or any server-side component. Players connect directly to your game server without relay transport.
+The Community Edition is the free CrespoGuard Launcher with anti-cheat, multi-client support, and Discord Rich Presence. It does not include the relay or any server-side component. Players connect directly to your game server without relay transport.
 
-If you only need a branded launcher and anti-cheat, the Community Edition is all you need. When you're ready for IP masking, encrypted transport, dashboards, and HWID bans, upgrade to Guard tier.
+If you only need a branded launcher with anti-cheat, multi-client, and Discord RPC, the Community Edition is all you need. When you're ready for IP masking, encrypted transport, dashboards, HWID bans, and bin-dependent gameplay features, upgrade to Guard tier.

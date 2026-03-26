@@ -13,27 +13,22 @@
 
 ## What's in the Package
 
+The Community package includes the launcher and anti-cheat DLL. No relay or server-side components are included.
+
 ```
 CrespoGuard-Community/
 ├── RFLauncher.exe                          # The launcher binary
-├── RFLauncher.sig                          # Integrity signature
+├── dinput8.dll                             # Community anti-cheat (ClientGuard)
 ├── CrespoGuard.ico                         # Application icon
-├── modules.json                            # Configuration template (edit this!)
+├── modules.json.template                   # Configuration template (edit this!)
 ├── System/
 │   └── Launcher/
-│       ├── Config/
-│       │   └── (config.bin generated here)
 │       ├── fonts/
 │       │   ├── Rajdhani-Regular.ttf        # Default body font
 │       │   ├── Rajdhani-Bold.ttf           # Default bold font
 │       │   └── Orbitron-Variable.ttf       # Default title font
-│       ├── Language/
-│       │   └── en_gb.json                  # English strings
-│       └── Music/
-│           └── (place .mp3/.wav here)
-└── Server/
-    ├── CrespoGuardRelay.exe                # Relay server binary
-    └── server.json                         # Server config template
+│       └── Language/
+│           └── en.json                     # English strings
 ```
 
 ## Quick Start (5 Minutes)
@@ -133,13 +128,23 @@ Launch `RFLauncher.exe` from the client directory. You should see:
 
 ## Connection Mode
 
-By default, the launcher connects directly to your LoginServer. This is the standard setup for the Community Edition.
+The Community Edition uses **direct connection only** — the launcher connects directly to your LoginServer. No relay, no encrypted tunnel. This is all you need if you want a branded launcher with anti-cheat, multi-client, and Discord RPC.
 
-For production servers that need IP masking, encrypted transport, and HWID bans, add the CrespoGuard Relay (Guard+ tier, $19/mo).
+For production servers that need IP masking, encrypted transport, and HWID bans, upgrade to the CrespoGuard Relay (Guard+ tier, $19/mo).
 
 !!! tip "Recommended for Production: Use the Relay"
     See [Relay Overview](RELAY.md) for what the relay provides and how to set it up.
     The relay requires a Guard+ tier license.
+
+## Sirin Server Setup
+
+If your server uses Sirin, the Community launcher works out of the box:
+
+1. Set `"IsSirin": true` in your `modules.json` configuration
+2. Place `sirin-launcher.dll` in the client directory alongside `RFLauncher.exe`
+3. Generate `config.bin` as normal
+
+No relay is required for Sirin integration at the Community tier.
 
 ## Next Steps
 

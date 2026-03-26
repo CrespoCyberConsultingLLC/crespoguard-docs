@@ -10,8 +10,18 @@
 | **Price** | Free | $19/mo | $49/mo | $79/mo |
 | **Max Players** | — | 75 | 250 | 500 |
 | **Launcher + Branding** | Yes | Yes | Yes | Yes |
-| **ClientGuard (bin-independent)** | Yes | Yes | Yes | Yes |
 | **Anti-Cheat Suite** | Yes | Yes | Yes | Yes |
+| **Multi-Client** | Yes | Yes | Yes | Yes |
+| **Discord Rich Presence** | Yes | Yes | Yes | Yes |
+| **Locale Emulation (CP949)** | Yes | Yes | Yes | Yes |
+| **Asset Decryption (CGEF)** | Yes | Yes | Yes | Yes |
+| **FreeGuard/Cerberus Suppression** | Yes | Yes | Yes | Yes |
+| **Account Manager** | Yes | Yes | Yes | Yes |
+| **Compatibility Checker** | Yes | Yes | Yes | Yes |
+| **Borderless Windowed Mode** | Yes | Yes | Yes | Yes |
+| **Clean Room Mode** | Yes | Yes | Yes | Yes |
+| **Encrypted Login (AES-256-GCM)** | — | Yes | Yes | Yes |
+| **Auto-Update System** | — | Yes | Yes | Yes |
 | **CrespoGuard Relay** | — | Yes | Yes | Yes |
 | **CGRD Encrypted Tunnel** | — | Yes | Yes | Yes |
 | **Server IP Masking** | — | Yes | Yes | Yes |
@@ -21,13 +31,16 @@
 | **Announcements** | — | Yes | Yes | Yes |
 | **License Validation** | — | Yes | Yes | Yes |
 | **Telemetry (SOC)** | — | Yes | Yes | Yes |
-| **Combat Automation** | — | Yes | Yes | Yes |
-| **Chat Overlay** | — | Yes | Yes | Yes |
+| **Bin-Dependent Features ¹** | — | Yes | Yes | Yes |
+| **Combat Automation ¹** | — | Yes | Yes | Yes |
+| **Chat Overlay ¹** | — | Yes | Yes | Yes |
 | **Multi-Zone Proxy** | — | — | Yes | Yes |
 | **File Logging** | — | — | Yes | Yes |
 | **Edge Relay Mode** | — | — | — | Yes |
 | **PROXY Protocol v1** | — | — | — | Yes |
 | **Health Check Endpoint** | — | — | — | Yes |
+
+¹ Bin-dependent features (stack patches, name colors, FOV/camera, display fixes, hunter points, options panel, combat automation, chat overlay, bot patches) require **both** a Guard+ relay license **and** a ZoneMod license, plus the supported RF Online 2.2.3.2 binary. This is a dual-license model: the relay tier controls server infrastructure access, while ZoneMod controls gameplay feature modules. On unsupported binaries or without both licenses, these features gracefully deactivate.
 
 
 ## Shield Tier ($49/mo)
@@ -91,8 +104,8 @@ Useful for post-incident analysis and compliance. File grows without rotation �
 
 | Your Situation | Recommended Tier |
 |---------------|-----------------|
-| Launcher + anti-cheat only, no relay needed | **Community** (Free) |
-| Need relay (IP masking, encrypted tunnel, HWID bans, dashboard) | **Guard** ($19/mo) |
+| Launcher + anti-cheat + multi-client + Discord RPC, no relay needed | **Community** (Free) |
+| Need relay (IP masking, encrypted tunnel, HWID bans, dashboard) + bin-dependent features | **Guard** ($19/mo) |
 | 75-250 players, need zone IP masking, file logging | **Shield** ($49/mo) |
 | 250+ players, multi-region, edge relays, load balancing | **Fortress** ($79/mo) |
 

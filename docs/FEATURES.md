@@ -50,32 +50,35 @@ These work on any RF_Online.bin version — no game memory hooking.
 | Feature | Community | Premium |
 |---------|:---------:|:-------:|
 | Multi-client support (run multiple instances) | Yes | Yes |
-| Display fixes (VSync, cursor clipping) | Yes | Yes |
 | Korean locale emulation | Yes | Yes |
 | Discord Rich Presence | Yes | Yes |
+| Asset decryption (CGEF) | Yes | Yes |
+| FreeGuard/Cerberus suppression | Yes | Yes |
 
 ### Client Guard — Bin-Dependent Features (2.2.3.2)
 
 These use pattern-scanned addresses from the game binary. Requires RF Online 2.2.3.2.
 
-| Feature | Community | Premium |
-|---------|:---------:|:-------:|
-| Stack limit patches (sell/shop) | Yes | Yes |
-| Custom name colors (`__NC__` protocol) | Yes | Yes |
-| Hunter point patches | Yes | Yes |
-| In-game options panel (backtick key) | Yes | Yes |
-| FOV / Camera distance overrides | Yes | Yes |
-| View distance / Dynamic lighting / Shadows | Yes | Yes |
-| Quest marker overlay | Yes | Yes |
+**All bin-dependent features require an active Guard+ relay license AND a ZoneMod license AND the supported RF Online 2.2.3.2 binary.** On other bins, these features gracefully deactivate.
+
+| Feature | Community | Guard+ |
+|---------|:---------:|:------:|
+| Stack limit patches (sell/shop) | — | Yes |
+| Custom name colors (`__NC__` protocol) | — | Yes |
+| Hunter point patches | — | Yes |
+| In-game options panel (backtick key) | — | Yes |
+| FOV / Camera distance overrides | — | Yes |
+| Display fixes (VSync, cursor clipping) | — | Yes |
+| View distance / Dynamic lighting / Shadows | — | Yes |
+| Quest marker overlay | — | Yes |
 | Chat window overlay (with history) | — | Yes |
-| Auto-loot | — | Yes |
+| Auto-loot (client-side) | — | Yes |
 | Auto-target (tab cycling) | — | Yes |
 | Auto-attack (spacebar automation) | — | Yes |
 | Attack-on-target (click to attack) | — | Yes |
 | Target name filter (focus farming) | — | Yes |
 | Combat assist (combined targeting + attack) | — | Yes |
-| Speed modification | — | Yes |
-| Advanced memory features (bot patches) | — | Yes |
+| Bot memory / bot patches | — | Yes |
 
 ### Server Components
 
@@ -96,26 +99,27 @@ CrespoGuard uses a tiered licensing model:
 
 | Tier | Price | Max Players | Key Features |
 |------|-------|-------------|-------------|
-| **Community** | Free | — | Launcher + ClientGuard + anti-cheat suite (no relay, no server component) |
+| **Community** | Free | — | Launcher + anti-cheat + multi-client + Discord RPC (no relay, no server component) |
 | **Guard** | $19/mo | 75 | + CrespoGuard Relay (encrypted tunnel, IP masking, dashboard, HWID bans) |
 | **Shield** | $49/mo | 250 | + Multi-zone proxy, file logging |
 | **Fortress** | $79/mo | 500 | + Edge relay mode, PROXY protocol, health check endpoint |
 
-Client-side premium features (combat automation, chat overlay) require a Guard+ tier license.
+All bin-dependent gameplay features (stack patches, name colors, FOV, combat automation, chat overlay, etc.) require a Guard+ relay license AND a ZoneMod license AND the supported RF Online 2.2.3.2 binary. On other bins or without both licenses, these features gracefully deactivate.
 
 All server-side components (relay, LoginServer, ZoneMod, dashboards, HWID bans) require a Guard+ tier.
 
 ## What's Premium (Summary)
 
-Premium features fall into four categories:
+Premium features fall into six categories:
 
 1. **Relay & server protection** (Guard+) — CrespoGuard Relay with encrypted tunnel, IP masking, dashboard, rate limiting, HWID bans
-2. **Combat automation** (bin-dependent) — Auto-loot, auto-target, auto-attack, combat assist, speed modification, bot patches
-3. **Chat overlay** (bin-dependent) — Custom chat window with history, message filtering
-4. **Edge relay routing** (Fortress tier) — Geographic latency optimization with multi-region relay nodes
-5. **Server-side tools** (Guard+) — LoginServer, ZoneMod (52 hook modules), SOC dashboard
+2. **Bin-dependent gameplay features** (Guard+ relay + ZoneMod) — Stack patches, name colors, FOV/camera, display fixes, hunter points, in-game options panel, quest markers
+3. **Combat automation** (Guard+ relay + ZoneMod) — Auto-loot, auto-target, auto-attack, combat assist, bot patches
+4. **Chat overlay** (Guard+ relay + ZoneMod) — Custom chat window with history, message filtering
+5. **Edge relay routing** (Fortress tier) — Geographic latency optimization with multi-region relay nodes
+6. **Server-side tools** (Guard+) — LoginServer, ZoneMod (52 hook modules), SOC dashboard
 
-The Community Edition is the free launcher + ClientGuard + anti-cheat suite. It includes branding, all non-combat client guard features, and the full security scanning suite. No server-side component is included.
+The Community Edition is the free launcher + anti-cheat suite + multi-client + Discord Rich Presence. It includes full white-label branding, all bin-independent client guard features, and the complete security scanning suite. No relay, no server-side component, no bin-dependent gameplay features.
 
 ## Auto-Loot: Two Tiers for Player Monetization
 
@@ -183,13 +187,13 @@ This is one of the most requested features in RF Online private servers and one 
 
 Client Guard features are split by binary dependency:
 
-- **Bin-independent features** (multi-client, locale, display, Discord) work on **any** RF_Online.bin version
-- **Bin-dependent features** (stack patches, name colors, FOV, options panel, quest markers, and all premium features) are validated for **RF Online 2.2.3.2** only
+- **Bin-independent features** (multi-client, locale, Discord RPC, asset decryption, FreeGuard suppression) work on **any** RF_Online.bin version and are included in the free Community edition
+- **Bin-dependent features** (stack patches, name colors, FOV, display fixes, options panel, quest markers, combat features, chat overlay, bot patches) are validated for **RF Online 2.2.3.2** only and require Guard+ relay + ZoneMod licenses
 - On other binary versions, bin-dependent features gracefully deactivate — no crash, no errors
 
 ## Premium Gating
 
-Premium features require server-side license validation. The in-game options panel shows premium features as available but locked — players can see what's possible and ask their server owner to upgrade. Feature access is enforced server-side and cannot be bypassed locally.
+All bin-dependent features require dual license validation: an active Guard+ relay tier license AND a ZoneMod license, plus verification of the supported RF Online 2.2.3.2 binary. The in-game options panel shows premium features as available but locked — players can see what's possible and ask their server owner to upgrade. Feature access is enforced server-side and cannot be bypassed locally.
 
 ## Upgrading to Premium
 

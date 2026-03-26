@@ -104,14 +104,14 @@ CrespoGuard isn't a one-size-fits-all tool — it's a platform designed around h
 
 ### Free to Start, Scales When You Need It
 
-The Community Edition is **free** and gives your players a fully branded, professional launcher with the complete anti-cheat suite from day one. No trial period, no feature crippling, no nag screens.
+The Community Edition is **free** and gives your players a fully branded, professional launcher with the complete anti-cheat suite, multi-client support, and Discord Rich Presence from day one. No trial period, no feature crippling, no nag screens.
 
-When you need server-side protection, the CrespoGuard Relay starts at $19/mo. Premium tiers add relay transport, IP masking, HWID bans, combat automation, dashboards, and multi-region edge relays:
+When you need server-side protection, the CrespoGuard Relay starts at $19/mo. Premium tiers add relay transport, IP masking, HWID bans, bin-dependent gameplay features, dashboards, and multi-region edge relays:
 
 | Tier | Price | Players | What It Adds |
 |------|-------|---------|-------------|
-| **Community** | Free | — | Launcher + ClientGuard + anti-cheat suite |
-| **Guard** | $19/mo | 75 | CrespoGuard Relay (encrypted tunnel, IP masking, dashboard, HWID bans), combat features |
+| **Community** | Free | — | Launcher + anti-cheat + multi-client + Discord RPC |
+| **Guard** | $19/mo | 75 | CrespoGuard Relay (encrypted tunnel, IP masking, dashboard, HWID bans), all bin-dependent features (with ZoneMod) |
 | **Shield** | $49/mo | 250 | Multi-zone proxy, file logging |
 | **Fortress** | $79/mo | 500 | Edge relays, PROXY protocol, health checks |
 
@@ -119,13 +119,14 @@ See [Features](FEATURES.md) for the full comparison and [Premium Tiers](PREMIUM_
 
 ### What Premium Gives Your Players
 
-Premium isn't just server management — it unlocks in-game features your players will love:
+Premium isn't just server management — it unlocks in-game features your players will love. All bin-dependent features require a Guard+ relay license AND a ZoneMod license AND the supported 2.2.3.2 binary:
 
 - **Auto-loot (two tiers)** — basic auto-loot for all players (~500ms pickup delay), instant auto-loot for VIP players (items skip the ground entirely). The most powerful monetization lever in RF Online private servers. See [Features](FEATURES.md#auto-loot-two-tiers-for-player-monetization) for the full breakdown.
 - **Auto-target** — tab cycling through nearby mobs with smart skip logic
 - **Auto-attack** — spacebar automation on valid targets
 - **Combat assist** — combined targeting + attack with name filter for focused farming
 - **Chat overlay** — modern ImGui chat window with message history, filtering, and input cycling
+- **Stack patches, name colors, FOV/camera, display fixes, hunter points** — quality-of-life gameplay features
 
 These appear in the in-game options panel. On Community tier they're visible but grayed out with a `[Premium]` tag — so players know the features exist and can ask their server owner to upgrade.
 
@@ -178,7 +179,7 @@ No. CrespoGuard's security runs in the launcher process and uses system-level AP
 The launcher will work with any binary. Client Guard DLL features depend on finding known code patterns in the game executable. If your binary is heavily modified, some features may not activate. They fail safely — never a crash.
 
 **Does it work with Sirin servers?**
-The CrespoGuard Launcher (Community Edition) works with any RF Online server, including Sirin servers — no relay required. If you add the CrespoGuard Relay (Guard+ tier), it provides encrypted transport and IP masking with full Sirin SDK integration in the launcher, bridging Sirin's authentication through the CGRD encrypted tunnel.
+Yes. The CrespoGuard Launcher (Community Edition) works with Sirin servers — set `IsSirin: true` in your config and place `sirin-launcher.dll` in the client directory. No relay required. If you add the CrespoGuard Relay (Guard+ tier), it provides encrypted transport and IP masking with full Sirin SDK integration, bridging Sirin's authentication through the CGRD encrypted tunnel.
 
 ### Multi-Player Households
 
