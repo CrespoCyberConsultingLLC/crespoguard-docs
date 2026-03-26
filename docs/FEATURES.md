@@ -15,7 +15,7 @@
 | Effect controls (scan lines, particles, glow) | Yes | Yes |
 | Configurable window size and layout | Yes | Yes |
 | Multi-language support (8 languages) | Yes | Yes |
-| Encrypted login (AES-256-GCM tunnel, requires relay) | — | Yes |
+| Encrypted login (AES-256-GCM tunnel, requires relay + launcher) | Yes | Yes |
 | Account manager (save/switch accounts) | Yes | Yes |
 | Auto-update system (patch server) | — | Yes |
 | World selection with status indicators | Yes | Yes |
@@ -84,7 +84,7 @@ These use pattern-scanned addresses from the game binary. Requires RF Online 2.2
 
 | Component | Community | Premium (Guard+) |
 |-----------|:---------:|:----------------:|
-| CrespoGuard Relay (encrypted tunnel, IP masking) | Yes (30 players) | Yes |
+| CrespoGuard Relay (transparent proxy + encrypted tunnel) | Yes (30 players) | Yes |
 | CrespoGuard Relay dashboard | Yes | Yes |
 | Auto-generated dashboard API key (CSPRNG) | Yes | Yes |
 | HWID ban system | — | Yes |
@@ -113,27 +113,27 @@ CrespoGuard uses a tiered licensing model:
 
 | Tier | Price | Max Players | Key Features |
 |------|-------|-------------|-------------|
-| **Community** | Free | 30 | Launcher + anti-cheat + relay (30 players) + DDoS protection + auto-update + telemetry + dashboard |
-| **Guard** | $19/mo | 75 | + CrespoGuard Relay (encrypted tunnel, IP masking, dashboard, HWID bans) |
+| **Community** | Free | 30 | Launcher + anti-cheat + relay (transparent proxy + encrypted tunnel, 30 players) + DDoS protection + auto-update + telemetry + dashboard |
+| **Guard** | $19/mo | 75 | + HWID bans, kick/announce from dashboard, higher player cap |
 | **Shield** | $49/mo | 250 | + Multi-zone proxy, file logging |
 | **Fortress** | $79/mo | 500 | + Edge relay mode, PROXY protocol, health check endpoint |
 
 All bin-dependent gameplay features (stack patches, name colors, FOV, combat automation, chat overlay, etc.) require a Guard+ relay license AND a ZoneMod license AND the supported RF Online 2.2.3.2 binary. On other bins or without both licenses, these features gracefully deactivate.
 
-The relay, dashboard, DDoS protection, auto-update, and telemetry are included in Community (30-player hard cap, enforced at the binary level). LoginServer, ZoneMod, HWID bans, kick, and announcements require Guard+.
+The relay (transparent proxy and encrypted tunnel), dashboard, DDoS protection, auto-update, and telemetry are included in Community (30-player hard cap, enforced at the binary level). LoginServer, ZoneMod, HWID bans, kick, and announcements require Guard+.
 
 ## What's Premium (Summary)
 
 Premium features fall into six categories:
 
-1. **Relay & server protection** (Guard+) — CrespoGuard Relay with encrypted tunnel, IP masking, dashboard, rate limiting, HWID bans
+1. **Admin tools & higher player caps** (Guard+) — HWID bans, kick/announce from dashboard, 75/250/500 player caps
 2. **Bin-dependent gameplay features** (Guard+ relay + ZoneMod) — Stack patches, name colors, FOV/camera, display fixes, hunter points, in-game options panel, quest markers
 3. **Combat automation** (Guard+ relay + ZoneMod) — Auto-loot, auto-target, auto-attack, combat assist, bot patches
 4. **Chat overlay** (Guard+ relay + ZoneMod) — Custom chat window with history, message filtering
 5. **Edge relay routing** (Fortress tier) — Geographic latency optimization with multi-region relay nodes
 6. **Server-side tools** (Guard+) — LoginServer, ZoneMod (52 hook modules), SOC dashboard
 
-The Community Edition is the free launcher + anti-cheat suite + multi-client + Discord Rich Presence + CrespoGuard Relay (30 players, hard cap enforced at the binary level) + DDoS protection + auto-update + telemetry + dashboard. It includes full white-label branding, all bin-independent client guard features, and the complete security scanning suite. Kick, HWID bans, announcements, and bin-dependent gameplay features require Guard+.
+The Community Edition is the free launcher + anti-cheat suite + multi-client + Discord Rich Presence + CrespoGuard Relay with both transparent proxy and AES-256-GCM encrypted tunnel (30 players, hard cap enforced at the binary level) + DDoS protection + auto-update + telemetry + dashboard. It includes full white-label branding, all bin-independent client guard features, and the complete security scanning suite. The encrypted tunnel requires the CrespoGuard Launcher; the transparent proxy works with any vanilla RF client. When the relay runs on a separate machine, players connect to the relay and never see your game server IP. Kick, HWID bans, announcements, and bin-dependent gameplay features require Guard+.
 
 ## Auto-Loot: Two Tiers for Player Monetization
 

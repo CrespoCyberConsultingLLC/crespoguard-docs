@@ -24,7 +24,7 @@
 | **Auto-Update System** | â€” | Yes | Yes | Yes |
 | **CrespoGuard Relay** | Yes (30 players) | Yes | Yes | Yes |
 | **CGRD Encrypted Tunnel** | Yes | Yes | Yes | Yes |
-| **Server IP Masking** | Yes | Yes | Yes | Yes |
+| **Server IP Masking (requires separate machine)** | Yes | Yes | Yes | Yes |
 | **Rate Limiting + IP Bans** | Yes | Yes | Yes | Yes |
 | **DDoS Protection (GeoIP, Threat Intel, auto-ban)** | Yes | Yes | Yes | Yes |
 | **Dashboard (view + config)** | Yes | Yes | Yes | Yes |
@@ -105,8 +105,8 @@ Useful for post-incident analysis and compliance. File grows without rotation â€
 
 | Your Situation | Recommended Tier |
 |---------------|-----------------|
-| Launcher + anti-cheat + relay (up to 30 players) + DDoS protection + auto-update + telemetry + dashboard | **Community** (Free) |
-| Need relay (IP masking, encrypted tunnel, HWID bans, dashboard) + bin-dependent features | **Guard** ($19/mo) |
+| Launcher + anti-cheat + relay (transparent proxy + encrypted tunnel, up to 30 players) + DDoS protection + auto-update + telemetry + dashboard | **Community** (Free) |
+| Need HWID bans, kick/announce from dashboard, higher player cap (75), bin-dependent features | **Guard** ($19/mo) |
 | 75-250 players, need zone IP masking, file logging | **Shield** ($49/mo) |
 | 250+ players, multi-region, edge relays, load balancing | **Fortress** ($79/mo) |
 

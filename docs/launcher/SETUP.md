@@ -128,13 +128,20 @@ Launch `RFLauncher.exe` from the client directory. You should see:
 
 ## Connection Mode
 
-The Community Edition includes the CrespoGuard Relay for up to 30 concurrent players — encrypted transport, IP masking, DDoS protection, and dashboard access are all included for free. You can also use direct connection if you prefer (skip the relay setup).
+The Community Edition includes the CrespoGuard Relay for up to 30 concurrent players with two connection modes:
 
-For servers with more than 30 players, or if you need HWID bans, kick, announcements, and bin-dependent gameplay features, upgrade to Guard+ tier ($19/mo).
+- **Transparent proxy** — plain TCP forwarding, works with any vanilla RF client. No launcher required.
+- **Encrypted tunnel (CGRD, AES-256-GCM)** — encrypts player credentials and game data in transit. Requires the CrespoGuard Launcher with SecureLogin configured.
+
+Both modes are free in Community. When the relay runs on a separate machine from your game server, players connect to the relay address and never see your game server IP. DDoS protection and dashboard access are included in both modes.
+
+You can also use direct connection if you prefer (skip the relay setup).
+
+For servers with more than 30 players, or if you need HWID bans, kick/announce from the dashboard, and bin-dependent gameplay features, upgrade to Guard+ tier ($19/mo).
 
 !!! tip "Recommended: Set Up the Relay"
     See [Relay Overview](RELAY.md) for what the relay provides and how to set it up.
-    The relay is free for up to 30 players.
+    The relay is free for up to 30 players, including the encrypted tunnel.
 
 ## Sirin Server Setup
 
@@ -152,7 +159,7 @@ The Community relay (30 players) works with Sirin out of the box.
 - [Theming & Branding](THEMING.md) — Colors, fonts, effects, and layout
 - [Assets](ASSETS.md) — Logo, background, font, and music specs
 - [Deployment](DEPLOYMENT.md) — Packaging and distributing to players
-- [Relay Overview](RELAY.md) — Protect your server IP with the relay (Guard+ tier)
+- [Relay Overview](RELAY.md) — Transparent proxy + encrypted tunnel (free for 30 players)
 
 ## Troubleshooting
 

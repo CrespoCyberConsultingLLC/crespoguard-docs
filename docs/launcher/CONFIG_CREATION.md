@@ -71,9 +71,9 @@ Start from the template or create a new file. Minimal working example:
 
 See [CONFIG_REFERENCE.md](CONFIG_REFERENCE.md) for every field and its default value.
 
-## Step 2: Add Secure Login (Guard+ Tier — Optional)
+## Step 2: Add Secure Login (Optional — All Tiers)
 
-If using the CrespoGuard Relay (Guard+ tier), add the SecureLogin section to enable the encrypted tunnel between the launcher and relay. Servers without the relay (Community Edition) skip this step — the launcher connects directly to your LoginServer.
+If using the CrespoGuard Relay with the encrypted tunnel (available in all tiers including Community), add the SecureLogin section to enable the AES-256-GCM encrypted tunnel between the launcher and relay. Servers not using the encrypted tunnel skip this step — the launcher connects directly to your LoginServer or through the transparent proxy.
 
 ```json
 {

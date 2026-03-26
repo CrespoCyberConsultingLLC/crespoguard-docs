@@ -29,7 +29,7 @@ Most anti-cheat solutions hook deeply into the game executable — which means t
 - **Cheat window title scanning** — detects known cheat tool windows
 - **Proxy DLL detection** — catches known injection methods
 - **VM detection** — blocks virtual machines while keeping Wine/Linux players safe
-- **IP protection** — the CrespoGuard Relay hides your real server IP with an encrypted AES-256-GCM tunnel (free for up to 30 players, Guard+ for higher caps)
+- **Encrypted transport** — the CrespoGuard Relay encrypts player credentials and game data with AES-256-GCM (free for up to 30 players, Guard+ for higher caps). When the relay runs on a separate machine, players connect to the relay and never see your game server IP
 
 All of this runs in the launcher process. No game binary patching. No conflicts with existing protections. Works on any RF Online version.
 
@@ -39,7 +39,7 @@ CrespoGuard uses a **layered defense model** — multiple independent security s
 
 **Layer 1: Relay Transport**
 
-With the CrespoGuard Relay (free for up to 30 players, Guard+ for higher caps and advanced features), all login traffic between players and your server travels through an encrypted tunnel. The relay uses AES-256-GCM authenticated encryption with a pre-shared key, meaning traffic can't be intercepted, replayed, or tampered with in transit. Players never see your real server IP — they only see the relay address.
+With the CrespoGuard Relay (free for up to 30 players, Guard+ for higher caps and advanced features), login traffic between players and your server can travel through an AES-256-GCM encrypted tunnel (requires the CrespoGuard Launcher) or a transparent TCP proxy (works with any vanilla RF client). The encrypted tunnel uses authenticated encryption with a pre-shared key, meaning traffic can't be intercepted, replayed, or tampered with in transit. When the relay runs on a separate machine from your game server, players connect to the relay address and never see your game server IP.
 
 **Layer 2: Config Tamper Protection**
 
@@ -104,14 +104,14 @@ CrespoGuard isn't a one-size-fits-all tool — it's a platform designed around h
 
 ### Free to Start, Scales When You Need It
 
-The Community Edition is **free** and gives your players a fully branded, professional launcher with the complete anti-cheat suite, multi-client support, Discord Rich Presence, and the CrespoGuard Relay for up to 30 players — including DDoS protection, auto-update, anonymous telemetry, and the full dashboard — from day one. No trial period, no feature crippling, no nag screens.
+The Community Edition is **free** and gives your players a fully branded, professional launcher with the complete anti-cheat suite, multi-client support, Discord Rich Presence, and the CrespoGuard Relay for up to 30 players — including both transparent proxy and AES-256-GCM encrypted tunnel, DDoS protection, auto-update, anonymous telemetry, and the full dashboard — from day one. No trial period, no feature crippling, no nag screens.
 
-When you need higher player caps or advanced features, Premium tiers add HWID bans, bin-dependent gameplay features, kick/announcements, and multi-region edge relays:
+When you need higher player caps or advanced features, Premium tiers add HWID bans, kick/announce from dashboard, bin-dependent gameplay features, and multi-region edge relays:
 
 | Tier | Price | Players | What It Adds |
 |------|-------|---------|-------------|
-| **Community** | Free | 30 | Launcher + anti-cheat + relay (30 players) + DDoS protection + auto-update + telemetry + dashboard |
-| **Guard** | $19/mo | 75 | CrespoGuard Relay (encrypted tunnel, IP masking, dashboard, HWID bans), all bin-dependent features (with ZoneMod) |
+| **Community** | Free | 30 | Launcher + anti-cheat + relay (transparent proxy + encrypted tunnel, 30 players) + DDoS protection + auto-update + telemetry + dashboard |
+| **Guard** | $19/mo | 75 | HWID bans, kick/announce from dashboard, higher player cap, all bin-dependent features (with ZoneMod) |
 | **Shield** | $49/mo | 250 | Multi-zone proxy, file logging |
 | **Fortress** | $79/mo | 500 | Edge relays, PROXY protocol, health checks |
 
@@ -141,7 +141,7 @@ These appear in the in-game options panel. On Community tier they're visible but
 | 5. Set up the relay | [Relay Overview](launcher/RELAY.md) — free for up to 30 players |
 | 6. Deploy to players | [Deployment](launcher/DEPLOYMENT.md) — packaging, auto-updates, versioning |
 
-**Setting up the relay?** The Community Edition includes the CrespoGuard Relay for up to 30 players with DDoS protection and dashboard access. For higher player caps and advanced features (HWID bans, kick, announcements), see [Premium Tiers](PREMIUM_TIERS.md).
+**Setting up the relay?** The Community Edition includes the CrespoGuard Relay for up to 30 players with both transparent proxy and encrypted tunnel, DDoS protection, and dashboard access. For higher player caps and advanced features (HWID bans, kick/announce from dashboard), see [Premium Tiers](PREMIUM_TIERS.md).
 
 ## Documentation
 
@@ -154,7 +154,7 @@ These appear in the in-game options panel. On Community tier they're visible but
 | [Features](FEATURES.md) | Community vs Premium comparison tables |
 | [Assets](launcher/ASSETS.md) | Logo, background, font, music, and language file specs |
 | [Deployment](launcher/DEPLOYMENT.md) | Packaging, distribution, auto-updates, and versioning |
-| [CrespoGuard Relay](launcher/RELAY.md) | Relay overview — encrypted tunnel, IP masking (free for 30 players, Guard+ for more) |
+| [CrespoGuard Relay](launcher/RELAY.md) | Relay overview — transparent proxy + encrypted tunnel (free for 30 players, Guard+ for more) |
 | [Premium Tiers](PREMIUM_TIERS.md) | Guard / Shield / Fortress detailed reference |
 
 ## Requirements
@@ -180,7 +180,7 @@ No. CrespoGuard's security runs in the launcher process and uses system-level AP
 The launcher will work with any binary. Client Guard DLL features depend on finding known code patterns in the game executable. If your binary is heavily modified, some features may not activate. They fail safely — never a crash.
 
 **Does it work with Sirin servers?**
-Yes. The CrespoGuard Launcher (Community Edition) works with Sirin servers — set `IsSirin: true` in your config and place `sirin-launcher.dll` in the client directory. The Community relay (30 players) works with Sirin out of the box. Guard+ tiers provide encrypted transport and IP masking with full Sirin SDK integration, bridging Sirin's authentication through the CGRD encrypted tunnel.
+Yes. The CrespoGuard Launcher (Community Edition) works with Sirin servers — set `IsSirin: true` in your config and place `sirin-launcher.dll` in the client directory. The Community relay (30 players) works with Sirin out of the box, including the encrypted tunnel. The CGRD encrypted tunnel bridges Sirin's authentication with full SDK integration.
 
 ### Multi-Player Households
 
@@ -199,7 +199,7 @@ Rate limiting applies to connection attempts, not active sessions. The default a
 Critical security decisions are enforced server-side. Even if a player modifies the launcher binary, the relay server independently validates licenses, enforces bans, and verifies connections. A patched client cannot bypass server-side enforcement.
 
 **Can players extract my server IP from the launcher?**
-No. The launcher configuration is encrypted with tamper detection. Players cannot read the plaintext contents. When using the encrypted relay, your real server IP is never transmitted to the client — players only see the relay address.
+No. The launcher configuration is encrypted with tamper detection. Players cannot read the plaintext contents. When using the relay (on a separate machine from your game server), your game server IP is never transmitted to the client — players only see the relay address.
 
 **What happens if a player is caught cheating?**
 The session is terminated immediately with no warning period. The event is logged with the player's hardware ID, IP, and what was detected. Server owners with Guard+ tier can review events in the dashboard and issue HWID bans to prevent the player from reconnecting on any account.
