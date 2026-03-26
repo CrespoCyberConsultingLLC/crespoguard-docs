@@ -1,11 +1,30 @@
 
 # CrespoGuard Relay
 
-> Encrypted relay transport for RF Online servers — hide your IP, ban abusers, monitor connections. Free for up to 30 players.
+> TCP relay for RF Online servers — DDoS protection, IP masking, rate limiting, and a real-time dashboard. Free for up to 30 players.
 
 ## Overview
 
-The CrespoGuard Relay sits between your players and your game server. It provides encrypted transport, IP masking, DDoS protection, and a management dashboard. The Community Edition includes the relay for up to 30 concurrent players at no cost. Guard+ tiers ($19/mo+) raise the player cap and unlock HWID bans, kick, and announcements.
+The CrespoGuard Relay sits between your players and your game server. It provides DDoS protection, rate limiting, IP masking, and a management dashboard. Two modes are available:
+
+**Community Edition (Free, up to 30 players)** — Transparent TCP proxy. Works with any vanilla RF client. No launcher required.
+
+```
+Player                          Your Server
+┌──────────┐     plain TCP     ┌──────────────────┐
+│ Any RF    ├───────────────────┤ CrespoGuard      │    ┌──────────────┐
+│ Client    │   (transparent)   │ Relay             ├────┤ LoginServer  │
+│           │                   │ (port 10002)      │    │ (port 10001) │
+└──────────┘                   │                   │    └──────────────┘
+                               │ DDoS protection   │
+                               │ Rate limiting     │    ┌──────────────┐
+                               │ Auto-ban          ├────┤ ZoneServer   │
+                               │ GeoIP + Threat DB │    │ (port 27780) │
+                               │ Dashboard         │
+                               └──────────────────┘
+```
+
+**Guard+ Tier ($19/mo+)** — AES-256-GCM encrypted tunnel. Requires CrespoGuard Launcher. Full IP protection + HWID bans.
 
 ```
 Player                          Your Server
@@ -14,14 +33,14 @@ Player                          Your Server
 │ Launcher  │   (encrypted)     │ Relay             ├────┤ LoginServer  │
 │           │                   │ (port 10001)      │    │ (port 10001) │
 └──────────┘                   │                   │    └──────────────┘
-                               │ IP masking        │
-                               │ Rate limiting     │    ┌──────────────┐
-                               │ HWID bans         ├────┤ ZoneServer   │
-                               │ Dashboard         │    │ (port 27780) │
+                               │ Everything above  │
+                               │ + Encrypted tunnel│    ┌──────────────┐
+                               │ + HWID bans       ├────┤ ZoneServer   │
+                               │ + Kick/Announce   │    │ (port 27780) │
                                └──────────────────┘    └──────────────┘
 ```
 
-Players connect to the relay IP using the CrespoGuard Launcher. Your real server IP stays hidden.
+Community players connect to the relay IP directly. Guard+ players connect via the CrespoGuard Launcher. Your real server IP stays hidden when the relay runs on a separate machine.
 
 ## What's Included
 
