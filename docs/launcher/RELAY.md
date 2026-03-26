@@ -1,11 +1,11 @@
 
 # CrespoGuard Relay
 
-> Encrypted relay transport for RF Online servers — hide your IP, ban abusers, monitor connections. Available at Guard tier and above.
+> Encrypted relay transport for RF Online servers — hide your IP, ban abusers, monitor connections. Free for up to 30 players.
 
 ## Overview
 
-The CrespoGuard Relay is a **paid server-side component** (starting at Guard tier, $19/mo) that sits between your players and your game server. It provides encrypted transport, IP masking, a management dashboard, and hardware-based bans.
+The CrespoGuard Relay sits between your players and your game server. It provides encrypted transport, IP masking, DDoS protection, and a management dashboard. The Community Edition includes the relay for up to 30 concurrent players at no cost. Guard+ tiers ($19/mo+) raise the player cap and unlock HWID bans, kick, and announcements.
 
 ```
 Player                          Your Server
@@ -46,7 +46,7 @@ Players connect to the relay IP using the CrespoGuard Launcher. Your real server
 - A running RF Online server (LoginServer + ZoneServer)
 - A Windows or Linux machine for the relay (can be the same machine as your game server)
 - The CrespoGuard Relay binary (`CrespoGuardRelay.exe` or Linux build)
-- A Guard+ tier license
+- A CrespoGuard license (Community for up to 30 players, Guard+ for higher caps)
 - The CrespoGuard Launcher configured with SecureLogin (PSK must match)
 
 ## Quick Setup
@@ -129,8 +129,8 @@ See [Creating config.bin](CONFIG_CREATION.md) for the full encryption walkthroug
 
 Tier upgrades are instant — purchase the higher tier, activate the new code, and restart the relay. No client changes needed. See [Premium Tiers](../PREMIUM_TIERS.md) for full tier documentation.
 
-## Community Edition (No Relay)
+## Community Edition (Free Relay — 30 Players)
 
-The Community Edition is the free CrespoGuard Launcher with anti-cheat, multi-client support, and Discord Rich Presence. It does not include the relay or any server-side component. Players connect directly to your game server without relay transport.
+The Community Edition includes the CrespoGuard Relay for up to 30 concurrent players. You get encrypted transport, IP masking, DDoS protection (rate limiting, GeoIP filtering, Threat Intel blocklist, auto-ban with progressive backoff), and full dashboard access — all at no cost.
 
-If you only need a branded launcher with anti-cheat, multi-client, and Discord RPC, the Community Edition is all you need. When you're ready for IP masking, encrypted transport, dashboards, HWID bans, and bin-dependent gameplay features, upgrade to Guard tier.
+The 30-player cap is a hard limit. When you need more capacity, HWID bans, kick, announcements, or bin-dependent gameplay features, upgrade to Guard tier ($19/mo, 75 players).

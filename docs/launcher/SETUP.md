@@ -13,7 +13,7 @@
 
 ## What's in the Package
 
-The Community package includes the launcher and anti-cheat DLL. No relay or server-side components are included.
+The Community package includes the launcher, anti-cheat DLL, and access to the CrespoGuard Relay (up to 30 players).
 
 ```
 CrespoGuard-Community/
@@ -128,13 +128,13 @@ Launch `RFLauncher.exe` from the client directory. You should see:
 
 ## Connection Mode
 
-The Community Edition uses **direct connection only** — the launcher connects directly to your LoginServer. No relay, no encrypted tunnel. This is all you need if you want a branded launcher with anti-cheat, multi-client, and Discord RPC.
+The Community Edition includes the CrespoGuard Relay for up to 30 concurrent players — encrypted transport, IP masking, DDoS protection, and dashboard access are all included for free. You can also use direct connection if you prefer (skip the relay setup).
 
-For production servers that need IP masking, encrypted transport, and HWID bans, upgrade to the CrespoGuard Relay (Guard+ tier, $19/mo).
+For servers with more than 30 players, or if you need HWID bans, kick, announcements, and bin-dependent gameplay features, upgrade to Guard+ tier ($19/mo).
 
-!!! tip "Recommended for Production: Use the Relay"
+!!! tip "Recommended: Set Up the Relay"
     See [Relay Overview](RELAY.md) for what the relay provides and how to set it up.
-    The relay requires a Guard+ tier license.
+    The relay is free for up to 30 players.
 
 ## Sirin Server Setup
 
@@ -144,7 +144,7 @@ If your server uses Sirin, the Community launcher works out of the box:
 2. Place `sirin-launcher.dll` in the client directory alongside `RFLauncher.exe`
 3. Generate `config.bin` as normal
 
-No relay is required for Sirin integration at the Community tier.
+The Community relay (30 players) works with Sirin out of the box.
 
 ## Next Steps
 

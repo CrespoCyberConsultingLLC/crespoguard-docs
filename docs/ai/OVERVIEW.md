@@ -42,7 +42,7 @@ No data leaves your server — all inference happens on the CPU using
 
 The AI knows about:
 
-- All **60+ CrespoGuard modules** and their settings
+- All **110+ CrespoGuard modules** and their settings
 - The **JavaScript event system** (230+ hooks, Player/GameServer/Store APIs)
 - **Rate multipliers** (EXP, drop, gold, mining, PvP, stack limits)
 - **Security modules** and why certain ones cannot be disabled

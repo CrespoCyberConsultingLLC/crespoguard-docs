@@ -84,8 +84,8 @@ These use pattern-scanned addresses from the game binary. Requires RF Online 2.2
 
 | Component | Community | Premium (Guard+) |
 |-----------|:---------:|:----------------:|
-| CrespoGuard Relay (encrypted tunnel, IP masking) | — | Yes |
-| CrespoGuard Relay dashboard | — | Yes |
+| CrespoGuard Relay (encrypted tunnel, IP masking) | Yes (30 players) | Yes |
+| CrespoGuard Relay dashboard | Yes | Yes |
 | HWID ban system | — | Yes |
 | CrespoGuard LoginServer (drop-in replacement) | — | Yes |
 | CrespoGuard ZoneMod (52 modules, 91+ hooks) | — | Yes |
@@ -93,20 +93,32 @@ These use pattern-scanned addresses from the game binary. Requires RF Online 2.2
 | SOC unified dashboard | — | Yes |
 | [AI Assistant](ai/OVERVIEW.md) (local LLM config helper) | — | Yes |
 
+> **Dashboard:** Full access in Community (view connections, stats, rate-limit config). Kick, HWID bans, and announcements require Guard+.
+
+### DDoS Protection (Relay)
+
+| Feature | Community | Premium |
+|---------|:---------:|:-------:|
+| Per-IP rate limiting | Yes | Yes |
+| Auto-ban with progressive backoff | Yes | Yes |
+| GeoIP country filtering | Yes | Yes |
+| Threat Intel blocklist (200K+ IPs) | Yes | Yes |
+| Relay auto-update | Yes | Yes |
+
 ## Tier System
 
 CrespoGuard uses a tiered licensing model:
 
 | Tier | Price | Max Players | Key Features |
 |------|-------|-------------|-------------|
-| **Community** | Free | — | Launcher + anti-cheat + multi-client + Discord RPC (no relay, no server component) |
+| **Community** | Free | 30 | Launcher + anti-cheat + relay (30 players) + DDoS protection + dashboard |
 | **Guard** | $19/mo | 75 | + CrespoGuard Relay (encrypted tunnel, IP masking, dashboard, HWID bans) |
 | **Shield** | $49/mo | 250 | + Multi-zone proxy, file logging |
 | **Fortress** | $79/mo | 500 | + Edge relay mode, PROXY protocol, health check endpoint |
 
 All bin-dependent gameplay features (stack patches, name colors, FOV, combat automation, chat overlay, etc.) require a Guard+ relay license AND a ZoneMod license AND the supported RF Online 2.2.3.2 binary. On other bins or without both licenses, these features gracefully deactivate.
 
-All server-side components (relay, LoginServer, ZoneMod, dashboards, HWID bans) require a Guard+ tier.
+The relay, dashboard, and DDoS protection are included in Community (30-player cap). LoginServer, ZoneMod, HWID bans, kick, and announcements require Guard+.
 
 ## What's Premium (Summary)
 
@@ -119,7 +131,7 @@ Premium features fall into six categories:
 5. **Edge relay routing** (Fortress tier) — Geographic latency optimization with multi-region relay nodes
 6. **Server-side tools** (Guard+) — LoginServer, ZoneMod (52 hook modules), SOC dashboard
 
-The Community Edition is the free launcher + anti-cheat suite + multi-client + Discord Rich Presence. It includes full white-label branding, all bin-independent client guard features, and the complete security scanning suite. No relay, no server-side component, no bin-dependent gameplay features.
+The Community Edition is the free launcher + anti-cheat suite + multi-client + Discord Rich Presence + CrespoGuard Relay (30 players) + DDoS protection + dashboard. It includes full white-label branding, all bin-independent client guard features, and the complete security scanning suite. Kick, HWID bans, announcements, and bin-dependent gameplay features require Guard+.
 
 ## Auto-Loot: Two Tiers for Player Monetization
 
