@@ -25,21 +25,29 @@ Players connect to the relay IP using the CrespoGuard Launcher. Your real server
 
 ## What's Included
 
-| Feature | Guard ($19/mo) | Shield ($49/mo) | Fortress ($79/mo) |
-|---------|:--------------:|:---------------:|:------------------:|
-| CGRD encrypted tunnel | Yes | Yes | Yes |
-| Server IP masking | Yes | Yes | Yes |
-| Dashboard (full read/write) | Yes | Yes | Yes |
-| Rate limiting + IP bans | Yes | Yes | Yes |
-| HWID bans | Yes | Yes | Yes |
-| Announcements | Yes | Yes | Yes |
-| Telemetry (SOC) | Yes | Yes | Yes |
-| Max players | 75 | 250 | 500 |
-| Multi-zone proxy | — | Yes | Yes |
-| File logging | — | Yes | Yes |
-| Edge relay mode | — | — | Yes |
-| PROXY protocol v1 | — | — | Yes |
-| Health check endpoint | — | — | Yes |
+| Feature | Community (Free) | Guard ($19/mo) | Shield ($49/mo) | Fortress ($79/mo) |
+|---------|:----------------:|:--------------:|:---------------:|:------------------:|
+| Transparent TCP proxy | Yes | Yes | Yes | Yes |
+| CGRD encrypted tunnel | — | Yes | Yes | Yes |
+| IP masking (separate machine) | Yes | Yes | Yes | Yes |
+| Dashboard (view + IP bans) | Yes | Yes | Yes | Yes |
+| Dashboard (kick, HWID bans, announce) | — | Yes | Yes | Yes |
+| Rate limiting + IP bans | Yes | Yes | Yes | Yes |
+| Auto-ban (progressive backoff) | Yes | Yes | Yes | Yes |
+| GeoIP country filtering | Yes | Yes | Yes | Yes |
+| Threat Intel blocklist (200K+ IPs) | Yes | Yes | Yes | Yes |
+| Auto-update (SHA-256 verified) | Yes | Yes | Yes | Yes |
+| Anonymous telemetry | Yes | Yes | Yes | Yes |
+| Auto-generated API key (CSPRNG) | Yes | Yes | Yes | Yes |
+| HWID bans | — | Yes | Yes | Yes |
+| Announcements | — | Yes | Yes | Yes |
+| SOC telemetry (detailed) | — | Yes | Yes | Yes |
+| Max players | **30** | 75 | 250 | 500 |
+| Multi-zone proxy | — | — | Yes | Yes |
+| File logging | — | — | Yes | Yes |
+| Edge relay mode | — | — | — | Yes |
+| PROXY protocol v1 | — | — | — | Yes |
+| Health check endpoint | — | — | — | Yes |
 
 ## Requirements
 
