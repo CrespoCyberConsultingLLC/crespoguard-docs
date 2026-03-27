@@ -127,12 +127,12 @@ Block connections from known datacenter and VPN providers by Autonomous System N
 
 ```json
 {
-    "ASNBlocklistEnabled": true,
-    "BlockedASNs": [12345, 67890]
+    "ASNBlockEnabled": true,
+    "ASNBlockList": [12345, 67890]
 }
 ```
 
-Look up ASN numbers at ipinfo.io. Add ASN numbers to the `BlockedASNs` array. Connections from IPs belonging to those ASNs are rejected before reaching your game server.
+Look up ASN numbers at ipinfo.io. Add ASN numbers to the `ASNBlockList` array. Connections from IPs belonging to those ASNs are rejected before reaching your game server.
 
 ### TCP Fingerprinting
 
@@ -143,26 +143,25 @@ Flagged connections are logged and optionally blocked. No client-side changes re
 ```json
 {
     "TCPFingerprintEnabled": true,
-    "TCPFingerprintAction": "flag"
+    "TCPFingerprintMode": "flag"
 }
 ```
 
-Set `TCPFingerprintAction` to `"block"` to drop non-Windows connections, or `"flag"` to log without blocking.
+Set `TCPFingerprintMode` to `"block"` to drop non-Windows connections, or `"flag"` to log without blocking.
 
 ### Prometheus Metrics
 
-Exposes relay metrics on a `/metrics` endpoint in Prometheus exposition format. Grafana-ready out of the box.
+Exposes relay metrics on a `/metrics` endpoint in Prometheus exposition format, served on the dashboard port. Grafana-ready out of the box.
 
 ```json
 {
-    "MetricsEnabled": true,
-    "MetricsPort": 9090
+    "PrometheusEnabled": true
 }
 ```
 
-See the /metrics endpoint for the full list.
+See the /metrics endpoint for the full list. Metrics are served on the same port as the dashboard — no separate port configuration needed.
 
-**Restrict the metrics port** to your monitoring infrastructure — do not expose it publicly.
+**Restrict the dashboard port** to your monitoring infrastructure — do not expose it publicly.
 
 ### Adaptive Rate Limiter
 
@@ -170,25 +169,18 @@ Burst-tolerant rate limiting — allows short spikes of legitimate reconnect act
 
 ```json
 {
-    "RateLimitMode": "token_bucket",
-    "RateLimitTokensPerSec": "<your value>",
-    "RateLimitBurstSize": "<your value>"
+    "RateLimitPerIP": 15,
+    "RateLimitWindowSec": 60
 }
 ```
 
-Set `RateLimitMode` to `"token_bucket"` to enable. The fixed-window limiter (`"fixed"`) remains available for backward compatibility.
+Configure per-IP rate limits with `RateLimitPerIP` (max connections) and `RateLimitWindowSec` (time window in seconds).
 
-### Tor Exit Node Blocklist
+### Tor Exit Node Blocking
 
-Third threat intelligence source. Automatically fetches and refreshes the Tor exit node list. Connections from known Tor exit nodes are blocked alongside the existing Threat Intel and GeoIP layers.
+Third threat intelligence source. Tor exit nodes are blocked via URLs in the `ThreatIntelURLs` list — no separate toggle needed. Add a Tor exit node list URL to `ThreatIntelURLs` and the relay will automatically fetch and refresh it alongside other threat intel sources.
 
-```json
-{
-    "TorBlocklistEnabled": true
-}
-```
-
-The list is refreshed automatically. No manual maintenance required.
+Connections from known Tor exit nodes are blocked alongside the existing Threat Intel and GeoIP layers.
 
 ### Anti-Replay Protection
 
@@ -200,13 +192,13 @@ Structured log output with automatic rotation. Logs are written asynchronously t
 
 ```json
 {
-    "LogRotateEnabled": true,
+    "LogToFile": true,
     "LogMaxSizeMB": 10,
     "LogMaxFiles": 5
 }
 ```
 
-Each log file rotates at 10MB (configurable), keeping up to 5 rotations. Output is structured for easy parsing by log aggregation tools.
+Enable file logging with `LogToFile`. Each log file rotates at `LogMaxSizeMB` (default 10MB), keeping up to `LogMaxFiles` rotations (default 5). Output is structured for easy parsing by log aggregation tools.
 
 ### Optimized Proxying
 
@@ -244,7 +236,7 @@ Edit `server.json`:
 {
     "ServerName": "Your Server",
     "ListenIP": "0.0.0.0",
-    "ListenPort": 10001,
+    "ListenPort": 10002,
     "TargetIP": "127.0.0.1",
     "TargetPort": 10001,
     "PSK": "same_key_as_modules_json",
@@ -280,7 +272,7 @@ Add `SecureLogin` to your launcher's `modules.json` and re-encrypt `config.bin`:
     "SecureLoginType": 1,
     "SecureLoginHost": "YOUR.PUBLIC.IP",
     "SecureLoginIP": "YOUR.PUBLIC.IP",
-    "SecureLoginPort": 10001,
+    "SecureLoginPort": 10002,
     "SecureLoginPSK": "YOUR_64_CHAR_HEX_PSK"
   }
 }
@@ -292,7 +284,7 @@ See [Creating config.bin](CONFIG_CREATION.md) for the full encryption walkthroug
 
 | Port | Direction | Purpose |
 |------|-----------|---------|
-| 10001 TCP | Inbound | Relay listen (encrypted tunnel) |
+| 10002 TCP | Inbound | Relay listen (encrypted tunnel) |
 | 27780 TCP | Inbound | ZoneServer (or zone proxy) |
 | 8081 TCP | Inbound | Dashboard (restrict to your admin IP!) |
 
