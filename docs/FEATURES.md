@@ -104,6 +104,14 @@ These use pattern-scanned addresses from the game binary. Requires RF Online 2.2
 | Auto-ban with progressive backoff | Yes | Yes |
 | GeoIP country filtering | Yes | Yes |
 | Threat Intel blocklist (200K+ IPs) | Yes | Yes |
+| ASN-based filtering (datacenter/VPN blocking) | Yes | Yes |
+| TCP fingerprinting (passive OS detection) | Yes | Yes |
+| Tor exit node blocklist | Yes | Yes |
+| Token bucket rate limiter (burst-tolerant) | Yes | Yes |
+| Anti-replay sliding window (RFC 6479) | Yes | Yes |
+| Prometheus /metrics endpoint (30+ metrics) | Yes | Yes |
+| Async rotating logger (structured output) | Yes | Yes |
+| splice() zero-copy proxying (Linux) | Yes | Yes |
 | Relay auto-update | Yes | Yes |
 | Anonymous telemetry | Yes | Yes |
 

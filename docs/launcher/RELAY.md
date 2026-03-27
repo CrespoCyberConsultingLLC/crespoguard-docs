@@ -55,6 +55,14 @@ Both modes are available in all tiers, including Community. The transparent prox
 | Auto-ban (progressive backoff) | Yes | Yes | Yes | Yes |
 | GeoIP country filtering | Yes | Yes | Yes | Yes |
 | Threat Intel blocklist (200K+ IPs) | Yes | Yes | Yes | Yes |
+| ASN-based filtering (block datacenter/VPN IPs) | Yes | Yes | Yes | Yes |
+| TCP fingerprinting (passive OS detection) | Yes | Yes | Yes | Yes |
+| Tor exit node blocklist | Yes | Yes | Yes | Yes |
+| Token bucket rate limiter (burst-tolerant) | Yes | Yes | Yes | Yes |
+| Anti-replay sliding window (RFC 6479) | Yes | Yes | Yes | Yes |
+| Prometheus /metrics endpoint | Yes | Yes | Yes | Yes |
+| Async rotating logger (structured output) | Yes | Yes | Yes | Yes |
+| splice() zero-copy proxying (Linux) | Yes | Yes | Yes | Yes |
 | Auto-update (SHA-256 verified) | Yes | Yes | Yes | Yes |
 | Anonymous telemetry | Yes | Yes | Yes | Yes |
 | Auto-generated API key (CSPRNG) | Yes | Yes | Yes | Yes |
@@ -67,6 +75,101 @@ Both modes are available in all tiers, including Community. The transparent prox
 | Edge relay mode | — | — | — | Yes |
 | PROXY protocol v1 | — | — | — | Yes |
 | Health check endpoint | — | — | — | Yes |
+
+## v3.1 Features
+
+### ASN-Based Filtering
+
+Block connections from known datacenter and VPN providers by Autonomous System Number (ASN). This catches proxy/VPN traffic that GeoIP alone misses — datacenter IPs are rarely legitimate RF Online players.
+
+```json
+{
+    "ASNBlocklistEnabled": true,
+    "BlockedASNs": [14061, 16276, 24940]
+}
+```
+
+Add ASN numbers to the `BlockedASNs` array. Connections from IPs belonging to those ASNs are rejected before reaching your game server.
+
+### TCP Fingerprinting
+
+Passive OS detection using TCP SYN packet characteristics (window size, TTL, options). Flags connections that don't match a Windows TCP stack — since RF Online only runs on Windows, non-Windows fingerprints indicate bots, proxied traffic, or attack tools.
+
+Flagged connections are logged and optionally blocked. No client-side changes required — detection is fully passive.
+
+```json
+{
+    "TCPFingerprintEnabled": true,
+    "TCPFingerprintAction": "flag"
+}
+```
+
+Set `TCPFingerprintAction` to `"block"` to drop non-Windows connections, or `"flag"` to log without blocking.
+
+### Prometheus Metrics
+
+Exposes 30+ relay metrics on a `/metrics` endpoint in Prometheus exposition format. Grafana-ready out of the box.
+
+```json
+{
+    "MetricsEnabled": true,
+    "MetricsPort": 9090
+}
+```
+
+Metrics include: active connections, bytes proxied, rate limit hits, blocked IPs by category (GeoIP, ASN, Tor, Threat Intel), authentication successes/failures, per-source threat intel counters, and dashboard API requests.
+
+**Restrict the metrics port** to your monitoring infrastructure — do not expose it publicly.
+
+### Token Bucket Rate Limiter
+
+Replaces the fixed-window rate limiter with a token bucket algorithm. Burst-tolerant — allows short spikes of legitimate reconnect activity (e.g., after a zone crash) without triggering false positives, while still blocking sustained floods.
+
+```json
+{
+    "RateLimitMode": "token_bucket",
+    "RateLimitTokensPerSec": 2,
+    "RateLimitBurstSize": 10
+}
+```
+
+Set `RateLimitMode` to `"token_bucket"` to enable. The fixed-window limiter (`"fixed"`) remains available for backward compatibility.
+
+### Tor Exit Node Blocklist
+
+Third threat intelligence source. Automatically fetches and refreshes the Tor exit node list. Connections from known Tor exit nodes are blocked alongside the existing Threat Intel and GeoIP layers.
+
+```json
+{
+    "TorBlocklistEnabled": true
+}
+```
+
+The list is refreshed automatically. No manual maintenance required.
+
+### Anti-Replay Sliding Window
+
+Implements RFC 6479 anti-replay protection for the CGRD encrypted tunnel. Tracks a 64-packet sliding window to detect and reject replayed packets. Prevents replay attacks without rejecting legitimate out-of-order delivery.
+
+### Async Rotating Logger
+
+Structured log output with automatic rotation. Logs are written asynchronously to avoid blocking the relay's event loop.
+
+```json
+{
+    "LogRotateEnabled": true,
+    "LogMaxSizeMB": 10,
+    "LogMaxFiles": 5
+}
+```
+
+Each log file rotates at 10MB (configurable), keeping up to 5 rotations. Output is structured for easy parsing by log aggregation tools.
+
+### splice() Zero-Copy Proxying
+
+On Linux, the relay uses `splice()` for zero-copy data transfer between sockets. Proxied traffic bypasses userspace entirely — the kernel moves data directly between file descriptors. Benchmarked at 30-50% throughput improvement over traditional `read()`/`write()` proxying.
+
+Enabled automatically on Linux when the kernel supports it. No configuration required. On Windows, the relay falls back to standard proxying.
 
 ## Requirements
 

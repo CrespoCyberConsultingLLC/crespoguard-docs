@@ -104,13 +104,13 @@ CrespoGuard isn't a one-size-fits-all tool — it's a platform designed around h
 
 ### Free to Start, Scales When You Need It
 
-The Community Edition is **free** and gives your players a fully branded, professional launcher with the complete anti-cheat suite, multi-client support, Discord Rich Presence, and the CrespoGuard Relay for up to 30 players — including both transparent proxy and AES-256-GCM encrypted tunnel, DDoS protection, auto-update, anonymous telemetry, and the full dashboard — from day one. No trial period, no feature crippling, no nag screens.
+The Community Edition is **free** and gives your players a fully branded, professional launcher with the complete anti-cheat suite, multi-client support, Discord Rich Presence, and the CrespoGuard Relay for up to 30 players — including both transparent proxy and AES-256-GCM encrypted tunnel, DDoS protection (GeoIP, ASN filtering, TCP fingerprinting, Tor blocklist, Threat Intel, token bucket rate limiting, anti-replay), Prometheus metrics, splice() zero-copy proxying on Linux, async rotating logger, auto-update, anonymous telemetry, and the full dashboard — from day one. No trial period, no feature crippling, no nag screens.
 
 When you need higher player caps or advanced features, Premium tiers add HWID bans, kick/announce from dashboard, bin-dependent gameplay features, and multi-region edge relays:
 
 | Tier | Price | Players | What It Adds |
 |------|-------|---------|-------------|
-| **Community** | Free | 30 | Launcher + anti-cheat + relay (transparent proxy + encrypted tunnel, 30 players) + DDoS protection + auto-update + telemetry + dashboard |
+| **Community** | Free | 30 | Launcher + anti-cheat + relay (transparent proxy + encrypted tunnel, 30 players) + DDoS protection (GeoIP, ASN, TCP fingerprint, Tor blocklist, token bucket rate limiting) + Prometheus metrics + auto-update + telemetry + dashboard |
 | **Guard** | $19/mo | 75 | HWID bans, kick/announce from dashboard, higher player cap, all bin-dependent features (with ZoneMod) |
 | **Shield** | $49/mo | 250 | Multi-zone proxy, file logging |
 | **Fortress** | $79/mo | 500 | Edge relays, PROXY protocol, health checks |

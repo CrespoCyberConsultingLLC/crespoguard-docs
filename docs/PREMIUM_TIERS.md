@@ -27,6 +27,14 @@
 | **Server IP Masking (requires separate machine)** | Yes | Yes | Yes | Yes |
 | **Rate Limiting + IP Bans** | Yes | Yes | Yes | Yes |
 | **DDoS Protection (GeoIP, Threat Intel, auto-ban)** | Yes | Yes | Yes | Yes |
+| **ASN-Based Filtering** | Yes | Yes | Yes | Yes |
+| **TCP Fingerprinting (passive OS detection)** | Yes | Yes | Yes | Yes |
+| **Tor Exit Node Blocklist** | Yes | Yes | Yes | Yes |
+| **Token Bucket Rate Limiter** | Yes | Yes | Yes | Yes |
+| **Anti-Replay Sliding Window (RFC 6479)** | Yes | Yes | Yes | Yes |
+| **Prometheus /metrics Endpoint** | Yes | Yes | Yes | Yes |
+| **Async Rotating Logger** | Yes | Yes | Yes | Yes |
+| **splice() Zero-Copy Proxying (Linux)** | Yes | Yes | Yes | Yes |
 | **Dashboard (view + config)** | Yes | Yes | Yes | Yes |
 | **Dashboard (kick, HWID bans, announcements)** | — | Yes | Yes | Yes |
 | **Relay Auto-Update** | Yes | Yes | Yes | Yes |
