@@ -121,6 +121,20 @@ All of the above, hosted on CrespoGuard's edge infrastructure:
 
 ## v3.1 Features
 
+### GeoIP Country Filtering
+
+Restrict connections by country. Only players from allowed countries can connect — all others are rejected before reaching your game server.
+
+```json
+{
+    "GeoIPEnabled": true,
+    "GeoIPFile": "geoip.csv",
+    "GeoIPAllowedCountries": ["US", "BR", "PH", "ID", "MY", "TH", "VN"]
+}
+```
+
+Requires a `geoip.csv` database file. See [Relay Databases](RELAY_DATABASES.md) for format specs, download sources, and example files.
+
 ### ASN-Based Filtering
 
 Block connections from known datacenter and VPN providers by Autonomous System Number (ASN). This catches proxy/VPN traffic that GeoIP alone misses — datacenter IPs are rarely legitimate RF Online players.
@@ -133,6 +147,8 @@ Block connections from known datacenter and VPN providers by Autonomous System N
 ```
 
 Look up ASN numbers at ipinfo.io. Add ASN numbers to the `ASNBlockList` array. Connections from IPs belonging to those ASNs are rejected before reaching your game server.
+
+Requires an `asn.csv` database file. See [Relay Databases](RELAY_DATABASES.md) for format specs, download sources, and example files.
 
 ### TCP Fingerprinting
 

@@ -51,6 +51,7 @@ nav:
     - Assets: launcher/ASSETS.md
     - Deployment: launcher/DEPLOYMENT.md
     - Relay Setup: launcher/RELAY.md
+    - Relay Databases: launcher/RELAY_DATABASES.md
   - ZoneMod:
     - Setup Guide: zonemod/SETUP.md
     - Module Catalog: zonemod/CATALOG.md
