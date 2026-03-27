@@ -30,11 +30,11 @@
 | **ASN-Based Filtering** | Yes | Yes | Yes | Yes |
 | **TCP Fingerprinting (passive OS detection)** | Yes | Yes | Yes | Yes |
 | **Tor Exit Node Blocklist** | Yes | Yes | Yes | Yes |
-| **Token Bucket Rate Limiter** | Yes | Yes | Yes | Yes |
-| **Anti-Replay Sliding Window (RFC 6479)** | Yes | Yes | Yes | Yes |
+| **Adaptive Rate Limiter (Burst-Tolerant)** | Yes | Yes | Yes | Yes |
+| **Anti-Replay Protection** | Yes | Yes | Yes | Yes |
 | **Prometheus /metrics Endpoint** | Yes | Yes | Yes | Yes |
 | **Async Rotating Logger** | Yes | Yes | Yes | Yes |
-| **splice() Zero-Copy Proxying (Linux)** | Yes | Yes | Yes | Yes |
+| **Optimized Proxying (Zero-Copy on Linux)** | Yes | Yes | Yes | Yes |
 | **Dashboard (view + config)** | Yes | Yes | Yes | Yes |
 | **Dashboard (kick, HWID bans, announcements)** | — | Yes | Yes | Yes |
 | **Relay Auto-Update** | Yes | Yes | Yes | Yes |
@@ -129,7 +129,7 @@ Useful for post-incident analysis and compliance. File grows without rotation �
 4. The license key is auto-saved to your config JSON
 5. Restart the relay — tier upgrades automatically
 
-**License validation** runs on every startup (POST to `/api/v1/validate`). If the license server is unreachable, a 24-hour local cache allows continued operation.
+**License validation** runs on every startup. If the license server is unreachable, a 24-hour local cache allows continued operation.
 
 ## Upgrading
 

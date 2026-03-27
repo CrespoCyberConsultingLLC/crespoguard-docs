@@ -86,7 +86,7 @@ These use pattern-scanned addresses from the game binary. Requires RF Online 2.2
 |-----------|:---------:|:----------------:|
 | CrespoGuard Relay (transparent proxy + encrypted tunnel) | Yes (30 players) | Yes |
 | CrespoGuard Relay dashboard | Yes | Yes |
-| Auto-generated dashboard API key (CSPRNG) | Yes | Yes |
+| Auto-generated dashboard API key | Yes | Yes |
 | HWID ban system | — | Yes |
 | CrespoGuard LoginServer (drop-in replacement) | — | Yes |
 | CrespoGuard ZoneMod (52 modules, 91+ hooks) | — | Yes |
@@ -107,11 +107,11 @@ These use pattern-scanned addresses from the game binary. Requires RF Online 2.2
 | ASN-based filtering (datacenter/VPN blocking) | Yes | Yes |
 | TCP fingerprinting (passive OS detection) | Yes | Yes |
 | Tor exit node blocklist | Yes | Yes |
-| Token bucket rate limiter (burst-tolerant) | Yes | Yes |
-| Anti-replay sliding window (RFC 6479) | Yes | Yes |
-| Prometheus /metrics endpoint (30+ metrics) | Yes | Yes |
+| Adaptive rate limiter (burst-tolerant) | Yes | Yes |
+| Anti-replay protection | Yes | Yes |
+| Prometheus /metrics endpoint | Yes | Yes |
 | Async rotating logger (structured output) | Yes | Yes |
-| splice() zero-copy proxying (Linux) | Yes | Yes |
+| Optimized proxying (zero-copy on Linux) | Yes | Yes |
 | Relay auto-update | Yes | Yes |
 | Anonymous telemetry | Yes | Yes |
 
