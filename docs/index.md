@@ -103,16 +103,18 @@ CrespoGuard isn't a one-size-fits-all tool — it's a platform designed around h
 
 ### Free to Start, Scales When You Need It
 
-The Community Edition is **free** and includes **every feature** — the full launcher, anti-cheat suite, hosted edge relay, IP masking, encrypted tunnel, HWID bans, kick/announce, all DDoS protection layers, dashboard, Prometheus metrics, auto-update, and more. No trial period, no feature crippling, no nag screens.
+The Community Edition is **free** and includes **every feature** — the full launcher, anti-cheat suite, self-hosted relay, encrypted tunnel, HWID bans, kick/announce, all DDoS protection layers, dashboard, Prometheus metrics, auto-update, and more. No trial period, no feature crippling, no nag screens.
 
 The only limit is player count. When your server grows, upgrade to increase your cap:
 
-| Tier | Price | Players |
-|------|-------|---------|
-| **Community** | Free | 30 |
-| **Guard** | $19/mo | 200 |
-| **Shield** | $49/mo | 500 |
-| **Fortress** | $99/mo | 1000 |
+| Tier | Price | Players | Edge Routing |
+|------|-------|---------|--------------|
+| **Community** | Free | 30 | +$10/mo optional |
+| **Guard** | $19/mo | 200 | +$10/mo optional |
+| **Shield** | $49/mo | 500 | +$10/mo optional |
+| **Fortress** | $99/mo | 1000 | +$10/mo optional |
+
+**Edge Routing** is an optional add-on at any tier. CrespoGuard hosts the relay on their edge infrastructure so you get full IP masking with zero setup — just point your launcher at `edge.crespoguard.com` with your route code. No VPS to manage. Without the add-on, you run the relay yourself on your own machine or VPS — all features still work, and you get IP masking if the relay runs on a separate machine from your game server.
 
 See [Features](FEATURES.md) for the full feature list and [Tiers](PREMIUM_TIERS.md) for detailed tier documentation.
 
@@ -140,7 +142,7 @@ These appear in the in-game options panel and are available to all tiers.
 | 5. Set up the relay | [Relay Overview](launcher/RELAY.md) — free with every feature |
 | 6. Deploy to players | [Deployment](launcher/DEPLOYMENT.md) — packaging, auto-updates, versioning |
 
-**Setting up the relay?** The Community Edition includes the CrespoGuard Relay with every feature — encrypted tunnel, DDoS protection, HWID bans, dashboard, and more. The only limit is 30 concurrent players. See [Tiers](PREMIUM_TIERS.md) for higher player caps.
+**Setting up the relay?** The Community Edition includes the CrespoGuard Relay with every feature — encrypted tunnel, DDoS protection, HWID bans, dashboard, and more. The only limit is 30 concurrent players. Run it yourself or add Edge Routing (+$10/mo) for hosted relay with full IP masking and zero setup. See [Tiers](PREMIUM_TIERS.md) for higher player caps.
 
 ## Documentation
 

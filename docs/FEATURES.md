@@ -5,14 +5,16 @@
 
 ## Tier Pricing
 
-| Tier | Price | Max Players |
-|------|-------|-------------|
-| **Community** | Free | 30 |
-| **Guard** | $19/mo | 200 |
-| **Shield** | $49/mo | 500 |
-| **Fortress** | $99/mo | 1000 |
+| Tier | Price | Max Players | Edge Routing |
+|------|-------|-------------|--------------|
+| **Community** | Free | 30 | +$10/mo optional |
+| **Guard** | $19/mo | 200 | +$10/mo optional |
+| **Shield** | $49/mo | 500 | +$10/mo optional |
+| **Fortress** | $99/mo | 1000 | +$10/mo optional |
 
 All tiers include every feature listed below. Pick the tier that matches your server's player count.
+
+**Edge Routing (+$10/mo add-on):** CrespoGuard hosts the relay on their edge infrastructure, giving you full IP masking with zero setup. Without the add-on, you run the relay yourself — all features still work. Self-hosted relay on a separate machine from your game server also provides IP masking. Edge routing is a convenience for server owners who don't want to manage a VPS. See [Relay](launcher/RELAY.md) for details on both deployment options.
 
 ## Launcher Features
 
@@ -34,7 +36,7 @@ All tiers include every feature listed below. Pick the tier that matches your se
 - In-launcher registration form
 - News/announcement panel
 - Clean room mode (per-session isolation)
-- Edge relay routing (geographic)
+- Edge relay routing (optional +$10/mo add-on — hosted relay with full IP masking, zero setup)
 - Remote config updates (hot-reload)
 - HWID-locked licensing
 - Self-integrity verification
@@ -113,7 +115,7 @@ These use pattern-scanned addresses from the game binary. Requires RF Online 2.2
 
 - Multi-zone proxy (hide ZoneServer IPs)
 - File logging
-- Edge relay mode (multi-region)
+- Edge relay mode (optional +$10/mo add-on — hosted relay on CrespoGuard's infrastructure)
 - PROXY protocol v1
 - Health check endpoint
 
