@@ -1,147 +1,121 @@
 
-# Community vs Premium Features
+# CrespoGuard Features
 
-> What's included in the Community Edition, and what requires a Premium license.
+> Everything included with CrespoGuard. Every feature, every tier — the only difference is player count.
 
-## Feature Comparison
+## Tier Pricing
 
-### Launcher Features
+| Tier | Price | Max Players |
+|------|-------|-------------|
+| **Community** | Free | 30 |
+| **Guard** | $19/mo | 200 |
+| **Shield** | $49/mo | 500 |
+| **Fortress** | $99/mo | 1000 |
 
-| Feature | Community | Premium |
-|---------|:---------:|:-------:|
-| Custom server branding (name, logo, background) | Yes | Yes |
-| Full color theme customization (9 colors) | Yes | Yes |
-| Custom fonts (body, bold, title) | Yes | Yes |
-| Effect controls (scan lines, particles, glow) | Yes | Yes |
-| Configurable window size and layout | Yes | Yes |
-| Multi-language support (8 languages) | Yes | Yes |
-| Encrypted login (AES-256-GCM tunnel, requires relay + launcher) | Yes | Yes |
-| Account manager (save/switch accounts) | Yes | Yes |
-| Auto-update system (patch server) | — | Yes |
-| World selection with status indicators | Yes | Yes |
-| System tray minimization | Yes | Yes |
-| Game process watchdog (Job Object) | Yes | Yes |
-| Compatibility checker (11 auto-fixes) | Yes | Yes |
-| Borderless windowed mode | Yes | Yes |
-| Background music (MP3/WAV/MIDI) | Yes | Yes |
-| In-launcher registration form | Yes | Yes |
-| News/announcement panel | Yes | Yes |
-| Clean room mode (per-session isolation) | Yes | Yes |
-| Edge relay routing (geographic) | — | Yes |
-| Remote config updates (hot-reload) | Yes | Yes |
-| HWID-locked licensing | Yes | Yes |
-| Self-integrity verification | Yes | Yes |
+All tiers include every feature listed below. Pick the tier that matches your server's player count.
 
-### Security & Anti-Cheat
+## Launcher Features
 
-| Feature | Community | Premium |
-|---------|:---------:|:-------:|
-| Anti-debugger (multiple methods) | Yes | Yes |
-| Cheat process scanning | Yes | Yes |
-| Cheat window title scanning | Yes | Yes |
-| Proxy DLL detection | Yes | Yes |
-| VM detection (Wine/Linux safe) | Yes | Yes |
-| HWID collection & ban support | Yes | Yes |
+- Custom server branding (name, logo, background)
+- Full color theme customization (9 colors)
+- Custom fonts (body, bold, title)
+- Effect controls (scan lines, particles, glow)
+- Configurable window size and layout
+- Multi-language support (8 languages)
+- Encrypted login (AES-256-GCM tunnel, requires relay + launcher)
+- Account manager (save/switch accounts)
+- Auto-update system (patch server)
+- World selection with status indicators
+- System tray minimization
+- Game process watchdog (Job Object)
+- Compatibility checker (11 auto-fixes)
+- Borderless windowed mode
+- Background music (MP3/WAV/MIDI)
+- In-launcher registration form
+- News/announcement panel
+- Clean room mode (per-session isolation)
+- Edge relay routing (geographic)
+- Remote config updates (hot-reload)
+- HWID-locked licensing
+- Self-integrity verification
 
-### Client Guard (dinput8.dll) — Bin-Independent Features
+## Security & Anti-Cheat
+
+- Anti-debugger (multiple methods)
+- Cheat process scanning
+- Cheat window title scanning
+- Proxy DLL detection
+- VM detection (Wine/Linux safe)
+- HWID collection & ban support
+
+## Client Guard (dinput8.dll) — Bin-Independent Features
 
 These work on any RF_Online.bin version — no game memory hooking.
 
-| Feature | Community | Premium |
-|---------|:---------:|:-------:|
-| Multi-client support (run multiple instances) | Yes | Yes |
-| Korean locale emulation | Yes | Yes |
-| Discord Rich Presence | Yes | Yes |
-| Asset decryption (CGEF) | Yes | Yes |
-| FreeGuard/Cerberus suppression | Yes | Yes |
+- Multi-client support (run multiple instances)
+- Korean locale emulation
+- Discord Rich Presence
+- Asset decryption (CGEF)
+- FreeGuard/Cerberus suppression
 
-### Client Guard — Bin-Dependent Features (2.2.3.2)
+## Client Guard — Bin-Dependent Features (2.2.3.2)
 
-These use pattern-scanned addresses from the game binary. Requires RF Online 2.2.3.2.
+These use pattern-scanned addresses from the game binary. Requires RF Online 2.2.3.2 and a ZoneMod license.
 
-**All bin-dependent features require an active Guard+ relay license AND a ZoneMod license AND the supported RF Online 2.2.3.2 binary.** On other bins, these features gracefully deactivate.
+- Stack limit patches (sell/shop)
+- Custom name colors (`__NC__` protocol)
+- Hunter point patches
+- In-game options panel (backtick key)
+- FOV / Camera distance overrides
+- Display fixes (VSync, cursor clipping)
+- View distance / Dynamic lighting / Shadows
+- Quest marker overlay
+- Chat window overlay (with history)
+- Auto-loot (client-side)
+- Auto-target (tab cycling)
+- Auto-attack (spacebar automation)
+- Attack-on-target (click to attack)
+- Target name filter (focus farming)
+- Combat assist (combined targeting + attack)
+- Bot memory / bot patches
 
-| Feature | Community | Guard+ |
-|---------|:---------:|:------:|
-| Stack limit patches (sell/shop) | — | Yes |
-| Custom name colors (`__NC__` protocol) | — | Yes |
-| Hunter point patches | — | Yes |
-| In-game options panel (backtick key) | — | Yes |
-| FOV / Camera distance overrides | — | Yes |
-| Display fixes (VSync, cursor clipping) | — | Yes |
-| View distance / Dynamic lighting / Shadows | — | Yes |
-| Quest marker overlay | — | Yes |
-| Chat window overlay (with history) | — | Yes |
-| Auto-loot (client-side) | — | Yes |
-| Auto-target (tab cycling) | — | Yes |
-| Auto-attack (spacebar automation) | — | Yes |
-| Attack-on-target (click to attack) | — | Yes |
-| Target name filter (focus farming) | — | Yes |
-| Combat assist (combined targeting + attack) | — | Yes |
-| Bot memory / bot patches | — | Yes |
+## Server Components
 
-### Server Components
+- CrespoGuard Relay (transparent proxy + encrypted tunnel)
+- CrespoGuard Relay dashboard
+- Auto-generated dashboard API key
+- HWID ban system
+- Kick & announcements from dashboard
+- CrespoGuard LoginServer (drop-in replacement)
+- CrespoGuard ZoneMod (52 modules, 91+ hooks)
+- ZoneMod web dashboard
+- SOC unified dashboard
+- [AI Assistant](ai/OVERVIEW.md) (local LLM config helper)
 
-| Component | Community | Premium (Guard+) |
-|-----------|:---------:|:----------------:|
-| CrespoGuard Relay (transparent proxy + encrypted tunnel) | Yes (30 players) | Yes |
-| CrespoGuard Relay dashboard | Yes | Yes |
-| Auto-generated dashboard API key | Yes | Yes |
-| HWID ban system | — | Yes |
-| CrespoGuard LoginServer (drop-in replacement) | — | Yes |
-| CrespoGuard ZoneMod (52 modules, 91+ hooks) | — | Yes |
-| ZoneMod web dashboard | — | Yes |
-| SOC unified dashboard | — | Yes |
-| [AI Assistant](ai/OVERVIEW.md) (local LLM config helper) | — | Yes |
+## DDoS Protection (Relay)
 
-> **Dashboard:** Full access in Community (view connections, stats, rate-limit config). Kick, HWID bans, and announcements require Guard+.
+- Per-IP rate limiting
+- Auto-ban with progressive backoff
+- GeoIP country filtering
+- Threat Intel blocklist (200K+ IPs)
+- ASN-based filtering (datacenter/VPN blocking)
+- TCP fingerprinting (passive OS detection)
+- Tor exit node blocklist
+- Adaptive rate limiter (burst-tolerant)
+- Anti-replay protection
+- Prometheus /metrics endpoint
+- Async rotating logger (structured output)
+- Optimized proxying (zero-copy on Linux)
+- Relay auto-update
+- Anonymous telemetry
 
-### DDoS Protection (Relay)
+## Relay Infrastructure
 
-| Feature | Community | Premium |
-|---------|:---------:|:-------:|
-| Per-IP rate limiting | Yes | Yes |
-| Auto-ban with progressive backoff | Yes | Yes |
-| GeoIP country filtering | Yes | Yes |
-| Threat Intel blocklist (200K+ IPs) | Yes | Yes |
-| ASN-based filtering (datacenter/VPN blocking) | Yes | Yes |
-| TCP fingerprinting (passive OS detection) | Yes | Yes |
-| Tor exit node blocklist | Yes | Yes |
-| Adaptive rate limiter (burst-tolerant) | Yes | Yes |
-| Anti-replay protection | Yes | Yes |
-| Prometheus /metrics endpoint | Yes | Yes |
-| Async rotating logger (structured output) | Yes | Yes |
-| Optimized proxying (zero-copy on Linux) | Yes | Yes |
-| Relay auto-update | Yes | Yes |
-| Anonymous telemetry | Yes | Yes |
-
-## Tier System
-
-CrespoGuard uses a tiered licensing model:
-
-| Tier | Price | Max Players | Key Features |
-|------|-------|-------------|-------------|
-| **Community** | Free | 30 | Launcher + anti-cheat + relay (transparent proxy + encrypted tunnel, 30 players) + DDoS protection + auto-update + telemetry + dashboard |
-| **Guard** | $19/mo | 75 | + HWID bans, kick/announce from dashboard, higher player cap |
-| **Shield** | $49/mo | 250 | + Multi-zone proxy, file logging |
-| **Fortress** | $79/mo | 500 | + Edge relay mode, PROXY protocol, health check endpoint |
-
-All bin-dependent gameplay features (stack patches, name colors, FOV, combat automation, chat overlay, etc.) require a Guard+ relay license AND a ZoneMod license AND the supported RF Online 2.2.3.2 binary. On other bins or without both licenses, these features gracefully deactivate.
-
-The relay (transparent proxy and encrypted tunnel), dashboard, DDoS protection, auto-update, and telemetry are included in Community (30-player hard cap, enforced at the binary level). LoginServer, ZoneMod, HWID bans, kick, and announcements require Guard+.
-
-## What's Premium (Summary)
-
-Premium features fall into six categories:
-
-1. **Admin tools & higher player caps** (Guard+) — HWID bans, kick/announce from dashboard, 75/250/500 player caps
-2. **Bin-dependent gameplay features** (Guard+ relay + ZoneMod) — Stack patches, name colors, FOV/camera, display fixes, hunter points, in-game options panel, quest markers
-3. **Combat automation** (Guard+ relay + ZoneMod) — Auto-loot, auto-target, auto-attack, combat assist, bot patches
-4. **Chat overlay** (Guard+ relay + ZoneMod) — Custom chat window with history, message filtering
-5. **Edge relay routing** (Fortress tier) — Geographic latency optimization with multi-region relay nodes
-6. **Server-side tools** (Guard+) — LoginServer, ZoneMod (52 hook modules), SOC dashboard
-
-The Community Edition is the free launcher + anti-cheat suite + multi-client + Discord Rich Presence + CrespoGuard Relay with both transparent proxy and AES-256-GCM encrypted tunnel (30 players, hard cap enforced at the binary level) + DDoS protection + auto-update + telemetry + dashboard. It includes full white-label branding, all bin-independent client guard features, and the complete security scanning suite. The encrypted tunnel requires the CrespoGuard Launcher; the transparent proxy works with any vanilla RF client. When the relay runs on a separate machine, players connect to the relay and never see your game server IP. Kick, HWID bans, announcements, and bin-dependent gameplay features require Guard+.
+- Multi-zone proxy (hide ZoneServer IPs)
+- File logging
+- Edge relay mode (multi-region)
+- PROXY protocol v1
+- Health check endpoint
 
 ## Auto-Loot: Two Tiers for Player Monetization
 
@@ -162,7 +136,7 @@ Auto-loot settings are configurable per-player through the in-game options panel
 
 ### Instant Auto-Loot (Server-Side — VIP Players)
 
-Available through ZoneMod (Premium server component). Items never touch the ground.
+Available through ZoneMod. Items never touch the ground.
 
 **What players experience:**
 - Monster dies → items appear directly in inventory. Zero delay. No animation.
@@ -209,21 +183,16 @@ This is one of the most requested features in RF Online private servers and one 
 
 Client Guard features are split by binary dependency:
 
-- **Bin-independent features** (multi-client, locale, Discord RPC, asset decryption, FreeGuard suppression) work on **any** RF_Online.bin version and are included in the free Community edition
-- **Bin-dependent features** (stack patches, name colors, FOV, display fixes, options panel, quest markers, combat features, chat overlay, bot patches) are validated for **RF Online 2.2.3.2** only and require Guard+ relay + ZoneMod licenses
+- **Bin-independent features** (multi-client, locale, Discord RPC, asset decryption, FreeGuard suppression) work on **any** RF_Online.bin version
+- **Bin-dependent features** (stack patches, name colors, FOV, display fixes, options panel, quest markers, combat features, chat overlay, bot patches) are validated for **RF Online 2.2.3.2** only and require a ZoneMod license
 - On other binary versions, bin-dependent features gracefully deactivate — no crash, no errors
 
-## Premium Gating
-
-All bin-dependent features require dual license validation: an active Guard+ relay tier license AND a ZoneMod license, plus verification of the supported RF Online 2.2.3.2 binary. The in-game options panel shows premium features as available but locked — players can see what's possible and ask their server owner to upgrade. Feature access is enforced server-side and cannot be bypassed locally.
-
-## Upgrading to Premium
+## Upgrading
 
 Contact the CrespoGuard team to:
 
-1. Receive a Premium license key for your server
+1. Receive a license key for your server
 2. Get access to CrespoGuard LoginServer and ZoneMod
-3. Enable premium client features (combat automation, chat overlay)
-4. Get server-side anti-cheat dashboards and ban management
+3. Unlock higher player caps as your server grows
 
 The upgrade is a config change + new server binaries — no client reinstall required for your players.

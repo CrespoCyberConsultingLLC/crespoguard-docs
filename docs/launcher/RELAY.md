@@ -1,11 +1,11 @@
 
 # CrespoGuard Relay
 
-> TCP relay for RF Online servers — transparent proxy or AES-256-GCM encrypted tunnel, DDoS protection, rate limiting, and a real-time dashboard. Free for up to 30 players.
+> TCP relay for RF Online servers — transparent proxy or AES-256-GCM encrypted tunnel, DDoS protection, rate limiting, and a real-time dashboard. Every feature included at every tier.
 
 ## Overview
 
-The CrespoGuard Relay sits between your players and your game server. It provides DDoS protection, rate limiting, and a management dashboard. Two connection modes are available, both included in all tiers (including Community):
+The CrespoGuard Relay sits between your players and your game server. It provides DDoS protection, rate limiting, and a management dashboard. Two connection modes are available, both included in all tiers:
 
 **Transparent Proxy (any RF client)** — Plain TCP proxy. Works with any vanilla RF client. No launcher required.
 
@@ -24,7 +24,7 @@ Player                          Your Server
                                └──────────────────┘
 ```
 
-**Encrypted Tunnel (CrespoGuard Launcher)** — AES-256-GCM encrypted tunnel. Requires CrespoGuard Launcher. Encrypts player credentials and game data in transit. Available in all tiers including Community.
+**Encrypted Tunnel (CrespoGuard Launcher)** — AES-256-GCM encrypted tunnel. Requires CrespoGuard Launcher. Encrypts player credentials and game data in transit.
 
 ```
 Player                          Your Server
@@ -42,39 +42,46 @@ Player                          Your Server
 
 Both modes are available in all tiers, including Community. The transparent proxy works with any vanilla RF client; the encrypted tunnel requires the CrespoGuard Launcher. Players connect to the relay, not your game server — your game server IP stays hidden when the relay runs on a separate machine.
 
-## What's Included
+## Pricing
 
-| Feature | Community (Free) | Guard ($19/mo) | Shield ($49/mo) | Fortress ($79/mo) |
-|---------|:----------------:|:--------------:|:---------------:|:------------------:|
-| Transparent TCP proxy | Yes | Yes | Yes | Yes |
-| CGRD encrypted tunnel (requires launcher) | Yes | Yes | Yes | Yes |
-| IP masking (requires separate machine) | Yes | Yes | Yes | Yes |
-| Dashboard (view + IP bans) | Yes | Yes | Yes | Yes |
-| Dashboard (kick, HWID bans, announce) | — | Yes | Yes | Yes |
-| Rate limiting + IP bans | Yes | Yes | Yes | Yes |
-| Auto-ban (progressive backoff) | Yes | Yes | Yes | Yes |
-| GeoIP country filtering | Yes | Yes | Yes | Yes |
-| Threat Intel blocklist (200K+ IPs) | Yes | Yes | Yes | Yes |
-| ASN-based filtering (block datacenter/VPN IPs) | Yes | Yes | Yes | Yes |
-| TCP fingerprinting (passive OS detection) | Yes | Yes | Yes | Yes |
-| Tor exit node blocklist | Yes | Yes | Yes | Yes |
-| Adaptive rate limiter (burst-tolerant) | Yes | Yes | Yes | Yes |
-| Anti-replay protection | Yes | Yes | Yes | Yes |
-| Prometheus /metrics endpoint | Yes | Yes | Yes | Yes |
-| Async rotating logger (structured output) | Yes | Yes | Yes | Yes |
-| Optimized proxying (zero-copy on Linux) | Yes | Yes | Yes | Yes |
-| Auto-update | Yes | Yes | Yes | Yes |
-| Anonymous telemetry | Yes | Yes | Yes | Yes |
-| Auto-generated API key | Yes | Yes | Yes | Yes |
-| HWID bans | — | Yes | Yes | Yes |
-| Announcements | — | Yes | Yes | Yes |
-| SOC telemetry (detailed) | — | Yes | Yes | Yes |
-| Max players | **30** | 75 | 250 | 500 |
-| Multi-zone proxy | — | — | Yes | Yes |
-| File logging | — | — | Yes | Yes |
-| Edge relay mode | — | — | — | Yes |
-| PROXY protocol v1 | — | — | — | Yes |
-| Health check endpoint | — | — | — | Yes |
+| Tier | Price | Max Players |
+|------|-------|-------------|
+| **Community** | Free | 30 |
+| **Guard** | $19/mo | 200 |
+| **Shield** | $49/mo | 500 |
+| **Fortress** | $99/mo | 1000 |
+
+Every feature below is included at every tier. The only difference is how many concurrent players your relay supports.
+
+## What's Included (All Tiers)
+
+- Transparent TCP proxy
+- CGRD encrypted tunnel (AES-256-GCM, requires launcher)
+- IP masking (requires separate machine)
+- Dashboard (view, config, kick, HWID bans, announcements)
+- Rate limiting + IP bans
+- Auto-ban (progressive backoff)
+- GeoIP country filtering
+- Threat Intel blocklist (200K+ IPs)
+- ASN-based filtering (block datacenter/VPN IPs)
+- TCP fingerprinting (passive OS detection)
+- Tor exit node blocklist
+- Adaptive rate limiter (burst-tolerant)
+- Anti-replay protection
+- Prometheus /metrics endpoint
+- Async rotating logger (structured output)
+- Optimized proxying (zero-copy on Linux)
+- Auto-update
+- Anonymous telemetry
+- Auto-generated API key
+- HWID bans
+- Announcements
+- SOC telemetry (detailed)
+- Multi-zone proxy
+- File logging
+- Edge relay mode
+- PROXY protocol v1
+- Health check endpoint
 
 ## v3.1 Features
 
@@ -176,7 +183,7 @@ Enabled automatically on Linux when the kernel supports it. No configuration req
 - A running RF Online server (LoginServer + ZoneServer)
 - A Windows or Linux machine for the relay (can be the same machine as your game server)
 - The CrespoGuard Relay binary (`CrespoGuardRelay.exe` or Linux build)
-- A CrespoGuard license (Community for up to 30 players, Guard+ for higher caps)
+- A CrespoGuard license (Community is free for up to 30 players)
 - The CrespoGuard Launcher configured with SecureLogin (PSK must match) — required for encrypted tunnel mode; not needed for transparent proxy mode
 
 ## Quick Setup
@@ -250,20 +257,14 @@ See [Creating config.bin](CONFIG_CREATION.md) for the full encryption walkthroug
 | Port | Direction | Purpose |
 |------|-----------|---------|
 | 10001 TCP | Inbound | Relay listen (encrypted tunnel) |
-| 27780 TCP | Inbound | ZoneServer (or zone proxy at Shield+) |
+| 27780 TCP | Inbound | ZoneServer (or zone proxy) |
 | 8081 TCP | Inbound | Dashboard (restrict to your admin IP!) |
 
 **Block your real LoginServer port** from external access — only the relay (localhost) should reach it.
 
 ## Upgrading Tiers
 
-Tier upgrades are instant — purchase the higher tier, activate the new code, and restart the relay. No client changes needed. See [Premium Tiers](../PREMIUM_TIERS.md) for full tier documentation.
-
-## Community Edition (Free Relay — 30 Players)
-
-The Community Edition includes the CrespoGuard Relay for up to 30 concurrent players. You get both connection modes (transparent proxy and AES-256-GCM encrypted tunnel), DDoS protection (rate limiting, GeoIP filtering, Threat Intel blocklist, auto-ban with progressive backoff), and full dashboard access — all at no cost. The encrypted tunnel requires the CrespoGuard Launcher; the transparent proxy works with any vanilla RF client. When the relay runs on a separate machine from your game server, players connect to the relay address and never see your game server IP.
-
-The 30-player cap is a **hard limit enforced at the binary level**. It cannot be bypassed by editing the config file — the relay binary itself rejects connections beyond 30. When you need more capacity, HWID bans, kick/announce from the dashboard, or higher player caps, upgrade to Guard tier ($19/mo, 75 players).
+Tier upgrades are instant — purchase the higher tier, activate the new code, and restart the relay. The only thing that changes is your player cap. No client changes needed. See [Premium Tiers](../PREMIUM_TIERS.md) for full tier documentation.
 
 ## Auto-Update
 
