@@ -30,10 +30,10 @@ RF_Bin/
 ├── CrespoGuard.exe              # Loader — launches ZoneServer + injects DLL
 ├── CrespoGuardMod.dll           # The mod DLL (injected into ZoneServer)
 ├── crespoguard.json             # Auth & loader configuration
-├── zonemod.json                 # Module enable/disable + settings
 ├── ZoneServerUD_x64.exe         # Your RF Online ZoneServer
 │
 └── CrespoGuard/
+    ├── zonemod.json             # Module enable/disable + settings
     ├── scripts/                 # JavaScript plugin scripts (.js)
     ├── plugins/                 # Compiled bytecode plugins (.cgp)
     └── logs/                    # Log output
@@ -78,14 +78,14 @@ Create `crespoguard.json` in `RF_Bin/`:
   "ZoneServerPath": "ZoneServerUD_x64.exe",
   "ZoneServerArgs": "cjdrnrwkd",
   "ModDllPath": "CrespoGuardMod.dll",
-  "ModConfigPath": "zonemod.json",
+  "ModConfigPath": "CrespoGuard/zonemod.json",
   "DashboardPort": 8081
 }
 ```
 
 ### Step 3: Configure zonemod.json
 
-Create `zonemod.json` in `RF_Bin/` to enable/disable modules:
+Create `zonemod.json` in `RF_Bin/CrespoGuard/` to enable/disable modules:
 
 ```json
 {

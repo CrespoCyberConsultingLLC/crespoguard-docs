@@ -357,7 +357,7 @@ event callbacks.
 | `despawn` | | `void` | Remove the monster from the world |
 
 ```javascript
-on('monster.kill', function(monster, killer) {
+on('monster.death', function(monster, killer) {
     if (monster.isBoss) {
         GameServer.broadcast(killer.name + ' slew ' + monster.name + '!');
     }
@@ -487,7 +487,7 @@ Callbacks receive three arguments: `(error, body, statusCode)`.
 
 ```javascript
 // Send a webhook notification when a boss dies
-on('monster.kill', function(monster, killer) {
+on('monster.death', function(monster, killer) {
     if (!monster.isBoss) return;
 
     var payload = JSON.stringify({

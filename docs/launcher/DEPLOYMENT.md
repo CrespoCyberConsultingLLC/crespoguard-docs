@@ -175,9 +175,9 @@ When a player launches:
 
 ## Server-Side Deployment
 
-### CrespoGuard Relay (Guard+ Tier)
+### CrespoGuard Relay (All Tiers)
 
-The relay is a paid server-side component starting at Guard tier ($19/mo). Deploy on your server machine:
+The relay is included at every tier, including Community (free for up to 30 players). Higher tiers increase the player cap. Deploy on your server machine:
 
 ```
 Server/

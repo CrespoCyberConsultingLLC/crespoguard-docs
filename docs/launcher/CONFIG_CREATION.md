@@ -192,7 +192,7 @@ Any time you change `modules.json`, you must re-encrypt:
 
 ## Config Encryption Details
 
-`config.bin` uses military-grade encryption with built-in tamper detection. If the file is modified or corrupted, the launcher rejects it immediately. The encryption key is compiled into the binary and cannot be extracted through standard means.
+`config.bin` uses AES-256-GCM encryption with built-in tamper detection. If the file is modified or corrupted, the launcher rejects it immediately. The encryption key is compiled into the binary and cannot be extracted through standard means.
 
 The PSK inside the config provides per-server authentication — even if two servers use the same launcher binary, they cannot connect to each other's relay.
 

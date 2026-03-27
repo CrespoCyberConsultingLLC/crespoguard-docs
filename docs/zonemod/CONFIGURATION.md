@@ -9,7 +9,7 @@ approaches and the most common configuration patterns.
 ## How Configuration Works
 
 Every module's settings live in **`zonemod.json`**, located in the
-`RF_Bin/CrespoGuard/` directory alongside the DLL.
+`RF_Bin/CrespoGuard/` directory.
 
 The file follows a straightforward structure:
 
@@ -166,7 +166,7 @@ Modules that support per-race tuning nest values under a `races` object.
 ```json title="zonemod.json"
 {
     "modules": {
-        "race_rates": {
+        "exp_config": {
             "enabled": true,
             "settings": {
                 "races": {
@@ -236,7 +236,7 @@ Time-based modules accept day-of-week and hour ranges.
 ```json title="zonemod.json"
 {
     "modules": {
-        "weekend_event": {
+        "double_exp_event": {
             "enabled": true,
             "settings": {
                 "schedule_days": [0, 5, 6],
@@ -340,7 +340,7 @@ Below is a minimal but realistic configuration covering several modules:
                 "skip_boss_drops": false
             }
         },
-        "pvp_balance": {
+        "pvp_config": {
             "enabled": true,
             "settings": {
                 "damage_cap": 9999,

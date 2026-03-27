@@ -28,7 +28,7 @@ CrespoGuard-Community/
 │       │   ├── Rajdhani-Bold.ttf           # Default bold font
 │       │   └── Orbitron-Variable.ttf       # Default title font
 │       └── Language/
-│           └── en.json                     # English strings
+│           └── en_gb.json                  # English strings
 ```
 
 ## Quick Start (5 Minutes)
@@ -137,7 +137,7 @@ Both modes are free in Community. When the relay runs on a separate machine from
 
 You can also use direct connection if you prefer (skip the relay setup).
 
-For servers with more than 30 players, or if you need HWID bans, kick/announce from the dashboard, and bin-dependent gameplay features, upgrade to Guard+ tier ($19/mo).
+For servers with more than 30 concurrent players, upgrade to Guard+ tier ($19/mo) to increase your player cap. All features — including HWID bans, kick/announce from the dashboard, and bin-dependent gameplay features — are included at every tier.
 
 !!! tip "Recommended: Set Up the Relay"
     See [Relay Overview](RELAY.md) for what the relay provides and how to set it up.
