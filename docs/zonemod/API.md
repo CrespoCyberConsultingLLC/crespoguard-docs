@@ -59,7 +59,7 @@ All properties are **read-only**. Mutations go through methods.
 | `classId` | `int` | Character class ID |
 | `mapIndex` | `int` | Current map instance index |
 | `guild` | `Guild` | Guild object (or `null` if no guild) |
-| `skinSet` | `object` | Current skin override map (read-only) |
+| `skinSet` | `string` | Current skin preset name (read-only) |
 
 ### Methods
 
@@ -68,7 +68,7 @@ All properties are **read-only**. Mutations go through methods.
 | Method | Parameters | Returns | Description |
 |--------|-----------|---------|-------------|
 | `sendMessage` | `msg` | `void` | Send a private system message to the player |
-| `sendRawChat` | `msg, msgType, senderName` | `void` | Send a raw chat packet (msgType: 0=System, 1=Circle, 2=Race, 3=Party) |
+| `sendRawChat` | `msgType, message, senderName` | `void` | Send a raw chat packet (msgType: 0=System, 1=Circle, 2=Race, 3=Party) |
 
 ```javascript
 on('player.login', function(player) {
@@ -86,9 +86,9 @@ on('player.login', function(player) {
 | `heal` | | `void` | Fully restore HP, FP, and SP |
 | `addDalant` | `amount` | `void` | Add dalant to the player |
 | `addGold` | `amount` | `void` | Add gold to the player |
-| `subtractDalant` | `amount` | `void` | Remove dalant from the player |
-| `subtractGold` | `amount` | `void` | Remove gold from the player |
-| `addExp` | `amount` | `void` | Grant experience points |
+| `subtractDalant` | `amount` | `bool` | Remove dalant from the player. Returns `true` on success. |
+| `subtractGold` | `amount` | `bool` | Remove gold from the player. Returns `true` on success. |
+| `addExp` | `amount` (double) | `void` | Grant experience points. Amount is a float/double. |
 | `setLevel` | `level` | `void` | Set the player's level |
 | `addPvpPoint` | `amount` | `void` | Add PvP points |
 | `addPvpCash` | `amount` | `void` | Add PvP cash |
@@ -125,15 +125,15 @@ on('player.chat', function(player, msg) {
 
 | Method | Parameters | Returns | Description |
 |--------|-----------|---------|-------------|
-| `giveItem` | `itemCode, count, storageType` | `void` | Give items to the player |
-| `removeItem` | `itemCode, count, storageType` | `void` | Remove items from inventory |
-| `hasItem` | `itemCode, storageType` | `bool` | Check if the player has the item |
-| `getItemCount` | `itemCode, storageType` | `int` | Get quantity of an item |
+| `giveItem` | `tableCode, itemIndex, count` | `void` | Give items to the player. tableCode is numeric (0-36). |
+| `removeItem` | `tableCode, itemIndex, count` | `void` | Remove items from inventory. tableCode is numeric (0-36). |
+| `hasItem` | `tableCode, itemIndex` | `bool` | Check if the player has the item |
+| `getItemCount` | `tableCode, itemIndex` | `int` | Get quantity of an item |
 
 ```javascript
 on('player.chat', function(player, msg) {
     if (msg === '!kit') {
-        player.giveItem('iw01a001', 1, 0); // Give a weapon
+        player.giveItem(1, 0, 1); // Give a weapon (tableCode=1, itemIndex=0, count=1)
         player.sendMessage('Starter kit granted.');
     }
 });
@@ -143,9 +143,9 @@ on('player.chat', function(player, msg) {
 
 | Method | Parameters | Returns | Description |
 |--------|-----------|---------|-------------|
-| `addBuff` | `effectCode, effectIndex, duration, level [, channel]` | `void` | Apply a buff. Channel: `0` = skill (default), `1` = force |
+| `addBuff` | `effectCode, effectIndex, duration, level [, channel]` | `{slot, applied}` | Apply a buff. Channel: `0` = skill (default), `1` = force. Returns object with slot index and whether it was applied. |
 | `removeBuff` | `channel, slotIndex` | `void` | Remove a buff by channel and slot |
-| `removeBuffByIndex` | `effectIndex` | `void` | Remove a buff by scanning all slots for the effect index |
+| `removeBuffByIndex` | `effectIndex` | `int` | Remove a buff by scanning all slots for the effect index. Returns count removed. |
 | `hasBuff` | `effectIndex` | `bool` | Check if the player has a specific buff |
 | `getBuffs` | | `array` | Return an array of active buff objects |
 
@@ -167,24 +167,24 @@ if (player.hasBuff(42)) {
 | Method | Parameters | Returns | Description |
 |--------|-----------|---------|-------------|
 | `execGMCommand` | `command` | `void` | Execute a GM command as this player |
-| `sendCombineResult` | `a, b, c, d, e` | `void` | Send a combine result packet |
+| `sendCombineResult` | `resultCode, dalantCost, tableCode, itemIndex, count` | `void` | Send a combine result packet |
 
 #### Skin / Visual Overrides
 
 | Method | Parameters | Returns | Description |
 |--------|-----------|---------|-------------|
-| `equipSkin` | `slot, itemCode, level` | `void` | Apply a visual skin to an equipment slot using an item code |
-| `equipItemByCode` | `slot, itemCode` | `void` | Equip item visuals by code |
-| `equipItem` | `slot, itemCode, level` | `void` | Equip item visuals with level |
+| `equipSkin` | `slot, skinCode, statsCode [, level]` | `void` | Apply a visual skin to an equipment slot using two item codes (visual + stats) |
+| `equipItemByCode` | `slot, itemCode [, level]` | `void` | Equip item visuals by code |
+| `equipItem` | `slot, tableCode, itemIndex [, level]` | `void` | Equip item visuals with level |
 | `lookupItemCode` | `itemCode` | `object\|null` | Look up item data by code |
-| `lookupItemEffects` | `itemCode, level` | `object\|null` | Look up item effect data |
-| `setSkinByCode` | `slot, itemCode` | `void` | Set skin override by item code string |
-| `setSkin` | `slot, meshId` | `void` | Set skin override by raw mesh ID |
+| `lookupItemEffects` | `tableCode, itemIndex` | `object\|null` | Look up item effect data |
+| `setSkinByCode` | `slot, itemCode [, level]` | `void` | Set skin override by item code string |
+| `setSkin` | `slot, itemIndex [, level]` | `void` | Set skin override by raw mesh ID |
 | `clearSkin` | `slot` | `void` | Clear skin override for a slot |
 | `clearAllSkins` | | `void` | Clear all skin overrides |
 | `getSkin` | `slot` | `object\|null` | Get current skin override for a slot |
-| `applySkinSet` | `skinSetObj` | `void` | Apply a full set of skin overrides from an object |
-| `setSkinBuff` | `effectIndex, level` | `void` | Apply a cosmetic buff tied to a skin |
+| `applySkinSet` | `setName` | `void` | Apply a full set of skin overrides from a named preset |
+| `setSkinBuff` | `effectCode, value` | `void` | Apply a cosmetic buff tied to a skin. `value` is a float. |
 | `clearSkinBuffs` | | `void` | Remove all skin-linked buffs |
 | `removeSkin` | | `void` | Remove all skins and broadcast the change |
 
@@ -196,7 +196,7 @@ if (player.hasBuff(42)) {
 | `closeDialog` | `dialogId` | `void` | Close an open dialog by ID |
 | `updateHUD` | `hudData` | `void` | Send a HUD update packet |
 | `clearHUD` | | `void` | Clear all custom HUD elements |
-| `setQuestMarker` | `x, z` | `void` | Show a quest waypoint marker on the minimap |
+| `setQuestMarker` | `mobNames, label` or `[{id, name, mobs}, ...]` | `void` | Show a quest waypoint marker. Single quest: `setQuestMarker(mobNames, label)`. Multi-quest: `setQuestMarker([{id, name, mobs}, ...])`. |
 | `clearQuestMarker` | | `void` | Remove the quest waypoint marker |
 | `getActiveQuests` | | `array` | Get the player's active quest list |
 
@@ -242,13 +242,13 @@ GameServer.broadcast('Bellato online: ' + bellato.length);
 | `getMonster` | `index` | `Monster\|null` | Get a monster by array index |
 | `getAliveMonsters` | | `Monster[]` | Get all alive monsters |
 | `monsterCount` | | `int` | Count of alive monsters on the map |
-| `spawnMonster` | `mapCode, monsterCode, x, y, z` | `Monster\|null` | Spawn a monster at coordinates |
+| `spawnMonster` | `mapCode (string), monsterCode, x, y, z` | `Monster\|null` | Spawn a monster at coordinates. mapCode is a string. |
 | `monsterExists` | `code` | `bool` | Check if a monster code exists in data |
 | `getMonsterInfo` | `code` | `object\|null` | Get monster data record (code, isBoss, maxHP, attackDP) |
 | `getMonsterCodes` | | `string[]` | Get all registered monster codes |
 
 ```javascript
-var boss = GameServer.spawnMonster(200, 'mn_headhunter01', 2500, 100, 2500);
+var boss = GameServer.spawnMonster('200', 'mn_headhunter01', 2500, 100, 2500);
 if (boss) {
     GameServer.broadcast('A boss has spawned!');
 }
@@ -289,13 +289,26 @@ if (boss) {
 | `getTime` | | `int` | Server time in seconds (timeGetTime / 1000) |
 | `getTickCount` | | `int` | Raw millisecond tick counter |
 
+### Memory & Low-Level
+
+| Method | Parameters | Returns | Description |
+|--------|-----------|---------|-------------|
+| `patchMemory` | `address, bytes[]` | `int` | Write raw bytes to server process memory. Returns number of bytes written. Use with caution. |
+| `readMemory` | `address, count` | `int[]` | Read raw bytes from server process memory. Returns array of byte values. |
+| `encodeFloat32` | `value` | `int[4]` | Convert a float to 4 little-endian IEEE 754 bytes. |
+| `getModuleConfig` | `moduleName` | `string` | Read a module's settings block from `zonemod.json`. Returns JSON string. |
+
+!!! danger "Memory access"
+    `patchMemory` and `readMemory` operate directly on server process memory. Incorrect
+    addresses or values can crash the server. Only use these if you know what you are doing.
+
 ### Auto-Loot Configuration
 
 Access via `GameServer.autoLoot`.
 
 | Method | Parameters | Returns | Description |
 |--------|-----------|---------|-------------|
-| `autoLoot.get` | | `object` | Get current config: `{ stackLimit, scatterRange, scatterOnlyBoss, skipBoss, mau, siege }` |
+| `autoLoot.get` | | `object` | Get current config: `{ enabled, stackLimit, scatterRange, scatterOnlyBoss, skipBossAutoLoot, mauAutoLoot, siegeAutoLoot }` |
 | `autoLoot.set` | `configObj` | `void` | Update auto-loot settings. Only provided keys are changed. |
 
 ```javascript

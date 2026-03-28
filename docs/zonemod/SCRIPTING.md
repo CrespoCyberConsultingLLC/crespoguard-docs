@@ -133,7 +133,7 @@ Server-wide operations available as a global object.
 ```javascript
 GameServer.broadcast(text)        // message to all online players
 GameServer.getPlayerByName(name)  // returns a Player or null
-GameServer.getOnlineCount()       // number of players online
+GameServer.playerCount             // number of players online (property)
 ```
 
 ### Store (Persistent Data)
