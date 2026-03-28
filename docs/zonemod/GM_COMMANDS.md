@@ -74,6 +74,24 @@ Uses the engine's `%` cheat command system. Requires GM degree >= 1.
 | `%zonemod kick` | `<name>` | Kick a player by name |
 | `%zonemod reload` | | Prompt for server console script reload |
 | `%zonemod help` | | List available subcommands |
+| `%zonemod modules` | | List loaded modules and their status |
+| `%zonemod version` | | Show ZoneMod version |
+| `%zonemod debug` | `<tag\|all\|off\|status>` | Runtime debug log control |
+| `%zonemod info` | `<player>` | Show player info (level, HP, dalant, position) |
+| `%zonemod goto` | `<player>` | Teleport GM to target player |
+| `%zonemod summon` | `<player>` | Teleport target player to GM |
+| `%zonemod broadcast` | `<msg>` | Server-wide broadcast message |
+| `%zonemod event` | `start/stop/status` | Server event management |
+| `%zonemod eventset` | `start/stop <name>` | Monster EventSet.ini control |
+| `%zonemod chipwar` | `start/prestart/stop/state` | Chip war control |
+| `%zonemod nametag` | `set/clear/list/broadcast` | Nametag color management |
+| `%zonemod portal` | `list/redirect/race/level/disable/enable/setspawn/clone` | Portal control |
+| `%zonemod mastery` | `max/set <player>` | Mastery grant commands |
+| `%zonemod archon` | `set/remove/clear/list` | Archon appointment system |
+| `%zonemod skin` | `equip/set/clear/apply/list/info/lookup` | Skin management |
+| `%zonemod js` | `reload/list` | JS script management |
+| `%zonemod questreset` | `<player> <code>` | Quest history reset |
+| `%zonemod questlist` | `<player>` | Quest history dump |
 
 ---
 

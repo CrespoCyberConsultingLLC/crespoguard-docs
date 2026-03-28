@@ -105,7 +105,7 @@ All modules support a common set of sub-commands:
 > Shows the current EXP multiplier, per-race overrides, and active schedule.
 
 ```
-.exp set exp_multiplier 3.0
+.exp set exp_rate 3.0
 ```
 
 > Sets the global EXP multiplier to 3x immediately.
@@ -143,15 +143,32 @@ Most rate modules accept a simple floating-point multiplier.
         "server_rates": {
             "enabled": true,
             "settings": {
-                "exp_multiplier": 2.0,
-                "drop_multiplier": 1.5,
-                "mining_multiplier": 3.0,
-                "dalant_multiplier": 2.0
+                "exp_rate": 2.0,
+                "drop_rate": 1.5,
+                "mining_rate": 3.0,
+                "gold_rate": 2.0,
+                "exp_mau_rate": 1.0,
+                "pvp_share_rate": 1.0,
+                "mastery_rate": 1.0,
+                "exp_loss_rate": 1.0,
+                "stack_ext_limit": 99
             }
         }
     }
 }
 ```
+
+| Key | Description |
+|-----|-------------|
+| `exp_rate` | Base EXP multiplier |
+| `drop_rate` | Item drop rate multiplier |
+| `mining_rate` | Mining yield multiplier |
+| `gold_rate` | Gold/dalant gain multiplier |
+| `exp_mau_rate` | MAU EXP rate |
+| `pvp_share_rate` | PvP share rate |
+| `mastery_rate` | Mastery gain rate |
+| `exp_loss_rate` | Death EXP penalty rate |
+| `stack_ext_limit` | Item stack extension limit |
 
 | Value | Effect         |
 |-------|----------------|
@@ -272,10 +289,13 @@ Many modules expose simple on/off flags for individual features.
         "auto_loot": {
             "enabled": true,
             "settings": {
-                "auto_pickup": true,
-                "radius_scatter": true,
-                "scatter_radius": 5.0,
-                "skip_boss_drops": false
+                "stack_limit": 99,
+                "scatter_range": 0,
+                "scatter_only_boss": false,
+                "scatter_log": false,
+                "skip_boss_auto_loot": false,
+                "mau_auto_loot": false,
+                "siege_auto_loot": false
             }
         }
     }
@@ -325,19 +345,27 @@ Below is a minimal but realistic configuration covering several modules:
         "server_rates": {
             "enabled": true,
             "settings": {
-                "exp_multiplier": 2.0,
-                "drop_multiplier": 1.5,
-                "dalant_multiplier": 2.0,
-                "mining_multiplier": 3.0
+                "exp_rate": 2.0,
+                "drop_rate": 1.5,
+                "gold_rate": 2.0,
+                "mining_rate": 3.0,
+                "exp_mau_rate": 1.0,
+                "pvp_share_rate": 1.0,
+                "mastery_rate": 1.0,
+                "exp_loss_rate": 1.0,
+                "stack_ext_limit": 99
             }
         },
         "auto_loot": {
             "enabled": true,
             "settings": {
-                "auto_pickup": true,
-                "radius_scatter": true,
-                "scatter_radius": 5.0,
-                "skip_boss_drops": false
+                "stack_limit": 99,
+                "scatter_range": 0,
+                "scatter_only_boss": false,
+                "scatter_log": false,
+                "skip_boss_auto_loot": false,
+                "mau_auto_loot": false,
+                "siege_auto_loot": false
             }
         },
         "pvp_config": {

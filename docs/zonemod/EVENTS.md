@@ -564,7 +564,7 @@ Events for Bellato animus (summoned companion) management and stats.
 | `animus.maxHP` | `(null, value)` | Value (double) | Animus maximum HP |
 | `animus.attackDP` | `(null, value)` | Value (double) | Animus attack damage |
 | `animus.attackRange` | `(null, value)` | Value (double) | Animus attack range |
-| `animus.defFC` | `(null, value)` | Value (double) | Animus defense factor |
+| `animus.defFC` | `(null, value)` | Value (double) | Animus defense factor calculation. Fires via `CAnimus::GetDefFC`. |
 | `animus.fireTol` | `(null, value)` | Value (double) | Animus fire tolerance |
 | `animus.waterTol` | `(null, value)` | Value (double) | Animus water tolerance |
 | `animus.soilTol` | `(null, value)` | Value (double) | Animus earth tolerance |

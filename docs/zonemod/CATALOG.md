@@ -81,6 +81,7 @@ Complete reference of every CrespoGuard ZoneMod module available for your server
 | **loot_exchange** | NPC that converts loot items into currency or items | `.sell`, `.exchange` (player) |
 | **trade_logger** | Log all player-to-player trades with full details | `.trades status`, `.trades search` |
 | **custom_combine** | Custom item combination recipes beyond default crafting | `.econ status`, `.econ reload` |
+| **cash_shop_bridge** | External cash shop database bridge for item delivery | config-only (no GM command) |
 
 **tax_system** -- Configurable rates for NPC purchases, trades, and auction sales. Per-race tax revenue tracking. Exempt specific items or ranks.
 
@@ -99,6 +100,16 @@ Complete reference of every CrespoGuard ZoneMod module available for your server
 **trade_logger** -- Logs both sides of every trade: items, gold, quantities. Webhook integration. Searchable via dashboard.
 
 **custom_combine** -- Multi-input recipes with specific output. Success rate per recipe (0--100%). Optional gold cost and level requirement.
+
+**cash_shop_bridge** -- Connects to an external database for cash shop item delivery. Configuration fields:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `db_server` | string | Database server hostname or IP |
+| `db_name` | string | Database name |
+| `db_user` | string | Database username |
+| `db_password` | string | Database password |
+| `db_port` | int | Database port |
 
 ---
 
@@ -302,6 +313,7 @@ Complete reference of every CrespoGuard ZoneMod module available for your server
 | **npc_greetings** | Custom NPC dialogue and greetings | `.npcvisits <name>` |
 | **roving_npc** | NPC that moves between locations announcing | `.rovenpc status`, `.rovenpc set` |
 | **stat_report** | Player stat summaries and leaderboards | `.report status`, `.report set` |
+| **chat_system** | Cross-race chat, global chat, word filter, chat logging, and announcements | config-only (no GM command) |
 
 **chat_moderation** -- Word blacklist with regex. Repeated message throttling and auto-mute. Severity levels.
 
@@ -322,6 +334,34 @@ Complete reference of every CrespoGuard ZoneMod module available for your server
 **roving_npc** -- Waypoint routes per map. Broadcast at each arrival. Configurable speed and pause.
 
 **stat_report** -- Player stat cards: kills, deaths, playtime, wealth. Leaderboards by category. Player command: `.stats`.
+
+**chat_system** -- Unified chat configuration module. Configuration fields:
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `cross_race_chat` | bool | `false` | Allow cross-race chat messages |
+| `global_chat.enabled` | bool | `false` | Enable global chat channel |
+| `global_chat.prefix` | string | `""` | Prefix for global chat messages |
+| `global_chat.cooldown_ms` | int | `5000` | Cooldown between global messages (ms) |
+| `global_chat.min_level` | int | `30` | Minimum level to use global chat |
+| `global_chat.gm_bypass` | bool | `true` | GMs bypass global chat restrictions |
+| `word_filter.enabled` | bool | `false` | Enable word filter |
+| `word_filter.filter_circle` | bool | `true` | Filter circle (local) chat |
+| `word_filter.filter_race` | bool | `true` | Filter race chat |
+| `word_filter.filter_global` | bool | `true` | Filter global chat |
+| `word_filter.filter_trade` | bool | `true` | Filter trade chat |
+| `word_filter.warn_player` | bool | `true` | Warn player when message is filtered |
+| `word_filter.log_filtered` | bool | `true` | Log filtered messages |
+| `word_filter.exempt_gm_grade` | int | `1` | GM grade exempt from filter |
+| `word_filter.warn_message` | string | `"Your message was filtered."` | Warning message shown to player |
+| `chat_log.enabled` | bool | `false` | Enable chat logging |
+| `chat_log.log_path` | string | `"logs/chat/"` | Directory for chat log files |
+| `chat_log.log_circle` | bool | `true` | Log circle chat |
+| `chat_log.log_race` | bool | `true` | Log race chat |
+| `chat_log.log_global` | bool | `true` | Log global chat |
+| `chat_log.log_trade` | bool | `true` | Log trade chat |
+| `chat_log.log_whisper` | bool | `false` | Log whisper chat |
+| `announcements` | array | `[]` | Array of `{text, interval_min}` scheduled announcement objects |
 
 ---
 
@@ -353,6 +393,7 @@ Complete reference of every CrespoGuard ZoneMod module available for your server
 | **anti_farm** | Detect and penalize repetitive kill farming | `.farm status`, `.farm check <name>` |
 | **anti_afk** | Detect and handle AFK players in combat zones | `.afk set <stat> <value>`, `.afk status` |
 | **auto_loot_config** | Auto pickup with configurable radius and filters | `.autoloot set <key> <value>`, `.autoloot status` |
+| **gm_commands** | Core `%zonemod` cheat command system with subcommand routing | `%zonemod help` for full list |
 
 **gm_toolkit** -- Teleport, summon, kick, ban, item grant, stat modification. Bulk operations. Command audit logging.
 
@@ -369,6 +410,14 @@ Complete reference of every CrespoGuard ZoneMod module available for your server
 **anti_afk** -- Idle detection threshold. Actions: warning, teleport to HQ, kick. Safe zone exemption.
 
 **auto_loot_config** -- Pickup radius configuration. Grade/type/code filters. Boss loot exemption.
+
+**gm_commands** -- Core `%zonemod` cheat command handler. Routes subcommands to modules, event, portal, skin, archon, and JS management. Configuration fields:
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `min_gm_grade` | int | `1` | Minimum GM grade required to use `%zonemod` commands |
+| `event_set_duration_sec` | int | `0` | Default duration for EventSet start (0 = indefinite) |
+| `log_commands` | bool | `true` | Log all GM command usage to file |
 
 ---
 
