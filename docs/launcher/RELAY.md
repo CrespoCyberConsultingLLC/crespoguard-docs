@@ -192,6 +192,9 @@ Burst-tolerant rate limiting — allows short spikes of legitimate reconnect act
 
 Configure per-IP rate limits with `RateLimitPerIP` (max connections) and `RateLimitWindowSec` (time window in seconds).
 
+!!! note "Admin Portal Rate Limiting"
+    The admin portal's rate limiting is DynamoDB-backed and persists across serverless restarts. The relay itself uses in-memory rate limiting, which is fine since it runs as a long-lived process.
+
 ### Tor Exit Node Blocking
 
 Third threat intelligence source. Tor exit nodes are blocked via URLs in the `ThreatIntelURLs` list — no separate toggle needed. Add a Tor exit node list URL to `ThreatIntelURLs` and the relay will automatically fetch and refresh it alongside other threat intel sources.
@@ -229,6 +232,56 @@ Enabled automatically on Linux when the kernel supports it. No configuration req
 - The CrespoGuard Relay binary (`CrespoGuardRelay.exe` or Linux build)
 - A CrespoGuard license (Community is free for up to 30 players)
 - The CrespoGuard Launcher configured with SecureLogin (PSK must match) — required for encrypted tunnel mode; not needed for transparent proxy mode
+
+## Bridge API Key
+
+The CrespoGuard Bridge requires a `BRIDGE_API_KEY` environment variable to be set. The bridge will **exit on startup** if this variable is missing.
+
+### Setting the API Key
+
+Generate a random string and set it as an environment variable before starting the bridge:
+
+**Option 1: `.env` file** (recommended for self-hosted)
+```
+BRIDGE_API_KEY=your-random-secret-key-here
+```
+
+**Option 2: Environment variable**
+```bash
+export BRIDGE_API_KEY="your-random-secret-key-here"
+```
+
+**Option 3: Windows environment**
+```cmd
+set BRIDGE_API_KEY=your-random-secret-key-here
+```
+
+Generate a secure key with:
+```bash
+python -c "import secrets; print(secrets.token_urlsafe(32))"
+```
+
+The bridge uses this key in the `X-Bridge-Key` header for all authenticated endpoints. Any request to an authenticated endpoint without a valid `X-Bridge-Key` header is rejected.
+
+## Admin API Authentication
+
+The following admin API endpoints require Bearer token authentication using a valid license key:
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/v1/config/{deploymentId}` | GET | Fetch deployment config — validates deployment ownership against the license |
+| `/api/v1/update?product=X` | GET | Check for product updates — validates the license matches the requested product |
+| `/api/v1/relay/telemetry` | POST | Submit relay telemetry data |
+
+All requests must include the `Authorization` header:
+
+```
+Authorization: Bearer <license_key>
+```
+
+- The `config` endpoint validates that the license key owns the specified deployment
+- The `update` endpoint validates that the license key is associated with the requested product
+- All three endpoints are rate-limited
 
 ## Quick Setup
 
@@ -341,6 +394,16 @@ The relay sends anonymous usage statistics on startup and every 24 hours. **No p
 ```
 
 `TelemetryEnabled` defaults to `true`. Opt out by setting it to `false` in `server.json`.
+
+## Upgrading
+
+To upgrade the relay to a new version:
+
+1. **Stop the relay** — terminate the running `CrespoGuardRelay.exe` process
+2. **Replace the binary** — overwrite `CrespoGuardRelay.exe` (or the Linux binary) with the new version
+3. **Start the relay** — launch with the same `server.json`. Your configuration is preserved; no changes needed.
+
+If `AutoUpdateEnabled` is `true` (the default), the relay updates itself automatically on startup — no manual binary replacement required.
 
 ## Auto-Generated API Key
 

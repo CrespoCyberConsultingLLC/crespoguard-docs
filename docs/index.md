@@ -95,7 +95,7 @@ CrespoGuard isn't a one-size-fits-all tool — it's a platform designed around h
 
 - **Encrypted config** — server IP, keys, and settings are encrypted with tamper detection. Players can't extract or modify your server details.
 - **Auto-updates** — manifest-based patching from your HTTPS server. Push updates without players reinstalling.
-- **Multi-language** — 7 languages out of the box (English, Korean, Chinese, Japanese, Russian, Portuguese, Indonesian). Every UI string is customizable.
+- **Multi-language** — 8 language options out of the box (English GB, English US, Korean, Chinese, Japanese, Russian, Portuguese, Indonesian). Every UI string is customizable.
 - **Account manager** — saved credentials with DPAPI encryption. Remember Me. Multi-account switching.
 - **Compatibility checker** — 11 automated checks on first launch (Game Mode, Game DVR, HAGS, AutoHDR, power plan, etc.) with auto-fixes where possible.
 - **Clean room mode** — per-session registry and INI isolation so the game doesn't pollute the player's system.

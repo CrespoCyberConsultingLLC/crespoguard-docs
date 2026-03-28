@@ -56,6 +56,9 @@ Example: `1.0.0.0` → `(1 × 16777216) + (0 × 65536) + (0 × 256) + 0` = `1677
 
 Only players from the listed countries can connect. All other countries are blocked. Private/loopback IPs (127.x, 10.x, 192.168.x, 172.16-31.x) always bypass GeoIP filtering.
 
+!!! note "Manual Refresh Required"
+    GeoIP databases do **not** auto-refresh. Download updated versions periodically (monthly recommended) and replace the `geoip.csv` file. The relay reads the file on startup.
+
 ---
 
 ## ASN Database (`asn.csv`)
@@ -124,6 +127,9 @@ Used when `ASNBlockEnabled` is `true`. Maps IP ranges to Autonomous System Numbe
 
 Players connecting from residential ISPs are not affected. Only IPs belonging to the listed datacenter/VPN ASNs are blocked.
 
+!!! note "Manual Refresh Required"
+    ASN databases do **not** auto-refresh. Download updated versions periodically (monthly recommended) and replace the `asn.csv` file. The relay reads the file on startup.
+
 ---
 
 ## Threat Intelligence
@@ -176,7 +182,7 @@ The relay ships with three default threat intel sources:
 }
 ```
 
-- `ThreatIntelRefreshHours` — How often to re-download lists (default: 24 hours)
+- `ThreatIntelRefreshHours` — How often to re-download all lists automatically (default: 24 hours). Unlike GeoIP and ASN databases, threat intel lists auto-refresh on this interval with no manual intervention.
 - `ThreatIntelMinScore` — Minimum score for IPsum-style lists (IPs scoring below this are ignored)
 
 Add your own blocklist URLs to `ThreatIntelURLs`. Any URL serving one-IP-per-line text works.

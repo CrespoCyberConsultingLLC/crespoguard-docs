@@ -29,8 +29,8 @@ Complete reference of every CrespoGuard ZoneMod module available for your server
 | Chat & Communication | 10 | Cosmetics | 3 |
 | Admin Tools | 8 | Maps & Portals | 4 |
 | Structures | 4 | Units | 4 |
-| Party | 2 | Quests | 3 |
-| Misc | 10 | **Total** | **114** |
+| Party | 2 | Quests | 4 |
+| Misc | 10 | **Total** | **115** |
 
 ---
 
@@ -449,12 +449,21 @@ Complete reference of every CrespoGuard ZoneMod module available for your server
 | **quest_tracker** | Track progress, completion rates, popular quests | `.quest stats` (player), config-only (GM) |
 | **quest_rates** | Quest EXP and reward multipliers | `.questrate set <stat> <value>`, `.questrate status` |
 | **quest_system** | Custom quest definitions and chain quests | `.customquest list`, `.customquest set` |
+| **quest_validation** | Auto-complete briefing quests, block duplicates, bypass conditions | config-only (no GM command) |
 
 **quest_tracker** -- Per-player completion history. Server-wide popularity stats. Dashboard funnel visualization.
 
 **quest_rates** -- Global quest EXP multiplier. Per-quest overrides. Separate gold, EXP, item multipliers.
 
 **quest_system** -- Custom quests: kill, collect, delivery objectives. Chain quest unlocks. Custom reward tables.
+
+**quest_validation** -- Controls quest acceptance and completion behavior. Configuration fields:
+
+| Field | Type | Default | Description |
+|-------|------|---------|-------------|
+| `auto_complete_briefing` | bool | `true` | Auto-completes tutorial/briefing quests for level 1 characters. Only runs for characters at level 1. |
+| `block_dupe_quests` | bool | `false` | Prevents duplicate quest acceptance — blocks a player from accepting a quest they already have active. |
+| `bypass_cond_mask` | int | `0` | Bitmask to bypass quest conditions. `0` = no bypass (all conditions enforced). Set bits to skip specific condition checks. |
 
 ---
 
