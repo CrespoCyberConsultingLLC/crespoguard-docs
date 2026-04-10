@@ -89,7 +89,7 @@ These use pattern-scanned addresses from the game binary. Requires RF Online 2.2
 - HWID ban system
 - Kick & announcements from dashboard
 - CrespoGuard LoginServer (drop-in replacement)
-- CrespoGuard ZoneMod (52 modules, 91+ hooks)
+- CrespoGuard ZoneMod (185 modules, 350+ hooks)
 - ZoneMod web dashboard
 - SOC unified dashboard
 - [AI Assistant](ai/OVERVIEW.md) (local LLM config helper)

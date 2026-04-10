@@ -30,7 +30,7 @@ Complete reference of every CrespoGuard ZoneMod module available for your server
 | Admin Tools | 8 | Maps & Portals | 4 |
 | Structures | 4 | Units | 4 |
 | Party | 2 | Quests | 4 |
-| Misc | 10 | **Total** | **115** |
+| Misc | 10 | **Total** | **185** |
 
 ---
 

@@ -175,7 +175,7 @@ See [JS Scripting](SCRIPTING.md) for the quickstart guide.
 Modules are configured in `zonemod.json` and can be changed live through the
 dashboard — no server restart required.
 
-See [Module Catalog](CATALOG.md) for the full list of 110+ available modules
+See [Module Catalog](CATALOG.md) for the full list of 185 available modules
 and [Configuration Guide](CONFIGURATION.md) for detailed settings.
 
 ---
@@ -196,7 +196,7 @@ and [Configuration Guide](CONFIGURATION.md) for detailed settings.
 
 ## Next Steps
 
-- [Module Catalog](CATALOG.md) — All 110+ modules with descriptions
+- [Module Catalog](CATALOG.md) — All 185 modules with descriptions
 - [Configuration Guide](CONFIGURATION.md) — Detailed module settings
 - [GM Commands](GM_COMMANDS.md) — In-game admin commands
 - [JS Scripting](SCRIPTING.md) — Write custom game logic

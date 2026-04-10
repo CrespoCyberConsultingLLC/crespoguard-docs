@@ -193,7 +193,7 @@ Burst-tolerant rate limiting — allows short spikes of legitimate reconnect act
 Configure per-IP rate limits with `RateLimitPerIP` (max connections) and `RateLimitWindowSec` (time window in seconds).
 
 !!! note "Admin Portal Rate Limiting"
-    The admin portal's rate limiting is DynamoDB-backed and persists across serverless restarts. The relay itself uses in-memory rate limiting, which is fine since it runs as a long-lived process.
+    The admin portal uses persistent rate limiting that survives restarts. The relay itself uses in-memory rate limiting, which is fine since it runs as a long-lived process.
 
 ### Tor Exit Node Blocking
 

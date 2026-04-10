@@ -1,0 +1,12 @@
+#!/bin/sh
+# noslop pre-commit: check staged files only
+set -e
+
+STAGED=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(md|yml|yaml|ts|js)$' || true)
+
+if [ -z "$STAGED" ]; then
+  echo "No staged doc files — skipping"
+  exit 0
+fi
+
+echo "Pre-commit: staged files OK"

@@ -60,6 +60,7 @@ nav:
     - JS Scripting: zonemod/SCRIPTING.md
     - Event Reference: zonemod/EVENTS.md
     - API Reference: zonemod/API.md
+    - Bridge HTTP API: zonemod/BRIDGE_API.md
   - AI Assistant:
     - Overview: ai/OVERVIEW.md
     - Usage Guide: ai/USAGE.md

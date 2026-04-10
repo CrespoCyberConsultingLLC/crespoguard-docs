@@ -10,6 +10,7 @@
 - [ThemeConfig](#themeconfig)
 - [FeatureFlags](#featureflags)
 - [ExternalLinks](#externallinks)
+- [What's New Modal](#whats-new-modal)
 - [AuthLimits](#authlimits)
 - [ClientLimiter](#clientlimiter)
 - [Localization](#localization)
@@ -197,6 +198,21 @@ URLs for external services shown in the launcher (social media buttons, website 
 | `WorldStatusUrl` | string | `""` | World status API endpoint (required when `EnableWorldStatus` is `true` in FeatureFlags) |
 
 Empty strings hide the corresponding button or feature in the launcher UI.
+
+
+## What's New Modal
+
+After an update, the launcher automatically shows a "What's New" modal to players listing the changes in the new version. The modal appears once per version — players who are already up to date never see it.
+
+Release notes are managed through the admin portal. When you publish a new release, the portal serves the changelog for that version. The launcher fetches it from the configured release notes URL and displays it in the modal.
+
+The status bar also shows the current launcher version using the `StatusBarText` field in [Branding](#branding). Keep this in sync with your release when you publish an update.
+
+### News Tab
+
+A dedicated News tab in the launcher loads content from the `NewsUrl` configured in [ExternalLinks](#externallinks). This is separate from the "What's New" modal — it shows ongoing server news and announcements rather than release-specific changelog entries.
+
+To enable the news tab, set `NewsUrl` to a URL that returns your news content and ensure `EnableSlidingNews` is `true` in [FeatureFlags](#featureflags).
 
 
 ## AuthLimits
