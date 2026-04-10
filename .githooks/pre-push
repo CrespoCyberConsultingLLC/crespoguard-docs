@@ -1,0 +1,11 @@
+#!/bin/sh
+# noslop pre-push: docs repo — mkdocs build check
+set -e
+
+if command -v mkdocs >/dev/null 2>&1; then
+  echo "Building docs..."
+  mkdocs build --strict 2>&1 || { echo "mkdocs build failed"; exit 1; }
+  echo "Docs build OK"
+else
+  echo "mkdocs not found — skipping build check"
+fi
