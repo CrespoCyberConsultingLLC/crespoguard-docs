@@ -8,18 +8,18 @@
 
 ## Prerequisites
 
-| Requirement | Detail |
-|-------------|--------|
-| **OS** | Windows Server 2012 R2+ or Windows 10/11 |
-| **RF Online** | ZoneServerUD_x64.exe v2.2.3.2 |
-| **SQL Server** | Express or Standard with RF_User, RF_World databases |
-| **Visual C++ Runtime** | 2019+ x64 redistributable |
-| **ODBC Driver** | SQL Server or ODBC Driver 17 |
-| **WebView2 Runtime** | Microsoft Edge Chromium (optional, for dashboard) |
-| **License** | CrespoGuard Premium (Guard+ tier) |
+| Requirement            | Detail                                               |
+| ---------------------- | ---------------------------------------------------- |
+| **OS**                 | Windows Server 2012 R2+ or Windows 10/11             |
+| **RF Online**          | ZoneServerUD_x64.exe v2.2.3.2                        |
+| **SQL Server**         | Express or Standard with RF_User, RF_World databases |
+| **Visual C++ Runtime** | 2019+ x64 redistributable                            |
+| **ODBC Driver**        | SQL Server or ODBC Driver 17                         |
+| **WebView2 Runtime**   | Microsoft Edge Chromium (optional, for dashboard)    |
+| **License**            | CrespoGuard Premium (Guard+ tier)                    |
 
 !!! note "Administrator required"
-    CrespoGuard.exe requires admin privileges for DLL injection into the ZoneServer process.
+CrespoGuard.exe requires admin privileges for DLL injection into the ZoneServer process.
 
 ---
 
@@ -40,7 +40,7 @@ RF_Bin/
 ```
 
 !!! warning "DLL location"
-    `CrespoGuardMod.dll` goes **directly in RF_Bin/**, not in the `CrespoGuard/` subfolder.
+`CrespoGuardMod.dll` goes **directly in RF_Bin/**, not in the `CrespoGuard/` subfolder.
 
 ---
 
@@ -118,8 +118,8 @@ Create `zonemod.json` in `RF_Bin/CrespoGuard/` to enable/disable modules:
 ```
 
 !!! tip "enabled must be first"
-    The `"enabled"` key must be the **first key** in each module object.
-    The JSON parser reads keys in order.
+The `"enabled"` key must be the **first key** in each module object.
+The JSON parser reads keys in order.
 
 ### Step 4: Start
 
@@ -147,16 +147,16 @@ You should see all enabled modules listed with their current settings.
 
 ## Ports
 
-| Port | Service | Required |
-|------|---------|----------|
-| 10001 | CrespoGuard Auth | Yes |
-| 27780 | ZoneServer (direct) | Yes |
-| 8080 | Auth Dashboard | Optional |
-| 8081 | ZoneMod Dashboard | Optional |
+| Port  | Service             | Required |
+| ----- | ------------------- | -------- |
+| 10001 | CrespoGuard Auth    | Yes      |
+| 27780 | ZoneServer (direct) | Yes      |
+| 8080  | Auth Dashboard      | Optional |
+| 8081  | ZoneMod Dashboard   | Optional |
 
 !!! note "Firewall"
-    Open ports 10001 and 27780 in your firewall for player connections.
-    Dashboard ports (8080/8081) should only be accessible from your admin machine.
+Open ports 10001 and 27780 in your firewall for player connections.
+Dashboard ports (8080/8081) should only be accessible from your admin machine.
 
 ---
 
@@ -182,15 +182,15 @@ and [Configuration Guide](CONFIGURATION.md) for detailed settings.
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| "DLL not found" | Ensure `CrespoGuardMod.dll` is in `RF_Bin/` (not in `CrespoGuard/`) |
-| Dashboard won't load | Install WebView2 Runtime, check ports 8080/8081 not in use |
-| ZoneServer crashes on start | Check `CrespoGuard/logs/` for error details |
-| Modules not loading | Verify `"enabled": true` is the first key in each module |
-| Scripts not running | Enable both `js_scripting` and `js_event_hooks` in zonemod.json |
-| "Access denied" | Run CrespoGuard.exe as Administrator |
-| Database connection fails | Check ODBC driver installed and credentials in crespoguard.json |
+| Issue                       | Solution                                                            |
+| --------------------------- | ------------------------------------------------------------------- |
+| "DLL not found"             | Ensure `CrespoGuardMod.dll` is in `RF_Bin/` (not in `CrespoGuard/`) |
+| Dashboard won't load        | Install WebView2 Runtime, check ports 8080/8081 not in use          |
+| ZoneServer crashes on start | Check `CrespoGuard/logs/` for error details                         |
+| Modules not loading         | Verify `"enabled": true` is the first key in each module            |
+| Scripts not running         | Enable both `js_scripting` and `js_event_hooks` in zonemod.json     |
+| "Access denied"             | Run CrespoGuard.exe as Administrator                                |
+| Database connection fails   | Check ODBC driver installed and credentials in crespoguard.json     |
 
 ---
 
@@ -200,4 +200,3 @@ and [Configuration Guide](CONFIGURATION.md) for detailed settings.
 - [Configuration Guide](CONFIGURATION.md) — Detailed module settings
 - [GM Commands](GM_COMMANDS.md) — In-game admin commands
 - [JS Scripting](SCRIPTING.md) — Write custom game logic
-- [AI Assistant](../ai/OVERVIEW.md) — AI-powered configuration helper

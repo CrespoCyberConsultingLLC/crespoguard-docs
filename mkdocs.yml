@@ -44,35 +44,31 @@ theme:
 nav:
   - Home: index.md
   - Launcher:
-    - Setup Guide: launcher/SETUP.md
-    - Creating config.bin: launcher/CONFIG_CREATION.md
-    - Config Reference: launcher/CONFIG_REFERENCE.md
-    - Theming & Branding: launcher/THEMING.md
-    - Assets: launcher/ASSETS.md
-    - Deployment: launcher/DEPLOYMENT.md
-    - Relay Setup: launcher/RELAY.md
-    - Relay Databases: launcher/RELAY_DATABASES.md
+      - Setup Guide: launcher/SETUP.md
+      - Creating config.bin: launcher/CONFIG_CREATION.md
+      - Config Reference: launcher/CONFIG_REFERENCE.md
+      - Theming & Branding: launcher/THEMING.md
+      - Assets: launcher/ASSETS.md
+      - Deployment: launcher/DEPLOYMENT.md
+      - Relay Setup: launcher/RELAY.md
+      - Relay Databases: launcher/RELAY_DATABASES.md
   - ZoneMod:
-    - Setup Guide: zonemod/SETUP.md
-    - Module Catalog: zonemod/CATALOG.md
-    - Configuration Guide: zonemod/CONFIGURATION.md
-    - GM Commands: zonemod/GM_COMMANDS.md
-    - JS Scripting: zonemod/SCRIPTING.md
-    - Event Reference: zonemod/EVENTS.md
-    - API Reference: zonemod/API.md
-    - Bridge HTTP API: zonemod/BRIDGE_API.md
-  - AI Assistant:
-    - Overview: ai/OVERVIEW.md
-    - Usage Guide: ai/USAGE.md
-    - Retraining: ai/RETRAINING.md
+      - Setup Guide: zonemod/SETUP.md
+      - Module Catalog: zonemod/CATALOG.md
+      - Configuration Guide: zonemod/CONFIGURATION.md
+      - GM Commands: zonemod/GM_COMMANDS.md
+      - JS Scripting: zonemod/SCRIPTING.md
+      - Event Reference: zonemod/EVENTS.md
+      - API Reference: zonemod/API.md
+      - Bridge HTTP API: zonemod/BRIDGE_API.md
   - RF Dev Tool:
-    - Overview: devtool/OVERVIEW.md
-    - Quick Start: devtool/QUICKSTART.md
-    - Visual Editors: devtool/EDITORS.md
-    - Reference: devtool/REFERENCE.md
+      - Overview: devtool/OVERVIEW.md
+      - Quick Start: devtool/QUICKSTART.md
+      - Visual Editors: devtool/EDITORS.md
+      - Reference: devtool/REFERENCE.md
   - Features:
-    - Feature Comparison: FEATURES.md
-    - Premium Tiers: PREMIUM_TIERS.md
+      - Feature Comparison: FEATURES.md
+      - Premium Tiers: PREMIUM_TIERS.md
 
 plugins:
   - search

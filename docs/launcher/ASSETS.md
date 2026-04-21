@@ -1,4 +1,3 @@
-
 # Asset Preparation Guide
 
 > Specifications for logo, background, fonts, music, and language files.
@@ -28,14 +27,14 @@ System/
 
 ### Specifications
 
-| Property | Requirement |
-|----------|-------------|
-| **Format** | PNG (preferred, supports transparency) or JPG |
-| **Filename** | `logo.png` or `logo.jpg` (PNG checked first) |
-| **Recommended size** | 340 x 120 pixels |
-| **Maximum display** | Configurable via `LogoMaxWidth` / `LogoMaxHeight` (default: 170x60px) |
-| **Transparency** | Supported (PNG alpha channel) — recommended for dark backgrounds |
-| **Color space** | sRGB |
+| Property                    | Requirement                                                                                                              |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Format**                  | PNG (preferred, supports transparency) or JPG                                                                            |
+| **Filename**                | `logo.png` or `logo.jpg` (PNG checked first)                                                                             |
+| **Recommended source size** | 340 x 120 pixels (design/export size for crisp 2x rendering)                                                             |
+| **Maximum display size**    | Configurable via `LogoMaxWidth` / `LogoMaxHeight` in [Branding config](CONFIG_REFERENCE.md#branding) (default: 170x60px) |
+| **Transparency**            | Supported (PNG alpha channel) — recommended for dark backgrounds                                                         |
+| **Color space**             | sRGB                                                                                                                     |
 
 ### Guidelines
 
@@ -43,6 +42,7 @@ System/
 - Design for dark backgrounds — light/white logos with transparent backgrounds work best
 - The launcher maintains aspect ratio — it will scale down to fit, never scale up
 - If your logo is wider than the sidebar, increase `SidebarWidth` and `LogoMaxWidth` in config
+- The recommended 340x120px source size provides a crisp image at 2x resolution. `LogoMaxWidth` (default 170.0) and `LogoMaxHeight` (default 60.0) in the Branding config control the display size in the launcher window — the launcher scales the source image down to fit within these bounds.
 
 ### Logo Sizing Config
 
@@ -62,13 +62,13 @@ System/
 
 ### Specifications
 
-| Property | Requirement |
-|----------|-------------|
-| **Format** | PNG or JPG |
-| **Filename** | `background.png` or `background.jpg` (PNG checked first) |
+| Property             | Requirement                                                                          |
+| -------------------- | ------------------------------------------------------------------------------------ |
+| **Format**           | PNG or JPG                                                                           |
+| **Filename**         | `background.png` or `background.jpg` (PNG checked first)                             |
 | **Recommended size** | Match your window size (default 1024x600, or your custom WindowWidth x WindowHeight) |
-| **Minimum size** | 1024 x 600 pixels (smaller will be stretched) |
-| **Feature flag** | Must set `"EnableCustomBackground": true` in FeatureFlags |
+| **Minimum size**     | 1024 x 600 pixels (smaller will be stretched)                                        |
+| **Feature flag**     | Must set `"EnableCustomBackground": true` in FeatureFlags                            |
 
 ### Guidelines
 
@@ -93,21 +93,21 @@ System/
 
 ### Specifications
 
-| Property | Requirement |
-|----------|-------------|
-| **Format** | TrueType (`.ttf`) only |
-| **Location** | `System\Launcher\fonts\` |
-| **Slots** | 3 fonts: body, bold, title |
+| Property     | Requirement                                               |
+| ------------ | --------------------------------------------------------- |
+| **Format**   | TrueType (`.ttf`) only                                    |
+| **Location** | `System\Launcher\fonts\`                                  |
+| **Slots**    | 3 fonts: body, bold, title                                |
 | **Fallback** | If fonts are missing, ImGui uses its built-in bitmap font |
 
 ### Default Fonts
 
-| Slot | Default File | Size | Used For |
-|------|-------------|------|----------|
-| Body | `Rajdhani-Regular.ttf` | 16px | All UI text, input fields, labels |
-| Bold | `Rajdhani-Bold.ttf` | 16px | Emphasized text, server name |
+| Slot  | Default File            | Size | Used For                                        |
+| ----- | ----------------------- | ---- | ----------------------------------------------- |
+| Body  | `Rajdhani-Regular.ttf`  | 16px | All UI text, input fields, labels               |
+| Bold  | `Rajdhani-Bold.ttf`     | 16px | Emphasized text, server name                    |
 | Title | `Orbitron-Variable.ttf` | 24px | Panel headers ("MEMBER LOGIN", "SELECT SERVER") |
-| Small | (same as Body) | 13px | Status text, captions, version info |
+| Small | (same as Body)          | 13px | Status text, captions, version info             |
 
 ### Using Custom Fonts
 
@@ -134,11 +134,12 @@ System/
 - [DaFont](https://www.dafont.com/) — themed/decorative fonts
 
 !!! tip "Font licensing"
-    Only use fonts you have the license to distribute. Google Fonts are all open-source licensed (OFL/Apache).
+Only use fonts you have the license to distribute. Google Fonts are all open-source licensed (OFL/Apache).
 
 ### CJK Support
 
 For Korean, Chinese, or Japanese text, use fonts with CJK coverage:
+
 - **Noto Sans KR** — Korean
 - **Noto Sans SC** — Simplified Chinese
 - **Noto Sans TC** — Traditional Chinese
@@ -150,12 +151,12 @@ Set the matching `NationCode` in `Localization`.
 
 ### Specifications
 
-| Property | Requirement |
-|----------|-------------|
-| **Format** | MP3 (preferred), WAV, or MIDI |
-| **Location** | `System\Launcher\Music\` |
+| Property     | Requirement                                       |
+| ------------ | ------------------------------------------------- |
+| **Format**   | MP3 (preferred), WAV, or MIDI                     |
+| **Location** | `System\Launcher\Music\`                          |
 | **Behavior** | First file found alphabetically is played on loop |
-| **Volume** | Controlled by player via Settings > Sound |
+| **Volume**   | Controlled by player via Settings > Sound         |
 
 ### Guidelines
 
@@ -176,12 +177,12 @@ System/Launcher/Music/
 
 ### Specifications
 
-| Property | Requirement |
-|----------|-------------|
-| **Format** | JSON |
-| **Location** | `System\Launcher\Language\` |
-| **Naming** | `{nationCode}.json` (e.g., `en_gb.json`, `ko_kr.json`) |
-| **Encoding** | UTF-8 |
+| Property     | Requirement                                            |
+| ------------ | ------------------------------------------------------ |
+| **Format**   | JSON                                                   |
+| **Location** | `System\Launcher\Language\`                            |
+| **Naming**   | `{nationCode}.json` (e.g., `en_gb.json`, `ko_kr.json`) |
+| **Encoding** | UTF-8                                                  |
 
 ### Structure
 
@@ -220,16 +221,16 @@ Some strings support `{0}`, `{1}` placeholders:
 
 ### Supported Languages
 
-| Code | Language |
-|------|----------|
+| Code    | Language               |
+| ------- | ---------------------- |
 | `en_gb` | English (UK) — default |
-| `en_us` | English (US) |
-| `ko_kr` | Korean |
-| `zh_tw` | Traditional Chinese |
-| `ja_jp` | Japanese |
-| `ru_ru` | Russian |
-| `pt_br` | Portuguese (Brazil) |
-| `id_id` | Indonesian |
+| `en_us` | English (US)           |
+| `ko_kr` | Korean                 |
+| `zh_tw` | Traditional Chinese    |
+| `ja_jp` | Japanese               |
+| `ru_ru` | Russian                |
+| `pt_br` | Portuguese (Brazil)    |
+| `id_id` | Indonesian             |
 
 Set in `modules.json`:
 
@@ -246,7 +247,7 @@ Set in `modules.json`:
 
 Before distributing to players, verify:
 
-- [ ] `logo.png` — Your server logo (transparent PNG, ~340x120px)
+- [ ] `logo.png` — Your server logo (transparent PNG, ~340x120px source size)
 - [ ] `background.png` — Dark background image (match window size)
 - [ ] `System\Launcher\fonts\` — All 3 font files present (or defaults)
 - [ ] `System\Launcher\Language\en_gb.json` — Language strings

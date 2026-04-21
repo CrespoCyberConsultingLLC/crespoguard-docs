@@ -1,4 +1,3 @@
-
 # CrespoGuard Relay
 
 > TCP relay for RF Online servers — transparent proxy or AES-256-GCM encrypted tunnel, DDoS protection, rate limiting, and a real-time dashboard. Every feature included at every tier. Self-hosted is free; edge-hosted is an optional +$10/mo add-on.
@@ -59,22 +58,22 @@ Player                     CrespoGuard Edge           Your Server
 
 **Which should you choose?**
 
-| | Self-Hosted (Free) | Edge-Hosted (+$10/mo) |
-|---|---|---|
-| **Cost** | Free with any tier | +$10/mo on top of tier price |
-| **IP masking** | Yes, if relay is on a separate machine | Yes, always |
-| **Setup** | You manage the relay binary and VPS | Zero setup — just configure your launcher |
-| **All features** | Yes | Yes |
-| **Best for** | Server owners who already have a VPS or want full control | Server owners who want IP masking without managing infrastructure |
+|                  | Self-Hosted (Free)                                        | Edge-Hosted (+$10/mo)                                             |
+| ---------------- | --------------------------------------------------------- | ----------------------------------------------------------------- |
+| **Cost**         | Free with any tier                                        | +$10/mo on top of tier price                                      |
+| **IP masking**   | Yes, if relay is on a separate machine                    | Yes, always                                                       |
+| **Setup**        | You manage the relay binary and VPS                       | Zero setup — just configure your launcher                         |
+| **All features** | Yes                                                       | Yes                                                               |
+| **Best for**     | Server owners who already have a VPS or want full control | Server owners who want IP masking without managing infrastructure |
 
 ## Pricing
 
-| Tier | Price | Max Players | Edge Routing |
-|------|-------|-------------|--------------|
-| **Community** | Free | 30 | +$10/mo optional |
-| **Guard** | $19/mo | 200 | +$10/mo optional |
-| **Shield** | $49/mo | 500 | +$10/mo optional |
-| **Fortress** | $99/mo | 1000 | +$10/mo optional |
+| Tier          | Price  | Max Players | Edge Routing     |
+| ------------- | ------ | ----------- | ---------------- |
+| **Community** | Free   | 30          | +$10/mo optional |
+| **Guard**     | $19/mo | 200         | +$10/mo optional |
+| **Shield**    | $49/mo | 500         | +$10/mo optional |
+| **Fortress**  | $99/mo | 1000        | +$10/mo optional |
 
 Every feature below is included at every tier. The only difference is how many concurrent players your relay supports. Edge routing (hosted relay on CrespoGuard's infrastructure) is an optional $10/mo add-on available at any tier.
 
@@ -127,9 +126,9 @@ Restrict connections by country. Only players from allowed countries can connect
 
 ```json
 {
-    "GeoIPEnabled": true,
-    "GeoIPFile": "geoip.csv",
-    "GeoIPAllowedCountries": ["US", "BR", "PH", "ID", "MY", "TH", "VN"]
+  "GeoIPEnabled": true,
+  "GeoIPFile": "geoip.csv",
+  "GeoIPAllowedCountries": ["US", "BR", "PH", "ID", "MY", "TH", "VN"]
 }
 ```
 
@@ -141,8 +140,8 @@ Block connections from known datacenter and VPN providers by Autonomous System N
 
 ```json
 {
-    "ASNBlockEnabled": true,
-    "ASNBlockList": [12345, 67890]
+  "ASNBlockEnabled": true,
+  "ASNBlockList": [12345, 67890]
 }
 ```
 
@@ -158,8 +157,8 @@ Flagged connections are logged and optionally blocked. No client-side changes re
 
 ```json
 {
-    "TCPFingerprintEnabled": true,
-    "TCPFingerprintMode": "flag"
+  "TCPFingerprintEnabled": true,
+  "TCPFingerprintMode": "flag"
 }
 ```
 
@@ -167,15 +166,15 @@ Set `TCPFingerprintMode` to `"block"` to drop non-Windows connections, or `"flag
 
 ### Prometheus Metrics
 
-Exposes relay metrics on a `/metrics` endpoint in Prometheus exposition format, served on the dashboard port. Grafana-ready out of the box.
+Exposes relay metrics on a `/metrics` endpoint in Prometheus exposition format, served on the dashboard port. Grafana-ready out of the box. Prometheus metrics are **enabled by default** (`PrometheusEnabled` = `true`).
 
 ```json
 {
-    "PrometheusEnabled": true
+  "PrometheusEnabled": true
 }
 ```
 
-See the /metrics endpoint for the full list. Metrics are served on the same port as the dashboard — no separate port configuration needed.
+See the /metrics endpoint for the full list. Metrics are served on the same port as the dashboard (behind authentication — see [Dashboard Authentication](#dashboard-authentication)) — no separate port configuration needed.
 
 **Restrict the dashboard port** to your monitoring infrastructure — do not expose it publicly.
 
@@ -185,15 +184,15 @@ Burst-tolerant rate limiting — allows short spikes of legitimate reconnect act
 
 ```json
 {
-    "RateLimitPerIP": 15,
-    "RateLimitWindowSec": 60
+  "RateLimitPerIP": 15,
+  "RateLimitWindowSec": 60
 }
 ```
 
 Configure per-IP rate limits with `RateLimitPerIP` (max connections) and `RateLimitWindowSec` (time window in seconds).
 
 !!! note "Admin Portal Rate Limiting"
-    The admin portal uses persistent rate limiting that survives restarts. The relay itself uses in-memory rate limiting, which is fine since it runs as a long-lived process.
+The admin portal uses persistent rate limiting that survives restarts. The relay itself uses in-memory rate limiting, which is fine since it runs as a long-lived process.
 
 ### Tor Exit Node Blocking
 
@@ -211,9 +210,9 @@ Structured log output with automatic rotation. Logs are written asynchronously t
 
 ```json
 {
-    "LogToFile": true,
-    "LogMaxSizeMB": 10,
-    "LogMaxFiles": 5
+  "LogToFile": true,
+  "LogMaxSizeMB": 10,
+  "LogMaxFiles": 5
 }
 ```
 
@@ -242,21 +241,25 @@ The CrespoGuard Bridge requires a `BRIDGE_API_KEY` environment variable to be se
 Generate a random string and set it as an environment variable before starting the bridge:
 
 **Option 1: `.env` file** (recommended for self-hosted)
+
 ```
 BRIDGE_API_KEY=your-random-secret-key-here
 ```
 
 **Option 2: Environment variable**
+
 ```bash
 export BRIDGE_API_KEY="your-random-secret-key-here"
 ```
 
 **Option 3: Windows environment**
+
 ```cmd
 set BRIDGE_API_KEY=your-random-secret-key-here
 ```
 
 Generate a secure key with:
+
 ```bash
 python -c "import secrets; print(secrets.token_urlsafe(32))"
 ```
@@ -267,11 +270,11 @@ The bridge uses this key in the `X-Bridge-Key` header for all authenticated endp
 
 The following admin API endpoints require Bearer token authentication using a valid license key:
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/api/v1/config/{deploymentId}` | GET | Fetch deployment config — validates deployment ownership against the license |
-| `/api/v1/update?product=X` | GET | Check for product updates — validates the license matches the requested product |
-| `/api/v1/relay/telemetry` | POST | Submit relay telemetry data |
+| Endpoint                        | Method | Description                                                                     |
+| ------------------------------- | ------ | ------------------------------------------------------------------------------- |
+| `/api/v1/config/{deploymentId}` | GET    | Fetch deployment config — validates deployment ownership against the license    |
+| `/api/v1/update?product=X`      | GET    | Check for product updates — validates the license matches the requested product |
+| `/api/v1/relay/telemetry`       | POST   | Submit relay telemetry data                                                     |
 
 All requests must include the `Authorization` header:
 
@@ -303,22 +306,22 @@ Edit `server.json`:
 
 ```json
 {
-    "ServerName": "Your Server",
-    "ListenIP": "0.0.0.0",
-    "ListenPort": 10002,
-    "TargetIP": "127.0.0.1",
-    "TargetPort": 10001,
-    "PSK": "same_key_as_modules_json",
-    "MaxClients": 75,
-    "PublicIP": "YOUR_PUBLIC_IP",
-    "MaskServerIP": true,
-    "DashboardEnabled": true,
-    "DashboardPort": 8081,
-    "DashboardApiKey": "YOUR_GENERATED_KEY",
-    "RateLimitPerIP": 15,
-    "RateLimitWindowSec": 60,
-    "MaxConnectionsPerIP": 5,
-    "IPBansFile": "ipbans.json"
+  "ServerName": "Your Server",
+  "ListenIP": "0.0.0.0",
+  "ListenPort": 10002,
+  "TargetIP": "127.0.0.1",
+  "TargetPort": 10001,
+  "PSK": "same_key_as_modules_json",
+  "MaxClients": 75,
+  "PublicIP": "YOUR_PUBLIC_IP",
+  "MaskServerIP": true,
+  "DashboardEnabled": true,
+  "DashboardPort": 8081,
+  "DashboardApiKey": "YOUR_GENERATED_KEY",
+  "RateLimitPerIP": 15,
+  "RateLimitWindowSec": 60,
+  "MaxConnectionsPerIP": 5,
+  "IPBansFile": "ipbans.json"
 }
 ```
 
@@ -351,11 +354,11 @@ See [Creating config.bin](CONFIG_CREATION.md) for the full encryption walkthroug
 
 ## Firewall Rules
 
-| Port | Direction | Purpose |
-|------|-----------|---------|
-| 10002 TCP | Inbound | Relay listen (encrypted tunnel) |
-| 27780 TCP | Inbound | ZoneServer (or zone proxy) |
-| 8081 TCP | Inbound | Dashboard (restrict to your admin IP!) |
+| Port      | Direction | Purpose                                |
+| --------- | --------- | -------------------------------------- |
+| 10002 TCP | Inbound   | Relay listen (encrypted tunnel)        |
+| 27780 TCP | Inbound   | ZoneServer (or zone proxy)             |
+| 8081 TCP  | Inbound   | Dashboard (restrict to your admin IP!) |
 
 **Block your real LoginServer port** from external access — only the relay (localhost) should reach it.
 
@@ -369,7 +372,7 @@ The relay checks for new versions on startup. When a newer version is available,
 
 ```json
 {
-    "AutoUpdateEnabled": true
+  "AutoUpdateEnabled": true
 }
 ```
 
@@ -389,7 +392,7 @@ The relay sends anonymous usage statistics on startup and every 24 hours. **No p
 
 ```json
 {
-    "TelemetryEnabled": true
+  "TelemetryEnabled": true
 }
 ```
 
@@ -405,6 +408,16 @@ To upgrade the relay to a new version:
 
 If `AutoUpdateEnabled` is `true` (the default), the relay updates itself automatically on startup — no manual binary replacement required.
 
-## Auto-Generated API Key
+## Dashboard Authentication
 
-On first run, if no `DashboardApiKey` is set in `server.json`, the relay automatically generates a secure API key and saves it to the config file. This ensures the dashboard API is protected from the moment the relay starts — no manual key generation needed.
+The dashboard API supports three authentication methods:
+
+1. **Bearer token header** — `Authorization: Bearer <api_key>`
+2. **API key header** — `X-API-Key: <api_key>`
+3. **Query parameter** — `?key=<api_key>` (exchanges for a `cg_session` HttpOnly cookie for subsequent requests)
+
+All three methods authenticate against the `DashboardApiKey` configured in `server.json`.
+
+### Auto-Generated API Key
+
+On first run, if `DashboardApiKey` is empty, set to `"CHANGE_ME"`, or `"REPLACE_WITH_RANDOM_API_KEY"`, the relay automatically generates a 32-character random hex key and writes it back to `server.json`. This ensures the dashboard API is protected from the moment the relay starts — no manual key generation needed.

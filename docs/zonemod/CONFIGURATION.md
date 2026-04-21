@@ -15,14 +15,14 @@ The file follows a straightforward structure:
 
 ```json
 {
-    "modules": {
-        "module_name": {
-            "enabled": true,
-            "settings": {
-                "key": "value"
-            }
-        }
+  "modules": {
+    "module_name": {
+      "enabled": true,
+      "settings": {
+        "key": "value"
+      }
     }
+  }
 }
 ```
 
@@ -38,9 +38,9 @@ Key points:
   same name can shadow the top-level toggle.
 
 !!! warning "JSON Syntax"
-    `zonemod.json` must be valid JSON. A single misplaced comma or missing quote
-    will prevent the entire file from loading. Use a JSON validator if you edit
-    the file by hand.
+`zonemod.json` must be valid JSON. A single misplaced comma or missing quote
+will prevent the entire file from loading. Use a JSON validator if you edit
+the file by hand.
 
 ---
 
@@ -67,15 +67,15 @@ to manage modules.
 
 ### Understanding Module States
 
-| State       | Meaning                                                  |
-|-------------|----------------------------------------------------------|
-| **Enabled** | Module is active and processing game events.             |
-| **Disabled**| Module is loaded but all logic is skipped.               |
-| **LOCKED**  | Security module — always enabled, toggle is read-only.   |
+| State        | Meaning                                                |
+| ------------ | ------------------------------------------------------ |
+| **Enabled**  | Module is active and processing game events.           |
+| **Disabled** | Module is loaded but all logic is skipped.             |
+| **LOCKED**   | Security module — always enabled, toggle is read-only. |
 
 !!! note "Locked Modules"
-    Modules marked **LOCKED** are security-critical and cannot be disabled from
-    the dashboard or config file. Their settings panel is read-only.
+Modules marked **LOCKED** are security-critical and cannot be disabled from
+the dashboard or config file. Their settings panel is read-only.
 
 ---
 
@@ -89,12 +89,12 @@ higher**.
 
 All modules support a common set of sub-commands:
 
-| Command                          | Description                            |
-|----------------------------------|----------------------------------------|
-| `.prefix status`                 | Display current settings and state.    |
-| `.prefix set <key> <value>`      | Change a setting at runtime.           |
-| `.prefix reload`                 | Force an immediate reload from file.   |
-| `.prefix help`                   | List every command the module supports. |
+| Command                     | Description                             |
+| --------------------------- | --------------------------------------- |
+| `.prefix status`            | Display current settings and state.     |
+| `.prefix set <key> <value>` | Change a setting at runtime.            |
+| `.prefix reload`            | Force an immediate reload from file.    |
+| `.prefix help`              | List every command the module supports. |
 
 ### Examples
 
@@ -124,10 +124,10 @@ All modules support a common set of sub-commands:
 > Prints every sub-command available for the buff module.
 
 !!! tip "Runtime vs. Persistent"
-    `.prefix set` changes the value **in memory only**. If the server restarts
-    before the next config write, the old value from `zonemod.json` is restored.
-    To make a change permanent, also update `zonemod.json` (via the dashboard or
-    by hand).
+`.prefix set` changes the value **in memory only**. If the server restarts
+before the next config write, the old value from `zonemod.json` is restored.
+To make a change permanent, also update `zonemod.json` (via the dashboard or
+by hand).
 
 ---
 
@@ -139,39 +139,39 @@ Most rate modules accept a simple floating-point multiplier.
 
 ```json title="zonemod.json"
 {
-    "modules": {
-        "server_rates": {
-            "enabled": true,
-            "settings": {
-                "exp_rate": 2.0,
-                "drop_rate": 1.5,
-                "mining_rate": 3.0,
-                "gold_rate": 2.0,
-                "exp_mau_rate": 1.0,
-                "pvp_share_rate": 1.0,
-                "mastery_rate": 1.0,
-                "exp_loss_rate": 1.0,
-                "stack_ext_limit": 99
-            }
-        }
+  "modules": {
+    "server_rates": {
+      "enabled": true,
+      "settings": {
+        "exp_rate": 2.0,
+        "drop_rate": 1.5,
+        "mining_rate": 3.0,
+        "gold_rate": 2.0,
+        "exp_mau_rate": 1.0,
+        "pvp_share_rate": 1.0,
+        "mastery_rate": 1.0,
+        "exp_loss_rate": 1.0,
+        "stack_ext_limit": 99
+      }
     }
+  }
 }
 ```
 
-| Key | Description |
-|-----|-------------|
-| `exp_rate` | Base EXP multiplier |
-| `drop_rate` | Item drop rate multiplier |
-| `mining_rate` | Mining yield multiplier |
-| `gold_rate` | Gold/dalant gain multiplier |
-| `exp_mau_rate` | MAU EXP rate |
-| `pvp_share_rate` | PvP share rate |
-| `mastery_rate` | Mastery gain rate |
-| `exp_loss_rate` | Death EXP penalty rate |
-| `stack_ext_limit` | Item stack extension limit |
+| Key               | Description                 |
+| ----------------- | --------------------------- |
+| `exp_rate`        | Base EXP multiplier         |
+| `drop_rate`       | Item drop rate multiplier   |
+| `mining_rate`     | Mining yield multiplier     |
+| `gold_rate`       | Gold/dalant gain multiplier |
+| `exp_mau_rate`    | MAU EXP rate                |
+| `pvp_share_rate`  | PvP share rate              |
+| `mastery_rate`    | Mastery gain rate           |
+| `exp_loss_rate`   | Death EXP penalty rate      |
+| `stack_ext_limit` | Item stack extension limit  |
 
 | Value | Effect         |
-|-------|----------------|
+| ----- | -------------- |
 | `1.0` | No change (1x) |
 | `2.0` | Double (2x)    |
 | `0.5` | Halved (0.5x)  |
@@ -182,27 +182,27 @@ Modules that support per-race tuning nest values under a `races` object.
 
 ```json title="zonemod.json"
 {
-    "modules": {
-        "exp_config": {
-            "enabled": true,
-            "settings": {
-                "races": {
-                    "bellato": {
-                        "exp_mult": 1.0,
-                        "drop_mult": 1.0
-                    },
-                    "cora": {
-                        "exp_mult": 1.2,
-                        "drop_mult": 1.1
-                    },
-                    "accretia": {
-                        "exp_mult": 1.1,
-                        "drop_mult": 1.0
-                    }
-                }
-            }
+  "modules": {
+    "exp_config": {
+      "enabled": true,
+      "settings": {
+        "races": {
+          "bellato": {
+            "exp_mult": 1.0,
+            "drop_mult": 1.0
+          },
+          "cora": {
+            "exp_mult": 1.2,
+            "drop_mult": 1.1
+          },
+          "accretia": {
+            "exp_mult": 1.1,
+            "drop_mult": 1.0
+          }
         }
+      }
     }
+  }
 }
 ```
 
@@ -214,33 +214,33 @@ Modules like daily login or event rewards use ordered arrays.
 
 ```json title="zonemod.json"
 {
-    "modules": {
-        "daily_rewards": {
-            "enabled": true,
-            "settings": {
-                "rewards": [
-                    {
-                        "dalant": 10000,
-                        "gold": 0,
-                        "item_code": "",
-                        "message": "Day 1 — Welcome back!"
-                    },
-                    {
-                        "dalant": 20000,
-                        "gold": 100,
-                        "item_code": "",
-                        "message": "Day 2 — Keep it up!"
-                    },
-                    {
-                        "dalant": 50000,
-                        "gold": 500,
-                        "item_code": "iw30a",
-                        "message": "Day 3 — Bonus weapon!"
-                    }
-                ]
-            }
-        }
+  "modules": {
+    "daily_rewards": {
+      "enabled": true,
+      "settings": {
+        "rewards": [
+          {
+            "dalant": 10000,
+            "gold": 0,
+            "item_code": "",
+            "message": "Day 1 — Welcome back!"
+          },
+          {
+            "dalant": 20000,
+            "gold": 100,
+            "item_code": "",
+            "message": "Day 2 — Keep it up!"
+          },
+          {
+            "dalant": 50000,
+            "gold": 500,
+            "item_code": "iw30a",
+            "message": "Day 3 — Bonus weapon!"
+          }
+        ]
+      }
     }
+  }
 }
 ```
 
@@ -252,23 +252,23 @@ Time-based modules accept day-of-week and hour ranges.
 
 ```json title="zonemod.json"
 {
-    "modules": {
-        "double_exp_event": {
-            "enabled": true,
-            "settings": {
-                "schedule_days": [0, 5, 6],
-                "start_hour": 18,
-                "end_hour": 23,
-                "exp_multiplier": 5.0,
-                "announcement": "Weekend EXP event is LIVE!"
-            }
-        }
+  "modules": {
+    "double_exp_event": {
+      "enabled": true,
+      "settings": {
+        "schedule_days": [0, 5, 6],
+        "start_hour": 18,
+        "end_hour": 23,
+        "exp_multiplier": 5.0,
+        "announcement": "Weekend EXP event is LIVE!"
+      }
     }
+  }
 }
 ```
 
 | Day Value | Day       |
-|-----------|-----------|
+| --------- | --------- |
 | `0`       | Sunday    |
 | `1`       | Monday    |
 | `2`       | Tuesday   |
@@ -285,20 +285,20 @@ Many modules expose simple on/off flags for individual features.
 
 ```json title="zonemod.json"
 {
-    "modules": {
-        "auto_loot": {
-            "enabled": true,
-            "settings": {
-                "stack_limit": 99,
-                "scatter_range": 0,
-                "scatter_only_boss": false,
-                "scatter_log": false,
-                "skip_boss_auto_loot": false,
-                "mau_auto_loot": false,
-                "siege_auto_loot": false
-            }
-        }
+  "modules": {
+    "auto_loot": {
+      "enabled": true,
+      "settings": {
+        "stack_limit": 99,
+        "scatter_range": 0,
+        "scatter_only_boss": false,
+        "scatter_log": false,
+        "skip_boss_auto_loot": false,
+        "mau_auto_loot": false,
+        "siege_auto_loot": false
+      }
     }
+  }
 }
 ```
 
@@ -323,7 +323,7 @@ not require a restart.
 
 ### Security Modules (LOCKED)
 
-Twenty-six modules are marked as **force-enabled** in the DLL. These cover
+Sixteen modules are marked as **force-enabled** in the DLL. These cover
 anti-cheat, anti-dupe, and exploit protection. You cannot disable them via
 `zonemod.json` or the dashboard.
 
@@ -341,47 +341,47 @@ Below is a minimal but realistic configuration covering several modules:
 
 ```json title="zonemod.json"
 {
-    "modules": {
-        "server_rates": {
-            "enabled": true,
-            "settings": {
-                "exp_rate": 2.0,
-                "drop_rate": 1.5,
-                "gold_rate": 2.0,
-                "mining_rate": 3.0,
-                "exp_mau_rate": 1.0,
-                "pvp_share_rate": 1.0,
-                "mastery_rate": 1.0,
-                "exp_loss_rate": 1.0,
-                "stack_ext_limit": 99
-            }
-        },
-        "auto_loot": {
-            "enabled": true,
-            "settings": {
-                "stack_limit": 99,
-                "scatter_range": 0,
-                "scatter_only_boss": false,
-                "scatter_log": false,
-                "skip_boss_auto_loot": false,
-                "mau_auto_loot": false,
-                "siege_auto_loot": false
-            }
-        },
-        "pvp_config": {
-            "enabled": true,
-            "settings": {
-                "damage_cap": 9999,
-                "heal_cap": 5000
-            }
-        },
-        "daily_rewards": {
-            "enabled": false,
-            "settings": {
-                "rewards": []
-            }
-        }
+  "modules": {
+    "server_rates": {
+      "enabled": true,
+      "settings": {
+        "exp_rate": 2.0,
+        "drop_rate": 1.5,
+        "gold_rate": 2.0,
+        "mining_rate": 3.0,
+        "exp_mau_rate": 1.0,
+        "pvp_share_rate": 1.0,
+        "mastery_rate": 1.0,
+        "exp_loss_rate": 1.0,
+        "stack_ext_limit": 99
+      }
+    },
+    "auto_loot": {
+      "enabled": true,
+      "settings": {
+        "stack_limit": 99,
+        "scatter_range": 0,
+        "scatter_only_boss": false,
+        "scatter_log": false,
+        "skip_boss_auto_loot": false,
+        "mau_auto_loot": false,
+        "siege_auto_loot": false
+      }
+    },
+    "pvp_config": {
+      "enabled": true,
+      "settings": {
+        "damage_cap": 9999,
+        "heal_cap": 5000
+      }
+    },
+    "daily_rewards": {
+      "enabled": false,
+      "settings": {
+        "rewards": []
+      }
     }
+  }
 }
 ```
 

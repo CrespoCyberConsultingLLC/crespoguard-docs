@@ -1,16 +1,15 @@
-
 # CrespoGuard Features
 
 > Everything included with CrespoGuard. Every feature, every tier — the only difference is player count.
 
 ## Tier Pricing
 
-| Tier | Price | Max Players | Edge Routing |
-|------|-------|-------------|--------------|
-| **Community** | Free | 30 | +$10/mo optional |
-| **Guard** | $19/mo | 200 | +$10/mo optional |
-| **Shield** | $49/mo | 500 | +$10/mo optional |
-| **Fortress** | $99/mo | 1000 | +$10/mo optional |
+| Tier          | Price  | Max Players | Edge Routing     |
+| ------------- | ------ | ----------- | ---------------- |
+| **Community** | Free   | 30          | +$10/mo optional |
+| **Guard**     | $19/mo | 200         | +$10/mo optional |
+| **Shield**    | $49/mo | 500         | +$10/mo optional |
+| **Fortress**  | $99/mo | 1000        | +$10/mo optional |
 
 All tiers include every feature listed below. Pick the tier that matches your server's player count.
 
@@ -92,7 +91,6 @@ These use pattern-scanned addresses from the game binary. Requires RF Online 2.2
 - CrespoGuard ZoneMod (185 modules, 350+ hooks)
 - ZoneMod web dashboard
 - SOC unified dashboard
-- [AI Assistant](ai/OVERVIEW.md) (local LLM config helper)
 
 ## DDoS Protection (Relay)
 
@@ -128,6 +126,7 @@ CrespoGuard gives server owners a powerful monetization tool: **two distinct aut
 Available to every player through the CrespoGuard client. No server modification required.
 
 **What players experience:**
+
 - Monster dies → items drop on the ground → items get picked up automatically within ~0.5 seconds
 - A slight delay between drop and pickup — items visibly appear then disappear
 - Configurable pickup range and interval
@@ -141,6 +140,7 @@ Auto-loot settings are configurable per-player through the in-game options panel
 Available through ZoneMod. Items never touch the ground.
 
 **What players experience:**
+
 - Monster dies → items appear directly in inventory. Zero delay. No animation.
 - No items on the ground at all (or scattered visually for boss kills if configured)
 - Works in MAU and siege mode
@@ -170,10 +170,10 @@ Players feel the difference instantly. That half-second delay and walk-to animat
 
 **Recommended setup for server owners:**
 
-| Player Tier | Auto-Loot Type | How to Enable |
-|-------------|---------------|---------------|
-| Free players | Basic (client-side, ~500ms delay) | Enable in CrespoGuard client config |
-| VIP players | Instant (server-side, zero delay) | Enable ZoneMod auto_loot module, gate via VIP flag |
+| Player Tier  | Auto-Loot Type                    | How to Enable                                      |
+| ------------ | --------------------------------- | -------------------------------------------------- |
+| Free players | Basic (client-side, ~500ms delay) | Enable in CrespoGuard client config                |
+| VIP players  | Instant (server-side, zero delay) | Enable ZoneMod auto_loot module, gate via VIP flag |
 
 **How to gate instant auto-loot to VIP only:**
 
