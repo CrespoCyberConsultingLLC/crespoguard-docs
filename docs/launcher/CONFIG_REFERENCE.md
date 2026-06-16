@@ -151,17 +151,19 @@ Toggle launcher features on/off.
 }
 ```
 
-| Field                     | Type   | Default | Description                                                                |
-| ------------------------- | ------ | ------- | -------------------------------------------------------------------------- |
-| `EnableWorldStatus`       | bool   | `false` | Show world status page (requires WorldStatusUrl)                           |
-| `EnableAutoUpdate`        | bool   | `true`  | Auto-update client files from patch server                                 |
-| `EnableNoticeForm`        | bool   | `true`  | Show notice/announcement panel                                             |
-| `EnableSlidingNews`       | bool   | `true`  | Show sliding news carousel on home panel                                   |
-| `EnableSavingCredentials` | bool   | `true`  | Allow "Remember Me" checkbox + account saving                              |
-| `EnableCustomBackground`  | bool   | `false` | Load background.png/jpg from Launcher folder                               |
-| `LauncherFullscreen`      | bool   | `false` | Start launcher in fullscreen mode                                          |
-| `UpdateSigningKey`        | string | `""`    | HMAC signing key for verifying patch manifests (empty = skip verification) |
-| `RemoteConfigUrl`         | string | `""`    | URL to fetch updated config.bin remotely (empty = disabled)                |
+| Field                     | Type   | Default | Description                                                                            |
+| ------------------------- | ------ | ------- | -------------------------------------------------------------------------------------- |
+| `EnableWorldStatus`       | bool   | `false` | Show world status page (requires WorldStatusUrl)                                       |
+| `EnableAutoUpdate`        | bool   | `true`  | Auto-update client files from patch server; use only when enabled for the package/tier |
+| `EnableNoticeForm`        | bool   | `true`  | Show notice/announcement panel                                                         |
+| `EnableSlidingNews`       | bool   | `true`  | Show sliding news carousel on home panel                                               |
+| `EnableSavingCredentials` | bool   | `true`  | Allow "Remember Me" checkbox + account saving                                          |
+| `EnableCustomBackground`  | bool   | `false` | Load background.png/jpg from Launcher folder                                           |
+| `LauncherFullscreen`      | bool   | `false` | Start launcher in fullscreen mode                                                      |
+| `UpdateSigningKey`        | string | `""`    | HMAC signing key for verifying patch manifests (empty = skip verification)             |
+| `RemoteConfigUrl`         | string | `""`    | URL to fetch updated config.bin remotely (empty = disabled)                            |
+
+Community operator kits should set `EnableAutoUpdate: false` unless CrespoGuard has enabled patch-server updates for that customer/package.
 
 ## ExternalLinks
 
@@ -258,6 +260,8 @@ Language settings.
 | `EnforceNation` | bool   | `false`   | Lock language to specified nation (prevent user override)                                        |
 | `NationCode`    | string | `"en_gb"` | Language code. Supported: `en_gb`, `en_us`, `ko_kr`, `zh_tw`, `ja_jp`, `ru_ru`, `pt_br`, `id_id` |
 
+The launcher uses `NationCode` for both localization and the RF client nation id written into `System\DefaultSet.tmp`. Language files should use the full code, such as `System\Launcher\Language\ru_ru.json`; short files such as `ru.json` are fallback-compatible only.
+
 ## SecureLogin
 
 Encrypted tunnel configuration for connecting through the CrespoGuard Relay. When enabled, the launcher establishes an AES-256-GCM encrypted tunnel to the relay instead of connecting directly to the LoginServer. See [Relay Overview](RELAY.md) for full setup details.
@@ -313,7 +317,7 @@ See [Creating config.bin](CONFIG_CREATION.md) for PSK generation and the full en
 
 ## SecurityCheck
 
-Client-side security features. Community edition includes the full anti-cheat suite.
+Client-side security features. Community edition includes the launcher-side checks; HWID ban enforcement is tier/server dependent.
 
 ```json
 {

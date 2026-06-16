@@ -50,6 +50,7 @@ nav:
       - Theming & Branding: launcher/THEMING.md
       - Assets: launcher/ASSETS.md
       - Deployment: launcher/DEPLOYMENT.md
+      - Release Flow: launcher/RELEASE_FLOW.md
       - Relay Setup: launcher/RELAY.md
       - Relay Databases: launcher/RELAY_DATABASES.md
   - ZoneMod:

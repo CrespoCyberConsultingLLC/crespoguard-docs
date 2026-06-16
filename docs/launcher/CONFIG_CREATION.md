@@ -1,4 +1,3 @@
-
 # Creating config.bin
 
 > Step-by-step guide to building your encrypted launcher configuration from scratch.
@@ -89,6 +88,7 @@ If using the CrespoGuard Relay with the encrypted tunnel (available in all tiers
 ```
 
 Generate the PSK:
+
 ```bash
 python -c "import secrets; print(secrets.token_hex(32))"
 ```
@@ -108,6 +108,7 @@ If you have a CrespoGuard license:
 ```
 
 For Community tier without a license, use a placeholder master key:
+
 ```json
 {
   "ServerConfig": {
@@ -150,6 +151,7 @@ Place `modules.json` in your **client root directory** (the folder with `RF_Onli
 ```
 
 **What happens:**
+
 1. Reads `modules.json` from the current working directory
 2. Parses and validates JSON (fails on syntax errors)
 3. Encrypts with AES-256-GCM (CGCB v2 format)
@@ -176,19 +178,19 @@ Any time you change `modules.json`, you must re-encrypt:
 1. Edit `modules.json`
 2. Run `--encrypt-config` again
 3. The old `config.bin` is overwritten
-4. Distribute the new `config.bin` to players (via patch server or manual update)
+4. Distribute the new `config.bin` to players via a manual patch package, or via patch server if auto-update is enabled for the package/tier
 
 ## Common Mistakes
 
-| Problem | Cause | Fix |
-|---------|-------|-----|
-| `"Config not found"` at launch | config.bin not in `System\Launcher\Config\` | Check path, re-run `--encrypt-config` from client root |
-| Encrypt command does nothing | Not running from the right directory | `cd` to the folder containing `modules.json` first |
-| `"JSON parse error"` | Syntax error in modules.json | Validate JSON (trailing commas, missing quotes, etc.) |
-| Launcher ignores changes | Forgot to re-encrypt | Re-run `--encrypt-config` after every modules.json edit |
-| PSK mismatch (relay rejects) | Different PSK in modules.json vs server.json | Copy the exact same key to both files |
-| `"modules.json not found"` | Wrong working directory | Run the command from the folder where modules.json lives |
-| Old launcher loads old config | Auto-updater hasn't pushed new config.bin | Upload new config.bin to patch server and update filelist.txt |
+| Problem                        | Cause                                        | Fix                                                                                                            |
+| ------------------------------ | -------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `"Config not found"` at launch | config.bin not in `System\Launcher\Config\`  | Check path, re-run `--encrypt-config` from client root                                                         |
+| Encrypt command does nothing   | Not running from the right directory         | `cd` to the folder containing `modules.json` first                                                             |
+| `"JSON parse error"`           | Syntax error in modules.json                 | Validate JSON (trailing commas, missing quotes, etc.)                                                          |
+| Launcher ignores changes       | Forgot to re-encrypt                         | Re-run `--encrypt-config` after every modules.json edit                                                        |
+| PSK mismatch (relay rejects)   | Different PSK in modules.json vs server.json | Copy the exact same key to both files                                                                          |
+| `"modules.json not found"`     | Wrong working directory                      | Run the command from the folder where modules.json lives                                                       |
+| Old launcher loads old config  | Players still have the previous config.bin   | Publish a new manual patch package, or upload new config.bin and update filelist.txt if auto-update is enabled |
 
 ## Config Encryption Details
 
@@ -210,4 +212,4 @@ Client Root/
 ```
 
 !!! warning "Delete modules.json after encrypting"
-    Delete `modules.json` from the client directory after encrypting. Players should never have access to the plaintext config. Only keep it in your admin/build environment.
+Delete `modules.json` from the client directory after encrypting. Players should never have access to the plaintext config. Only keep it in your admin/build environment.

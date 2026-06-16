@@ -1,4 +1,3 @@
-
 # Setup Guide
 
 > Step-by-step guide for RF Online server owners to configure and deploy the CrespoGuard launcher for their community.
@@ -13,29 +12,39 @@
 
 ## What's in the Package
 
-The Community package includes the launcher, anti-cheat DLL, and access to the CrespoGuard Relay (up to 30 players).
+The neutral Community launcher package is a base operator kit. It includes launcher/client files and templates, but no server-specific `modules.json`, generated `config.bin`, or relay server binaries.
 
-```
+```text
 CrespoGuard-Community/
-├── RFLauncher.exe                          # The launcher binary
-├── dinput8.dll                             # Community anti-cheat (ClientGuard)
-├── CrespoGuard.ico                         # Application icon
-├── modules.json.template                   # Configuration template (edit this!)
-├── System/
-│   └── Launcher/
-│       ├── fonts/
-│       │   ├── Rajdhani-Regular.ttf        # Default body font
-│       │   ├── Rajdhani-Bold.ttf           # Default bold font
-│       │   └── Orbitron-Variable.ttf       # Default title font
-│       └── Language/
-│           └── en_gb.json                  # English strings
+|-- RFLauncher.exe
+|-- RFLauncher.sig
+|-- dinput8.dll
+|-- CrespoGuard.ico
+|-- CrespoGuardConfigTool.exe
+|-- settings.ini
+|-- README.txt
+|-- LICENSE.txt
+|-- modules.json.template
+|-- modules.ru_ru.json.template
+|-- System/
+    |-- Launcher/
+        |-- fonts/
+        |   |-- Rajdhani-Regular.ttf
+        |   |-- Rajdhani-Bold.ttf
+        |   |-- Orbitron-Variable.ttf
+        |-- Language/
+            |-- en.json
+            |-- en_gb.json
+            |-- ru_ru.json
 ```
+
+`System\Launcher\Config\config.bin` is generated after you create `modules.json`; it is not included in the neutral base package.
 
 ## Quick Start (5 Minutes)
 
-### Step 1: Edit modules.json
+### Step 1: Create and edit modules.json
 
-Open `modules.json` in your text editor. At minimum, update these fields:
+Copy `modules.json.template` to `modules.json`, then open `modules.json` in your text editor. If you need a Russian-client starting point, copy `modules.ru_ru.json.template` instead. At minimum, update these fields:
 
 ```json
 {
@@ -94,26 +103,28 @@ Contact the CrespoGuard team to generate your `config.bin`, or if you have the a
 This reads `modules.json` from the current directory and writes `System\Launcher\Config\config.bin`.
 
 !!! warning "Delete modules.json after encrypting"
-    Players should never have the plaintext config. Delete `modules.json` from the client directory after generating `config.bin`.
+Players should never have the plaintext config. Delete `modules.json` from player-facing archives after generating `config.bin`. Keep it only in your operator/admin workspace.
 
 ### Step 5: Copy to Client Directory
 
 Copy the entire delivery folder contents into your players' RF Online client directory:
 
-```
+```text
 RF Online Client/
-├── RFLauncher.exe          ← copy here
-├── RFLauncher.sig          ← copy here
-├── CrespoGuard.ico         ← copy here
-└── System/
-    └── Launcher/           ← merge this folder
-        ├── Config/
-        │   └── config.bin
-        ├── fonts/
-        ├── Language/
-        ├── Music/
-        ├── logo.png
-        └── background.png
+|-- RFLauncher.exe          <- copy here
+|-- RFLauncher.sig          <- copy here
+|-- dinput8.dll             <- copy here
+|-- CrespoGuard.ico         <- copy here
+|-- settings.ini            <- optional default preferences
+|-- System/
+    |-- Launcher/           <- merge this folder
+        |-- Config/
+        |   |-- config.bin
+        |-- fonts/
+        |-- Language/
+        |-- Music/
+        |-- logo.png
+        |-- background.png
 ```
 
 ### Step 6: Test
@@ -128,20 +139,16 @@ Launch `RFLauncher.exe` from the client directory. You should see:
 
 ## Connection Mode
 
-The Community Edition includes the CrespoGuard Relay for up to 30 concurrent players with two connection modes:
+The launcher can connect directly to your LoginServer or through the CrespoGuard Relay. The relay binary/config package is delivered separately from the neutral launcher operator kit.
 
-- **Transparent proxy** — plain TCP forwarding, works with any vanilla RF client. No launcher required.
-- **Encrypted tunnel (CGRD, AES-256-GCM)** — encrypts player credentials and game data in transit. Requires the CrespoGuard Launcher with SecureLogin configured.
+- **Direct login** - simplest setup; players connect to the configured LoginServer address.
+- **Encrypted tunnel (CGRD, AES-256-GCM)** - routes login traffic through CrespoGuard Relay using `SecureLogin` and a shared PSK.
+- **Zone proxy** - optional relay-side forwarding for enter-world traffic so the game client connects through the proxy instead of the real ZoneServer address.
 
-Both modes are free in Community. When the relay runs on a separate machine from your game server, players connect to the relay address and never see your game server IP. DDoS protection and dashboard access are included in both modes.
+Use the relay when you need encrypted login transport, rate limiting, IP bans, or origin IP protection. If you do not deploy the relay, leave `SecureLogin.EnableSecureLogin` disabled and connect directly.
 
-You can also use direct connection if you prefer (skip the relay setup).
-
-For servers with more than 30 concurrent players, upgrade to Guard+ tier ($19/mo) to increase your player cap. All features — including HWID bans, kick/announce from the dashboard, and bin-dependent gameplay features — are included at every tier.
-
-!!! tip "Recommended: Set Up the Relay"
-    See [Relay Overview](RELAY.md) for what the relay provides and how to set it up.
-    The relay is free for up to 30 players, including the encrypted tunnel.
+!!! tip "Relay setup"
+See [Relay Overview](RELAY.md) for relay deployment options and `server.json` setup. The relay package is separate from the launcher base operator kit.
 
 ## Sirin Server Setup
 
@@ -151,32 +158,33 @@ If your server uses Sirin, the Community launcher works out of the box:
 2. Place `sirin-launcher.dll` in the client directory alongside `RFLauncher.exe`
 3. Generate `config.bin` as normal
 
-The Community relay (30 players) works with Sirin out of the box.
+The relay works with Sirin out of the box when configured for the same login path.
 
 ## Next Steps
 
-- [Config Reference](CONFIG_REFERENCE.md) — Every `modules.json` field documented
-- [Theming & Branding](THEMING.md) — Colors, fonts, effects, and layout
-- [Assets](ASSETS.md) — Logo, background, font, and music specs
-- [Deployment](DEPLOYMENT.md) — Packaging and distributing to players
-- [Relay Overview](RELAY.md) — Transparent proxy + encrypted tunnel (free for 30 players)
+- [Config Reference](CONFIG_REFERENCE.md) - Every `modules.json` field documented
+- [Theming & Branding](THEMING.md) - Colors, fonts, effects, and layout
+- [Assets](ASSETS.md) - Logo, background, font, and music specs
+- [Deployment](DEPLOYMENT.md) - Packaging and distributing to players
+- [Relay Overview](RELAY.md) - Transparent proxy, encrypted tunnel, and zone proxy setup
 
 ## Troubleshooting
 
-| Problem | Solution |
-|---------|----------|
-| Launcher shows "Config not found" | Ensure `System\Launcher\Config\config.bin` exists and was encrypted properly |
-| Launcher shows raw key names (e.g., "NAV_HOME") | Language file missing — copy `en_gb.json` to `System\Launcher\Language\` |
-| Fonts look wrong / fallback to bitmap | Check font files exist in `System\Launcher\fonts\` with correct filenames |
-| Background not showing | Set `"EnableCustomBackground": true` in FeatureFlags |
-| Can't connect to server | Verify `LoginServerIp` and `LoginServerPort` match your server, and firewall allows the port |
-| Window title still says "CrespoGuard" | Add the `Branding` section to modules.json and re-encrypt config.bin |
-| LNK1104 error when rebuilding | Close running RFLauncher.exe before rebuilding |
+| Problem                                         | Solution                                                                                                           |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Launcher shows "Config not found"               | Ensure `System\Launcher\Config\config.bin` exists and was encrypted properly                                       |
+| Launcher shows raw key names (e.g., "NAV_HOME") | Language file missing - copy `en_gb.json` or the configured full-code language file to `System\Launcher\Language\` |
+| Fonts look wrong / fallback to bitmap           | Check font files exist in `System\Launcher\fonts\` with correct filenames                                          |
+| Background not showing                          | Set `"EnableCustomBackground": true` in FeatureFlags                                                               |
+| Can't connect to server                         | Verify `LoginServerIp` and `LoginServerPort` match your server, and firewall allows the port                       |
+| Window title still says "CrespoGuard"           | Add the `Branding` section to modules.json and re-encrypt config.bin                                               |
+| LNK1104 error when rebuilding                   | Close running RFLauncher.exe before rebuilding                                                                     |
 
 ## Support
 
 Contact the CrespoGuard team for:
+
 - Generating encrypted config.bin files
 - License key generation
-- Premium feature activation
+- Tier upgrades
 - Custom font or theme assistance

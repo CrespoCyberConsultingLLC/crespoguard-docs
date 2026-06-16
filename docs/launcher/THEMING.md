@@ -1,4 +1,3 @@
-
 # Theming & Branding
 
 > How to make the launcher look like YOUR server, not a generic template.
@@ -33,6 +32,7 @@ The launcher uses 9 configurable colors in the `ThemeConfig` section. All values
 ### Example Themes
 
 #### Cyberpunk (Default)
+
 ```json
 {
   "AccentColor": [0, 198, 255, 255],
@@ -46,6 +46,7 @@ The launcher uses 9 configurable colors in the `ThemeConfig` section. All values
 ```
 
 #### Warm Gold
+
 ```json
 {
   "AccentColor": [255, 180, 50, 255],
@@ -59,6 +60,7 @@ The launcher uses 9 configurable colors in the `ThemeConfig` section. All values
 ```
 
 #### Crimson Red
+
 ```json
 {
   "AccentColor": [220, 40, 40, 255],
@@ -72,6 +74,7 @@ The launcher uses 9 configurable colors in the `ThemeConfig` section. All values
 ```
 
 #### Emerald Green
+
 ```json
 {
   "AccentColor": [40, 200, 120, 255],
@@ -85,6 +88,7 @@ The launcher uses 9 configurable colors in the `ThemeConfig` section. All values
 ```
 
 #### Royal Purple
+
 ```json
 {
   "AccentColor": [160, 80, 255, 255],
@@ -98,6 +102,7 @@ The launcher uses 9 configurable colors in the `ThemeConfig` section. All values
 ```
 
 #### Clean Minimal (no tint)
+
 ```json
 {
   "AccentColor": [180, 180, 190, 255],
@@ -132,12 +137,12 @@ The default launcher has a sci-fi aesthetic with scan lines, floating particles,
 }
 ```
 
-| Setting | What It Does |
-|---------|-------------|
-| `EnableScanLines: false` | Removes the horizontal line overlay |
-| `EnableParticles: false` | Removes floating background dots |
-| `EffectIntensity: 0.5` | Halves the opacity of all effects (scan lines + particles) |
-| `GlowIntensity: 0.0` | Removes the neon glow around panels and borders |
+| Setting                  | What It Does                                               |
+| ------------------------ | ---------------------------------------------------------- |
+| `EnableScanLines: false` | Removes the horizontal line overlay                        |
+| `EnableParticles: false` | Removes floating background dots                           |
+| `EffectIntensity: 0.5`   | Halves the opacity of all effects (scan lines + particles) |
+| `GlowIntensity: 0.0`     | Removes the neon glow around panels and borders            |
 
 **For a clean, modern look**: disable scan lines and particles, keep glow at 0.5–1.0.
 
@@ -167,25 +172,25 @@ The default launcher has a sci-fi aesthetic with scan lines, floating particles,
 
 ### Font Recommendations by Style
 
-| Aesthetic | Body Font | Title Font |
-|-----------|-----------|------------|
-| Sci-fi / Cyberpunk | Rajdhani, Exo 2, Orbitron | Orbitron, Audiowide, Rajdhani Bold |
-| Fantasy / Medieval | Cinzel, EB Garamond | Cinzel Decorative, MedievalSharp |
-| Modern / Clean | Noto Sans, Source Sans 3, Rubik | Montserrat, Poppins Bold |
-| Korean MMO | Noto Sans KR, Spoqa Han Sans | Black Han Sans |
-| Retro / Classic | IBM Plex Sans, JetBrains Mono | Press Start 2P, VT323 |
+| Aesthetic          | Body Font                       | Title Font                         |
+| ------------------ | ------------------------------- | ---------------------------------- |
+| Sci-fi / Cyberpunk | Rajdhani, Exo 2, Orbitron       | Orbitron, Audiowide, Rajdhani Bold |
+| Fantasy / Medieval | Cinzel, EB Garamond             | Cinzel Decorative, MedievalSharp   |
+| Modern / Clean     | Noto Sans, Source Sans 3, Rubik | Montserrat, Poppins Bold           |
+| Korean MMO         | Noto Sans KR, Spoqa Han Sans    | Black Han Sans                     |
+| Retro / Classic    | IBM Plex Sans, JetBrains Mono   | Press Start 2P, VT323              |
 
 ### Font Size Guidelines
 
-| Use Case | Body | Title | Small |
-|----------|------|-------|-------|
-| Default (1024x600) | 16.0 | 24.0 | 13.0 |
-| Larger window (1100x650) | 17.0 | 26.0 | 13.0 |
-| Dense UI | 14.0 | 20.0 | 11.0 |
-| Large text (accessibility) | 18.0 | 28.0 | 15.0 |
+| Use Case                   | Body | Title | Small |
+| -------------------------- | ---- | ----- | ----- |
+| Default (1024x600)         | 16.0 | 24.0  | 13.0  |
+| Larger window (1100x650)   | 17.0 | 26.0  | 13.0  |
+| Dense UI                   | 14.0 | 20.0  | 11.0  |
+| Large text (accessibility) | 18.0 | 28.0  | 15.0  |
 
 !!! note "Font slots"
-    The launcher uses 3 font slots: body (all UI text), bold (emphasized text), and title (panel headers, server name). The body font is also used at a smaller size for captions and status text.
+The launcher uses 3 font slots: body (all UI text), bold (emphasized text), and title (panel headers, server name). The body font is also used at a smaller size for captions and status text.
 
 ## Layout
 
@@ -201,6 +206,7 @@ The default launcher has a sci-fi aesthetic with scan lines, floating particles,
 ```
 
 The default 1024x600 works well for most setups. Increase for:
+
 - Larger logos that need more sidebar space
 - Servers with long news content
 - Higher DPI displays
@@ -238,7 +244,7 @@ The status bar shows two text elements:
 
 ```
 ┌──────────────────────────────────────────────┐
-│ "RF Solus Launcher v2.2"    "Powered by ..." │
+│ "My Server Launcher v1.0"    "Powered by ..." │
 └──────────────────────────────────────────────┘
   ↑ StatusBarText                ↑ FooterText
 ```
@@ -246,8 +252,8 @@ The status bar shows two text elements:
 ```json
 {
   "Branding": {
-    "StatusBarText": "RF Solus Launcher v2.2",
-    "FooterText": "Powered by RF Solus"
+    "StatusBarText": "My Server Launcher v1.0",
+    "FooterText": "Powered by My Server"
   }
 }
 ```
@@ -259,14 +265,14 @@ The taskbar/title shows: `{WindowTitle} - {ServerName}`
 ```json
 {
   "Branding": {
-    "WindowTitle": "RF Solus"
+    "WindowTitle": "My Server"
   }
 }
 ```
 
-Result: `RF Solus - RF Solus` (or just `RF Solus` if ServerName matches).
+Result: `My Server - My RF Server` (or just `My RF Server` if WindowTitle matches ServerName).
 
-**Tip**: If your WindowTitle already contains the server name, the result may look redundant. Set WindowTitle to something short like `"Launcher"` to get `"Launcher - RF Solus"`.
+**Tip**: If your WindowTitle already contains the server name, the result may look redundant. Set WindowTitle to something short like `"Launcher"` to get `"Launcher - My RF Server"`.
 
 ## Localization
 

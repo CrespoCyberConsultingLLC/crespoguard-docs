@@ -60,7 +60,7 @@ When any scan detects a violation, the session is terminated immediately. There'
 
 Every player's machine is fingerprinted using multiple hardware identifiers (CPU, disk, motherboard, network adapter) combined into a single hash. This enables:
 
-- **HWID bans** — ban the hardware, not just the IP. Players can't evade by changing IP address or creating new accounts.
+- **HWID collection** - record stable machine identity for audit and paid-tier HWID ban enforcement.
 - **License binding** — optionally lock license keys to specific machines, preventing key sharing.
 - **Audit trail** — track which hardware connected, when, and what violations occurred.
 
@@ -70,9 +70,9 @@ The HWID is computed using system-level APIs that are difficult to spoof without
 
 Critical security decisions happen on the server, not the client:
 
-- **License validation** is performed by the relay server before the player reaches your login server. Invalid or expired licenses are rejected at the network edge.
+- **License validation** is performed by paid-tier server components before the player reaches protected services. Community relay deployments still provide IP rate limiting and IP ban enforcement.
 - **Rate limiting** prevents brute-force attacks — configurable per-IP connection throttling and concurrent connection limits.
-- **Ban enforcement** is server-authoritative. Even if someone patches the client, the relay blocks banned HWIDs and IPs before they can connect.
+- **Ban enforcement** is server-authoritative. Community relay deployments can block IPs before they reach the login server; paid tiers add HWID ban enforcement.
 
 **Layer 6: VM and Environment Detection**
 
@@ -83,7 +83,7 @@ CrespoGuard detects virtual machines used to run multiple cheat-testing instance
 Most RF Online anti-cheat tools rely on a single layer — usually a game binary hook that checks for CheatEngine once at startup. That's trivially bypassed. CrespoGuard's approach means:
 
 - A cheater who bypasses process scanning still hits debugger detection
-- A cheater who spoofs their HWID still gets caught by DLL injection detection
+- A cheater who spoofs one signal can still be caught by independent launcher and relay checks
 - A cheater who patches the client still gets blocked by server-side enforcement
 - A cheater who replays network traffic still fails authenticated encryption
 
@@ -94,8 +94,8 @@ No single bypass defeats the system. That's the point of layered defense.
 CrespoGuard isn't a one-size-fits-all tool — it's a platform designed around how private server communities actually work:
 
 - **Encrypted config** — server IP, keys, and settings are encrypted with tamper detection. Players can't extract or modify your server details.
-- **Auto-updates** — manifest-based patching from your HTTPS server. Push updates without players reinstalling.
-- **Multi-language** — 8 language options out of the box (English GB, English US, Korean, Chinese, Japanese, Russian, Portuguese, Indonesian). Every UI string is customizable.
+- **Manual updates in Community, auto-updates in paid tiers** - Community packages can be shipped as patch zips; paid tiers can use manifest-based patching from your HTTPS server.
+- **Custom localization** - full-code language files are supported, including English defaults and optional Russian NationCode templates. Every UI string is customizable.
 - **Account manager** — saved credentials with DPAPI encryption. Remember Me. Multi-account switching.
 - **Compatibility checker** — 11 automated checks on first launch (Game Mode, Game DVR, HAGS, AutoHDR, power plan, etc.) with auto-fixes where possible.
 - **Clean room mode** — per-session registry and INI isolation so the game doesn't pollute the player's system.
@@ -103,60 +103,59 @@ CrespoGuard isn't a one-size-fits-all tool — it's a platform designed around h
 
 ### Free to Start, Scales When You Need It
 
-The Community Edition is **free** and includes **every feature** — the full launcher, anti-cheat suite, self-hosted relay, encrypted tunnel, HWID bans, kick/announce, all DDoS protection layers, dashboard, Prometheus metrics, auto-update, and more. No trial period, no feature crippling, no nag screens.
+The Community Edition is **free** and provides the neutral launcher/operator kit, self-hosted relay path, IP bans/rate limiting, launcher-side checks, and manual updates. Paid tiers add dashboards, HWID bans, combat features, larger caps, and edge/network features. No trial period, no nag screens.
 
 The only limit is player count. When your server grows, upgrade to increase your cap:
 
-| Tier | Price | Players | Edge Routing |
-|------|-------|---------|--------------|
-| **Community** | Free | 30 | +$10/mo optional |
-| **Guard** | $19/mo | 200 | +$10/mo optional |
-| **Shield** | $49/mo | 500 | +$10/mo optional |
-| **Fortress** | $99/mo | 1000 | +$10/mo optional |
-
-**Edge Routing** is an optional add-on at any tier. CrespoGuard hosts the relay on their edge infrastructure so you get full IP masking with zero setup — just point your launcher at `edge.crespoguard.com` with your route code. No VPS to manage. Without the add-on, you run the relay yourself on your own machine or VPS — all features still work, and you get IP masking if the relay runs on a separate machine from your game server.
+| Tier          | Price     | Players | What It Adds                                      |
+| ------------- | --------- | ------- | ------------------------------------------------- |
+| **Community** | Free      | 50      | Launcher + relay + anti-cheat, manual updates     |
+| **Guard**     | $15/mo    | 50      | Dashboard, HWID bans, combat features, IP masking |
+| **Shield**    | $30/mo    | 200     | Multi-zone proxy, file logging                    |
+| **Fortress**  | $50-75/mo | 500     | Edge relays, PROXY protocol, health checks        |
 
 See [Features](FEATURES.md) for the full feature list and [Tiers](PREMIUM_TIERS.md) for detailed tier documentation.
 
 ### What CrespoGuard Gives Your Players
 
-CrespoGuard unlocks in-game features your players will love. Bin-dependent features require a ZoneMod license and the supported 2.2.3.2 binary:
+Paid tiers can unlock in-game features your players will use. Bin-dependent features require a compatible 2.2.3.2 binary and the correct server-side license:
 
-- **Auto-loot (two tiers)** — basic auto-loot for all players (~500ms pickup delay), instant auto-loot for VIP players (items skip the ground entirely). The most powerful monetization lever in RF Online private servers. See [Features](FEATURES.md#auto-loot-two-tiers-for-player-monetization) for the full breakdown.
+- **Auto-loot and combat helpers** - paid deployments can enable configured client/server automation such as looting, targeting, and attack helpers where licensed.
 - **Auto-target** — tab cycling through nearby mobs with smart skip logic
 - **Auto-attack** — spacebar automation on valid targets
 - **Combat assist** — combined targeting + attack with name filter for focused farming
 - **Chat overlay** — modern ImGui chat window with message history, filtering, and input cycling
 - **Stack patches, name colors, FOV/camera, display fixes, hunter points** — quality-of-life gameplay features
 
-These appear in the in-game options panel and are available to all tiers.
+Premium features appear locked unless the configured tier enables them.
 
 ## Getting Started
 
-| Step | Guide |
-|------|-------|
-| 1. Configure your server | [Setup Guide](launcher/SETUP.md) — running in 5 minutes |
-| 2. Brand your launcher | [Theming & Branding](launcher/THEMING.md) — colors, fonts, effects |
-| 3. Create config.bin | [Creating config.bin](launcher/CONFIG_CREATION.md) — encryption walkthrough |
-| 4. Prepare assets | [Assets](launcher/ASSETS.md) — logo, background, font, music specs |
-| 5. Set up the relay | [Relay Overview](launcher/RELAY.md) — free with every feature |
-| 6. Deploy to players | [Deployment](launcher/DEPLOYMENT.md) — packaging, auto-updates, versioning |
+| Step                     | Guide                                                                        |
+| ------------------------ | ---------------------------------------------------------------------------- |
+| 1. Configure your server | [Setup Guide](launcher/SETUP.md) — running in 5 minutes                      |
+| 2. Brand your launcher   | [Theming & Branding](launcher/THEMING.md) — colors, fonts, effects           |
+| 3. Create config.bin     | [Creating config.bin](launcher/CONFIG_CREATION.md) — encryption walkthrough  |
+| 4. Prepare assets        | [Assets](launcher/ASSETS.md) — logo, background, font, music specs           |
+| 5. Set up the relay      | [Relay Overview](launcher/RELAY.md) - optional encrypted tunnel / proxy path |
+| 6. Deploy to players     | [Deployment](launcher/DEPLOYMENT.md) - packaging, manual updates, versioning |
 
-**Setting up the relay?** The Community Edition includes the CrespoGuard Relay with every feature — encrypted tunnel, DDoS protection, HWID bans, dashboard, and more. The only limit is 30 concurrent players. Run it yourself or add Edge Routing (+$10/mo) for hosted relay with full IP masking and zero setup. See [Tiers](PREMIUM_TIERS.md) for higher player caps.
+**Setting up the relay?** The launcher base kit is separate from the relay package. Use the relay when you need encrypted login transport, rate limiting, IP bans, or origin IP protection. See [Relay Overview](launcher/RELAY.md).
 
 ## Documentation
 
-| Document | Description |
-|----------|-------------|
-| [Setup Guide](launcher/SETUP.md) | Quick start — configure and test in 5 minutes |
-| [Configuration Reference](launcher/CONFIG_REFERENCE.md) | Every `modules.json` field documented (12 sections) |
-| [Creating config.bin](launcher/CONFIG_CREATION.md) | Step-by-step encryption guide with examples |
-| [Theming & Branding](launcher/THEMING.md) | Colors, fonts, effects, layout — 6 ready-made presets |
-| [Features](FEATURES.md) | Complete feature list — everything included at every tier |
-| [Assets](launcher/ASSETS.md) | Logo, background, font, music, and language file specs |
-| [Deployment](launcher/DEPLOYMENT.md) | Packaging, distribution, auto-updates, and versioning |
-| [CrespoGuard Relay](launcher/RELAY.md) | Relay overview — transparent proxy + encrypted tunnel |
-| [Tiers](PREMIUM_TIERS.md) | Community / Guard / Shield / Fortress tier reference |
+| Document                                                | Description                                            |
+| ------------------------------------------------------- | ------------------------------------------------------ |
+| [Setup Guide](launcher/SETUP.md)                        | Quick start — configure and test in 5 minutes          |
+| [Configuration Reference](launcher/CONFIG_REFERENCE.md) | Every `modules.json` field documented (12 sections)    |
+| [Creating config.bin](launcher/CONFIG_CREATION.md)      | Step-by-step encryption guide with examples            |
+| [Theming & Branding](launcher/THEMING.md)               | Colors, fonts, effects, layout — 6 ready-made presets  |
+| [Features](FEATURES.md)                                 | Community vs paid feature comparison                   |
+| [Assets](launcher/ASSETS.md)                            | Logo, background, font, music, and language file specs |
+| [Deployment](launcher/DEPLOYMENT.md)                    | Packaging, distribution, updates, and versioning       |
+| [Release Flow](launcher/RELEASE_FLOW.md)                | Operator/package handoff checklist                     |
+| [CrespoGuard Relay](launcher/RELAY.md)                  | Relay overview — transparent proxy + encrypted tunnel  |
+| [Tiers](PREMIUM_TIERS.md)                               | Community / Guard / Shield / Fortress tier reference   |
 
 ## Requirements
 
@@ -197,16 +196,16 @@ Rate limiting applies to connection attempts, not active sessions. The default a
 ### Security Concerns
 
 **Can players bypass the anti-cheat by patching the launcher?**
-Critical security decisions are enforced server-side. Even if a player modifies the launcher binary, the relay server independently validates licenses, enforces bans, and verifies connections. A patched client cannot bypass server-side enforcement.
+Critical security decisions should be enforced server-side where possible. Community relay deployments enforce rate limits and IP bans; paid tiers add stronger server-side license and HWID enforcement.
 
 **Can players extract my server IP from the launcher?**
 No. The launcher configuration is encrypted with tamper detection. Players cannot read the plaintext contents. When using the relay (on a separate machine from your game server), your game server IP is never transmitted to the client — players only see the relay address.
 
 **What happens if a player is caught cheating?**
-The session is terminated immediately with no warning period. The event is logged with the player's hardware ID, IP, and what was detected. Server owners can review events in the dashboard and issue HWID bans to prevent the player from reconnecting on any account.
+The session is terminated immediately with no warning period. Events include the available hardware/IP context. Community operators can use IP-level controls; paid tiers add dashboard review and HWID ban workflows.
 
 **How often is the cheat detection database updated?**
-The detection database is compiled into the launcher binary. Updates are delivered through the auto-update system — server owners push a new `RFLauncher.exe` to their patch server, and players receive it automatically on next launch. No manual intervention required.
+The detection database is compiled into the launcher binary. Community operators distribute updated launcher packages manually. Paid tiers can use the auto-update system so players receive new `RFLauncher.exe` builds from the configured patch server.
 
 ### Performance
 
@@ -214,7 +213,7 @@ The detection database is compiled into the launcher binary. Updates are deliver
 The launcher minimizes to the system tray while the game runs. Background security scans use negligible CPU (a brief check every 10 seconds). The Client Guard DLL runs in the game process but performs no continuous heavy operations — its features are event-driven, not polling-based. Players will not notice any performance impact.
 
 **Does the encrypted relay add latency?**
-The relay adds minimal overhead — typically under 1ms for the encryption/decryption layer. For servers where players are geographically distant, edge relay routing actually *reduces* latency by routing players to the nearest relay node instead of connecting directly across continents.
+The relay adds minimal overhead — typically under 1ms for the encryption/decryption layer. For servers where players are geographically distant, edge relay routing actually _reduces_ latency by routing players to the nearest relay node instead of connecting directly across continents.
 
 ### Server Administration
 
@@ -233,6 +232,7 @@ Absolutely. That's the entire point of the branding system. Every visible refere
 ## Support
 
 Contact the CrespoGuard team for:
+
 - Config encryption (config.bin generation)
 - License key activation
 - Tier upgrades

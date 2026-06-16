@@ -1,24 +1,24 @@
 # CrespoGuard Relay
 
-> TCP relay for RF Online servers — transparent proxy or AES-256-GCM encrypted tunnel, DDoS protection, rate limiting, and a real-time dashboard. Every feature included at every tier. Self-hosted is free; edge-hosted is an optional +$10/mo add-on.
+> TCP relay for RF Online servers. Community covers the self-hosted encrypted tunnel/proxy path with IP bans and rate limiting; paid tiers add dashboard/HWID/edge capabilities.
 
 ## Overview
 
-The CrespoGuard Relay sits between your players and your game server. It provides DDoS protection, rate limiting, and a management dashboard. Two connection modes are available, both included in all tiers:
+The CrespoGuard Relay sits between your players and your game server. It can provide encrypted login transport, transparent forwarding, rate limiting, and IP bans. Management dashboards and HWID ban workflows are paid-tier capabilities. Two connection modes are available:
 
 **Transparent Proxy (any RF client)** — Plain TCP proxy. Works with any vanilla RF client. No launcher required.
 
 **Encrypted Tunnel (CrespoGuard Launcher)** — AES-256-GCM encrypted tunnel. Requires CrespoGuard Launcher. Encrypts player credentials and game data in transit.
 
-Both modes are available in all tiers, including Community.
+Both modes are available to Community operators when the relay package is deployed and configured.
 
 ## Deployment Options
 
-You choose where the relay runs. All features work identically in both options — the difference is who manages the relay infrastructure.
+You choose where the relay runs. Self-hosted Community relay is the default; hosted/edge relay is a paid managed option.
 
 ### Self-Hosted (Free with any tier)
 
-You run the relay on your own machine or VPS. All features included — encrypted tunnel, DDoS protection, HWID bans, dashboard, and more. If the relay runs on a separate machine from your game server, players connect to the relay address and never see your game server IP (full IP masking). If the relay runs on the same machine as your game server, all features still work but players can see the server IP.
+You run the relay on your own machine or VPS. Community self-hosting covers the encrypted tunnel/proxy path, IP bans, and rate limiting. If the relay runs on a separate machine from your game server, players connect to the relay address instead of the origin game server. Dashboard, HWID bans, and managed edge routing are paid-tier capabilities.
 
 ```
 Player                          Your VPS / Machine
@@ -27,7 +27,7 @@ Player                          Your VPS / Machine
 │ Client    │   (transparent)   │ Relay             ├────┤ LoginServer  │
 │           │                   │ (port 10002)      │    │ (port 10001) │
 └──────────┘                   │                   │    └──────────────┘
-                               │ DDoS protection   │
+                               │ Rate limits/bans  │
 ┌──────────┐    AES-256-GCM    │ Rate limiting     │    ┌──────────────┐
 │ CrespoGd ├───────────────────┤ Auto-ban          ├────┤ ZoneServer   │
 │ Launcher  │   (encrypted)     │ GeoIP + Threat DB │    │ (port 27780) │
@@ -35,9 +35,9 @@ Player                          Your VPS / Machine
                                └──────────────────┘
 ```
 
-### Edge-Hosted (+$10/mo add-on at any tier)
+### Edge-Hosted (Paid / Fortress Lane)
 
-CrespoGuard hosts the relay on their edge infrastructure. You get full IP masking with zero setup — no VPS to provision, configure, or maintain. Players connect to `edge.crespoguard.com` with your route code. All relay features work identically.
+CrespoGuard can host relay infrastructure for paid deployments that need managed edge routing. Players connect to the assigned edge route instead of a server-owner-managed VPS.
 
 ```
 Player                     CrespoGuard Edge           Your Server
@@ -45,7 +45,7 @@ Player                     CrespoGuard Edge           Your Server
 │ Any RF    ├──────────────┤ CrespoGuard      │       ┌──────────────┐
 │ Client    │  plain TCP   │ Edge Relay        ├───────┤ LoginServer  │
 │           │              │                   │       │ (port 10001) │
-└──────────┘              │ DDoS protection   │       └──────────────┘
+└──────────┘              │ Rate limits/bans  │       └──────────────┘
                           │ Rate limiting     │
 ┌──────────┐  AES-256-GCM │ Auto-ban          │       ┌──────────────┐
 │ CrespoGd ├──────────────┤ GeoIP + Threat DB ├───────┤ ZoneServer   │
@@ -58,65 +58,32 @@ Player                     CrespoGuard Edge           Your Server
 
 **Which should you choose?**
 
-|                  | Self-Hosted (Free)                                        | Edge-Hosted (+$10/mo)                                             |
-| ---------------- | --------------------------------------------------------- | ----------------------------------------------------------------- |
-| **Cost**         | Free with any tier                                        | +$10/mo on top of tier price                                      |
-| **IP masking**   | Yes, if relay is on a separate machine                    | Yes, always                                                       |
-| **Setup**        | You manage the relay binary and VPS                       | Zero setup — just configure your launcher                         |
-| **All features** | Yes                                                       | Yes                                                               |
-| **Best for**     | Server owners who already have a VPS or want full control | Server owners who want IP masking without managing infrastructure |
+|                 | Self-Hosted (Free)                                        | Edge-Hosted (Paid)                                                |
+| --------------- | --------------------------------------------------------- | ----------------------------------------------------------------- |
+| **Cost**        | Free for the self-hosted Community relay path             | Paid/provisioned per customer                                     |
+| **IP masking**  | Yes, if relay is on a separate machine                    | Yes, always                                                       |
+| **Setup**       | You manage the relay binary and VPS                       | Provisioned by CrespoGuard, then configured in your launcher      |
+| **Feature set** | Community relay features                                  | Follows the provisioned paid tier                                 |
+| **Best for**    | Server owners who already have a VPS or want full control | Server owners who want IP masking without managing infrastructure |
 
 ## Pricing
 
-| Tier          | Price  | Max Players | Edge Routing     |
-| ------------- | ------ | ----------- | ---------------- |
-| **Community** | Free   | 30          | +$10/mo optional |
-| **Guard**     | $19/mo | 200         | +$10/mo optional |
-| **Shield**    | $49/mo | 500         | +$10/mo optional |
-| **Fortress**  | $99/mo | 1000        | +$10/mo optional |
+| Tier          | Price     | Max Players | Relay Capability                                          |
+| ------------- | --------- | ----------- | --------------------------------------------------------- |
+| **Community** | Free      | 50          | Self-hosted relay, IP bans, rate limiting, manual updates |
+| **Guard**     | $15/mo    | 50          | Dashboard, HWID bans, combat features, IP masking         |
+| **Shield**    | $30/mo    | 200         | Multi-zone proxy, file logging                            |
+| **Fortress**  | $50-75/mo | 500         | Edge relays, PROXY protocol, health checks                |
 
-Every feature below is included at every tier. The only difference is how many concurrent players your relay supports. Edge routing (hosted relay on CrespoGuard's infrastructure) is an optional $10/mo add-on available at any tier.
+## Edge Routing
 
-## What's Included (All Tiers — Self-Hosted)
+Paid edge routing can provide:
 
-Every feature below is included free with any tier when you run the relay yourself:
-
-- Transparent TCP proxy
-- CGRD encrypted tunnel (AES-256-GCM, requires launcher)
-- IP masking (when relay runs on a separate machine from your game server)
-- Dashboard (view, config, kick, HWID bans, announcements)
-- Rate limiting + IP bans
-- Auto-ban (progressive backoff)
-- GeoIP country filtering
-- Threat Intel blocklist (200K+ IPs)
-- ASN-based filtering (block datacenter/VPN IPs)
-- TCP fingerprinting (passive OS detection)
-- Tor exit node blocklist
-- Adaptive rate limiter (burst-tolerant)
-- Anti-replay protection
-- Prometheus /metrics endpoint
-- Async rotating logger (structured output)
-- Optimized proxying (zero-copy on Linux)
-- Auto-update
-- Anonymous telemetry
-- Auto-generated API key
-- HWID bans
-- Announcements
-- SOC telemetry (detailed)
-- Multi-zone proxy
-- File logging
-- PROXY protocol v1
-- Health check endpoint
-
-## Edge Routing Add-on (+$10/mo)
-
-All of the above, hosted on CrespoGuard's edge infrastructure:
-
-- Full IP masking with zero setup — no VPS needed
+- Managed IP masking without a server-owner VPS
 - CrespoGuard manages the relay binary, updates, and uptime
 - Players connect to `edge.crespoguard.com` with your route code
-- All relay features work identically to self-hosted
-- Available at any tier — $10/mo on top of your tier price
+- Feature set follows the provisioned customer tier
+- Available only when provisioned for the customer package/tier
 
 ## v3.1 Features
 
@@ -229,7 +196,7 @@ Enabled automatically on Linux when the kernel supports it. No configuration req
 - A running RF Online server (LoginServer + ZoneServer)
 - A Windows or Linux machine for the relay (can be the same machine as your game server)
 - The CrespoGuard Relay binary (`CrespoGuardRelay.exe` or Linux build)
-- A CrespoGuard license (Community is free for up to 30 players)
+- A CrespoGuard package/tier appropriate for the intended player cap
 - The CrespoGuard Launcher configured with SecureLogin (PSK must match) — required for encrypted tunnel mode; not needed for transparent proxy mode
 
 ## Bridge API Key
@@ -364,11 +331,11 @@ See [Creating config.bin](CONFIG_CREATION.md) for the full encryption walkthroug
 
 ## Upgrading Tiers
 
-Tier upgrades are instant — purchase the higher tier, activate the new code, and restart the relay. The only thing that changes is your player cap. No client changes needed. See [Premium Tiers](../PREMIUM_TIERS.md) for full tier documentation.
+Tier upgrades are server-side: purchase or provision the higher tier, activate the new code where required, and restart the relay/server component. Higher tiers may add capabilities, not just player cap. See [Premium Tiers](../PREMIUM_TIERS.md) for full tier documentation.
 
 ## Auto-Update
 
-The relay checks for new versions on startup. When a newer version is available, it downloads, verifies, and applies the update automatically. No manual intervention required.
+Relay auto-update is available only when enabled for the deployed package/tier. Otherwise, replace the relay binary manually during maintenance.
 
 ```json
 {
@@ -406,7 +373,7 @@ To upgrade the relay to a new version:
 2. **Replace the binary** — overwrite `CrespoGuardRelay.exe` (or the Linux binary) with the new version
 3. **Start the relay** — launch with the same `server.json`. Your configuration is preserved; no changes needed.
 
-If `AutoUpdateEnabled` is `true` (the default), the relay updates itself automatically on startup — no manual binary replacement required.
+If `AutoUpdateEnabled` is enabled for the deployed package, the relay updates itself automatically on startup. Otherwise, use manual binary replacement.
 
 ## Dashboard Authentication
 

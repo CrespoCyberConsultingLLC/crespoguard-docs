@@ -6,21 +6,23 @@
 
 All assets live under `System\Launcher\` in the game client directory:
 
-```
+```text
 System/
-└── Launcher/
-    ├── Config/
-    │   └── config.bin              # Encrypted configuration (generated)
-    ├── fonts/
-    │   ├── Rajdhani-Regular.ttf    # Body font
-    │   ├── Rajdhani-Bold.ttf       # Bold font
-    │   └── Orbitron-Variable.ttf   # Title font
-    ├── Language/
-    │   └── en_gb.json              # English strings (365+ keys)
-    ├── Music/
-    │   └── theme.mp3               # Background music
-    ├── logo.png                    # Server logo
-    └── background.png              # Background image
+|-- Launcher/
+    |-- Config/
+    |   |-- config.bin              # Encrypted configuration (generated)
+    |-- fonts/
+    |   |-- Rajdhani-Regular.ttf    # Body font
+    |   |-- Rajdhani-Bold.ttf       # Bold font
+    |   |-- Orbitron-Variable.ttf   # Title font
+    |-- Language/
+    |   |-- en.json                 # Legacy English fallback
+    |   |-- en_gb.json              # Canonical English strings
+    |   |-- ru_ru.json              # Russian NationCode English fallback/template
+    |-- Music/
+    |   |-- theme.mp3               # Background music
+    |-- logo.png                    # Server logo
+    |-- background.png              # Background image
 ```
 
 ## Logo
@@ -184,6 +186,8 @@ System/Launcher/Music/
 | **Naming**   | `{nationCode}.json` (e.g., `en_gb.json`, `ko_kr.json`) |
 | **Encoding** | UTF-8                                                  |
 
+Use the full `NationCode` filename as the canonical file name. Short files such as `en.json` or `ru.json` are accepted only as legacy fallbacks.
+
 ### Structure
 
 Flat key-value JSON with string values:
@@ -221,16 +225,16 @@ Some strings support `{0}`, `{1}` placeholders:
 
 ### Supported Languages
 
-| Code    | Language               |
-| ------- | ---------------------- |
-| `en_gb` | English (UK) — default |
-| `en_us` | English (US)           |
-| `ko_kr` | Korean                 |
-| `zh_tw` | Traditional Chinese    |
-| `ja_jp` | Japanese               |
-| `ru_ru` | Russian                |
-| `pt_br` | Portuguese (Brazil)    |
-| `id_id` | Indonesian             |
+| Code    | Language                                                                   |
+| ------- | -------------------------------------------------------------------------- |
+| `en_gb` | English (UK) — default                                                     |
+| `en_us` | English (US)                                                               |
+| `ko_kr` | Korean                                                                     |
+| `zh_tw` | Traditional Chinese                                                        |
+| `ja_jp` | Japanese                                                                   |
+| `ru_ru` | Russian NationCode; provide translated strings if you want Russian UI text |
+| `pt_br` | Portuguese (Brazil)                                                        |
+| `id_id` | Indonesian                                                                 |
 
 Set in `modules.json`:
 
@@ -250,7 +254,7 @@ Before distributing to players, verify:
 - [ ] `logo.png` — Your server logo (transparent PNG, ~340x120px source size)
 - [ ] `background.png` — Dark background image (match window size)
 - [ ] `System\Launcher\fonts\` — All 3 font files present (or defaults)
-- [ ] `System\Launcher\Language\en_gb.json` — Language strings
+- [ ] `System\Launcher\Language\en_gb.json` - Language strings; use the configured full `NationCode`, e.g. `ru_ru.json`, and translate fallback files before promising localized UI
 - [ ] `System\Launcher\Config\config.bin` — Encrypted config (generated)
 - [ ] `System\Launcher\Music\` — Optional background music
 - [ ] `RFLauncher.exe` — Launcher binary
