@@ -44,7 +44,7 @@
 
 ## Client Guard (dinput8.dll)
 
-`dinput8.dll` is included in the current launcher package and current launcher builds check for it before starting `RF_Online.bin`.
+`dinput8.dll` ships in the launcher package, and the launcher checks for it before starting `RF_Online.bin`.
 
 ### Bin-Independent Features
 

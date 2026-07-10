@@ -60,7 +60,7 @@ When any scan detects a violation, the session is terminated immediately. There'
 
 Every player's machine is fingerprinted using multiple hardware identifiers (CPU, disk, motherboard, network adapter) combined into a single hash. This enables:
 
-- **HWID collection** - record stable machine identity for audit and paid-tier HWID ban enforcement.
+- **HWID collection** — record stable machine identity for audit and paid-tier HWID ban enforcement.
 - **License binding** — optionally lock license keys to specific machines, preventing key sharing.
 - **Audit trail** — track which hardware connected, when, and what violations occurred.
 
@@ -94,8 +94,8 @@ No single bypass defeats the system. That's the point of layered defense.
 CrespoGuard isn't a one-size-fits-all tool — it's a platform designed around how private server communities actually work:
 
 - **Encrypted config** — server IP, keys, and settings are encrypted with tamper detection. Players can't extract or modify your server details.
-- **Manual updates in Community, auto-updates in paid tiers** - Community packages can be shipped as patch zips; paid tiers can use manifest-based patching from your HTTPS server.
-- **Custom localization** - full-code language files are supported, including English defaults and optional Russian NationCode templates. Every UI string is customizable.
+- **Manual updates in Community, auto-updates in paid tiers** — Community packages can be shipped as patch zips; paid tiers can use manifest-based patching from your HTTPS server.
+- **Custom localization** — full-code language files are supported, including English defaults and optional Russian NationCode templates. Every UI string is customizable.
 - **Account manager** — saved credentials with DPAPI encryption. Remember Me. Multi-account switching.
 - **Compatibility checker** — 11 automated checks on first launch (Game Mode, Game DVR, HAGS, AutoHDR, power plan, etc.) with auto-fixes where possible.
 - **Clean room mode** — per-session registry and INI isolation so the game doesn't pollute the player's system.
@@ -120,7 +120,7 @@ See [Features](FEATURES.md) for the full feature list and [Tiers](PREMIUM_TIERS.
 
 Paid tiers can unlock in-game features your players will use. Bin-dependent features require a compatible 2.2.3.2 binary and the correct server-side license:
 
-- **Auto-loot and combat helpers** - paid deployments can enable configured client/server automation such as looting, targeting, and attack helpers where licensed.
+- **Auto-loot and combat helpers** — paid deployments can enable configured client/server automation such as looting, targeting, and attack helpers where licensed.
 - **Auto-target** — tab cycling through nearby mobs with smart skip logic
 - **Auto-attack** — spacebar automation on valid targets
 - **Combat assist** — combined targeting + attack with name filter for focused farming
@@ -137,8 +137,8 @@ Premium features appear locked unless the configured tier enables them.
 | 2. Brand your launcher   | [Theming & Branding](launcher/THEMING.md) — colors, fonts, effects           |
 | 3. Create config.bin     | [Creating config.bin](launcher/CONFIG_CREATION.md) — encryption walkthrough  |
 | 4. Prepare assets        | [Assets](launcher/ASSETS.md) — logo, background, font, music specs           |
-| 5. Set up the relay      | [Relay Overview](launcher/RELAY.md) - optional encrypted tunnel / proxy path |
-| 6. Deploy to players     | [Deployment](launcher/DEPLOYMENT.md) - packaging, manual updates, versioning |
+| 5. Set up the relay      | [Relay Overview](launcher/RELAY.md) — optional encrypted tunnel / proxy path |
+| 6. Deploy to players     | [Deployment](launcher/DEPLOYMENT.md) — packaging, manual updates, versioning |
 
 **Setting up the relay?** The launcher base kit is separate from the relay package. Use the relay when you need encrypted login transport, rate limiting, IP bans, or origin IP protection. See [Relay Overview](launcher/RELAY.md).
 

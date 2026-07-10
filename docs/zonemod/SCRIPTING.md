@@ -165,7 +165,7 @@ clearInterval(id);
 
 ### Event Reference
 
-There are **309+ events** covering combat, trade, crafting, movement, and more.
+There are **over 300 events** covering combat, trade, crafting, movement, and more.
 See the full [Event Reference](EVENTS.md) for the complete list.
 
 ---
@@ -228,4 +228,4 @@ on('player.login', function(player) {
 ## Next Steps
 
 - [API Reference](API.md) — Player, GameServer, Monster, Guild, Store, Timers
-- [Event Reference](EVENTS.md) — all 309+ hookable events
+- [Event Reference](EVENTS.md) — all 300+ hookable events

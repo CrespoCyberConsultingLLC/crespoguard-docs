@@ -103,7 +103,7 @@ Contact the CrespoGuard team to generate your `config.bin`, or if you have the a
 This reads `modules.json` from the current directory and writes `System\Launcher\Config\config.bin`.
 
 !!! warning "Delete modules.json after encrypting"
-Players should never have the plaintext config. Delete `modules.json` from player-facing archives after generating `config.bin`. Keep it only in your operator/admin workspace.
+    Players should never have the plaintext config. Delete `modules.json` from player-facing archives after generating `config.bin`. Keep it only in your operator/admin workspace.
 
 ### Step 5: Copy to Client Directory
 
@@ -141,14 +141,14 @@ Launch `RFLauncher.exe` from the client directory. You should see:
 
 The launcher can connect directly to your LoginServer or through the CrespoGuard Relay. The relay binary/config package is delivered separately from the neutral launcher operator kit.
 
-- **Direct login** - simplest setup; players connect to the configured LoginServer address.
-- **Encrypted tunnel (CGRD, AES-256-GCM)** - routes login traffic through CrespoGuard Relay using `SecureLogin` and a shared PSK.
-- **Zone proxy** - optional relay-side forwarding for enter-world traffic so the game client connects through the proxy instead of the real ZoneServer address.
+- **Direct login** — simplest setup; players connect to the configured LoginServer address.
+- **Encrypted tunnel (CGRD, AES-256-GCM)** — routes login traffic through CrespoGuard Relay using `SecureLogin` and a shared PSK.
+- **Zone proxy** — optional relay-side forwarding for enter-world traffic so the game client connects through the proxy instead of the real ZoneServer address.
 
 Use the relay when you need encrypted login transport, rate limiting, IP bans, or origin IP protection. If you do not deploy the relay, leave `SecureLogin.EnableSecureLogin` disabled and connect directly.
 
 !!! tip "Relay setup"
-See [Relay Overview](RELAY.md) for relay deployment options and `server.json` setup. The relay package is separate from the launcher base operator kit.
+    See [Relay Overview](RELAY.md) for relay deployment options and `server.json` setup. The relay package is separate from the launcher base operator kit.
 
 ## Sirin Server Setup
 
@@ -162,18 +162,18 @@ The relay works with Sirin out of the box when configured for the same login pat
 
 ## Next Steps
 
-- [Config Reference](CONFIG_REFERENCE.md) - Every `modules.json` field documented
-- [Theming & Branding](THEMING.md) - Colors, fonts, effects, and layout
-- [Assets](ASSETS.md) - Logo, background, font, and music specs
-- [Deployment](DEPLOYMENT.md) - Packaging and distributing to players
-- [Relay Overview](RELAY.md) - Transparent proxy, encrypted tunnel, and zone proxy setup
+- [Config Reference](CONFIG_REFERENCE.md) — Every `modules.json` field documented
+- [Theming & Branding](THEMING.md) — Colors, fonts, effects, and layout
+- [Assets](ASSETS.md) — Logo, background, font, and music specs
+- [Deployment](DEPLOYMENT.md) — Packaging and distributing to players
+- [Relay Overview](RELAY.md) — Transparent proxy, encrypted tunnel, and zone proxy setup
 
 ## Troubleshooting
 
 | Problem                                         | Solution                                                                                                           |
 | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | Launcher shows "Config not found"               | Ensure `System\Launcher\Config\config.bin` exists and was encrypted properly                                       |
-| Launcher shows raw key names (e.g., "NAV_HOME") | Language file missing - copy `en_gb.json` or the configured full-code language file to `System\Launcher\Language\` |
+| Launcher shows raw key names (e.g., "NAV_HOME") | Language file missing — copy `en_gb.json` or the configured full-code language file to `System\Launcher\Language\` |
 | Fonts look wrong / fallback to bitmap           | Check font files exist in `System\Launcher\fonts\` with correct filenames                                          |
 | Background not showing                          | Set `"EnableCustomBackground": true` in FeatureFlags                                                               |
 | Can't connect to server                         | Verify `LoginServerIp` and `LoginServerPort` match your server, and firewall allows the port                       |

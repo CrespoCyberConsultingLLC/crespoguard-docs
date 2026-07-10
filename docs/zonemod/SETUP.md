@@ -19,7 +19,7 @@
 | **License**            | CrespoGuard Premium (Guard+ tier)                    |
 
 !!! note "Administrator required"
-CrespoGuard.exe requires admin privileges for DLL injection into the ZoneServer process.
+    CrespoGuard.exe requires admin privileges for DLL injection into the ZoneServer process.
 
 ---
 
@@ -40,7 +40,7 @@ RF_Bin/
 ```
 
 !!! warning "DLL location"
-`CrespoGuardMod.dll` goes **directly in RF_Bin/**, not in the `CrespoGuard/` subfolder.
+    `CrespoGuardMod.dll` goes **directly in RF_Bin/**, not in the `CrespoGuard/` subfolder.
 
 ---
 
@@ -118,8 +118,8 @@ Create `zonemod.json` in `RF_Bin/CrespoGuard/` to enable/disable modules:
 ```
 
 !!! tip "enabled must be first"
-The `"enabled"` key must be the **first key** in each module object.
-The JSON parser reads keys in order.
+    The `"enabled"` key must be the **first key** in each module object.
+    The JSON parser reads keys in order.
 
 ### Step 4: Start
 
@@ -155,8 +155,8 @@ You should see all enabled modules listed with their current settings.
 | 8081  | ZoneMod Dashboard   | Optional |
 
 !!! note "Firewall"
-Open ports 10001 and 27780 in your firewall for player connections.
-Dashboard ports (8080/8081) should only be accessible from your admin machine.
+    Open ports 10001 and 27780 in your firewall for player connections.
+    Dashboard ports (8080/8081) should only be accessible from your admin machine.
 
 ---
 
@@ -175,7 +175,7 @@ See [JS Scripting](SCRIPTING.md) for the quickstart guide.
 Modules are configured in `zonemod.json` and can be changed live through the
 dashboard — no server restart required.
 
-See [Module Catalog](CATALOG.md) for the full list of 185 available modules
+See [Module Catalog](CATALOG.md) for the full list of available modules
 and [Configuration Guide](CONFIGURATION.md) for detailed settings.
 
 ---
@@ -196,7 +196,7 @@ and [Configuration Guide](CONFIGURATION.md) for detailed settings.
 
 ## Next Steps
 
-- [Module Catalog](CATALOG.md) — All 185 modules with descriptions
+- [Module Catalog](CATALOG.md) — All available modules with descriptions
 - [Configuration Guide](CONFIGURATION.md) — Detailed module settings
 - [GM Commands](GM_COMMANDS.md) — In-game admin commands
 - [JS Scripting](SCRIPTING.md) — Write custom game logic

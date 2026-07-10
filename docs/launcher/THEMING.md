@@ -190,7 +190,7 @@ The default launcher has a sci-fi aesthetic with scan lines, floating particles,
 | Large text (accessibility) | 18.0 | 28.0  | 15.0  |
 
 !!! note "Font slots"
-The launcher uses 3 font slots: body (all UI text), bold (emphasized text), and title (panel headers, server name). The body font is also used at a smaller size for captions and status text.
+    The launcher uses 3 font slots: body (all UI text), bold (emphasized text), and title (panel headers, server name). The body font is also used at a smaller size for captions and status text.
 
 ## Layout
 
