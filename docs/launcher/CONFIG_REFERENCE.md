@@ -160,10 +160,18 @@ Toggle launcher features on/off.
 | `EnableSavingCredentials` | bool   | `true`  | Allow "Remember Me" checkbox + account saving                                          |
 | `EnableCustomBackground`  | bool   | `false` | Load background.png/jpg from Launcher folder                                           |
 | `LauncherFullscreen`      | bool   | `false` | Start launcher in fullscreen mode                                                      |
-| `UpdateSigningKey`        | string | `""`    | HMAC signing key for verifying patch manifests (empty = skip verification)             |
+| `UpdateSigningKey`        | string | `""`    | Hex HMAC key for signed patch manifests; player builds require it when auto-update runs |
 | `RemoteConfigUrl`         | string | `""`    | URL to fetch updated config.bin remotely (empty = disabled)                            |
 
-Community operator kits should set `EnableAutoUpdate: false` unless CrespoGuard has enabled patch-server updates for that customer/package.
+Community operator kits should set `EnableAutoUpdate: false` unless the owner has a tested HTTPS patch server.
+
+Player builds reject auto-update when `UpdateSigningKey` is empty, malformed, or does not match the manifest signature. Generate a 32-byte key as 64 hexadecimal characters and keep it in the operator workspace:
+
+```powershell
+python -c "import secrets; print(secrets.token_hex(32))"
+```
+
+The same key must be present when the admin tool generates `filelist.txt` and in the `config.bin` distributed with the player launcher.
 
 ## ExternalLinks
 
@@ -363,7 +371,7 @@ Patch server configuration for the auto-updater. This is a JSON array — each e
 | `UpdateServerName` | string | `""`    | Display name for this patch server (shown in update progress UI)                                    |
 | `Link`             | string | `""`    | Base URL of the patch server. Must host `filelist.txt` and all patch files. Include trailing slash. |
 
-The launcher fetches `filelist.txt` from the `Link` URL, compares CRC32 checksums against local files, and downloads any changed files. See [Deployment](DEPLOYMENT.md) for the full auto-update setup guide.
+The launcher fetches `filelist.txt` over HTTPS, verifies its HMAC, then compares SHA-256 hashes and file sizes. Player builds reject unsigned manifests. See [Deployment](DEPLOYMENT.md) for the full auto-update setup guide.
 
 ## NetworkRoutes
 

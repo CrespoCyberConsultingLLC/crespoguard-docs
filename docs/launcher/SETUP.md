@@ -102,6 +102,8 @@ Contact the CrespoGuard team to generate your `config.bin`, or if you have the a
 
 This reads `modules.json` from the current directory and writes `System\Launcher\Config\config.bin`.
 
+Use the config tool shipped with the same launcher release. Current release packages must use CGCB format `0x02` with key generation `0x02`; player builds reject format `0x02` configs that use legacy key generation `0x01`.
+
 !!! warning "Delete modules.json after encrypting"
     Players should never have the plaintext config. Delete `modules.json` from player-facing archives after generating `config.bin`. Keep it only in your operator/admin workspace.
 
@@ -173,6 +175,7 @@ The relay works with Sirin out of the box when configured for the same login pat
 | Problem                                         | Solution                                                                                                           |
 | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | Launcher shows "Config not found"               | Ensure `System\Launcher\Config\config.bin` exists and was encrypted properly                                       |
+| Launcher shows "Config not found or invalid" after an update | Regenerate `config.bin` with the current config tool and confirm its first six bytes are `43 47 43 42 02 02` |
 | Launcher shows raw key names (e.g., "NAV_HOME") | Language file missing — copy `en_gb.json` or the configured full-code language file to `System\Launcher\Language\` |
 | Fonts look wrong / fallback to bitmap           | Check font files exist in `System\Launcher\fonts\` with correct filenames                                          |
 | Background not showing                          | Set `"EnableCustomBackground": true` in FeatureFlags                                                               |
