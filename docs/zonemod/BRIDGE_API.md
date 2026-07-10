@@ -24,8 +24,8 @@ The Bridge is configured entirely through **environment variables**:
 | `DISCORD_CW_WEBHOOK_URL` | _(optional)_ | Discord webhook URL for Chip War event notifications |
 
 !!! warning "Required Variables"
-`BRIDGE_API_KEY` and `NATS_URL` must be set before the service will start.
-The API key is used for all authenticated endpoints.
+    `BRIDGE_API_KEY` and `NATS_URL` must be set before the service will start.
+    The API key is used for all authenticated endpoints.
 
 ---
 
@@ -115,8 +115,8 @@ player names. **No authentication required.**
 | `colors` | `Record<string, string>` | Map of character name to hex color code |
 
 !!! note "Data Source"
-Name colors are read from the `gamecp_name_colors` table in the `RF_GameCP`
-database and refreshed every **30 seconds**.
+    Name colors are read from the `gamecp_name_colors` table in the `RF_GameCP`
+    database and refreshed every **30 seconds**.
 
 ---
 
@@ -278,8 +278,8 @@ the `LOG_HISTORY_PATH` environment variable to be configured.
 | `lookup.mobs`  | `object` | Mob ID to name mapping            |
 
 !!! warning "503 Service Unavailable"
-This endpoint returns **503** if `LOG_HISTORY_PATH` is not configured on the
-server.
+    This endpoint returns **503** if `LOG_HISTORY_PATH` is not configured on the
+    server.
 
 ---
 

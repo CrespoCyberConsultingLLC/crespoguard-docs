@@ -136,7 +136,7 @@ System/
 - [DaFont](https://www.dafont.com/) — themed/decorative fonts
 
 !!! tip "Font licensing"
-Only use fonts you have the license to distribute. Google Fonts are all open-source licensed (OFL/Apache).
+    Only use fonts you have the license to distribute. Google Fonts are all open-source licensed (OFL/Apache).
 
 ### CJK Support
 
@@ -254,7 +254,7 @@ Before distributing to players, verify:
 - [ ] `logo.png` — Your server logo (transparent PNG, ~340x120px source size)
 - [ ] `background.png` — Dark background image (match window size)
 - [ ] `System\Launcher\fonts\` — All 3 font files present (or defaults)
-- [ ] `System\Launcher\Language\en_gb.json` - Language strings; use the configured full `NationCode`, e.g. `ru_ru.json`, and translate fallback files before promising localized UI
+- [ ] `System\Launcher\Language\en_gb.json` — Language strings; use the configured full `NationCode`, e.g. `ru_ru.json`, and translate fallback files before promising localized UI
 - [ ] `System\Launcher\Config\config.bin` — Encrypted config (generated)
 - [ ] `System\Launcher\Music\` — Optional background music
 - [ ] `RFLauncher.exe` — Launcher binary

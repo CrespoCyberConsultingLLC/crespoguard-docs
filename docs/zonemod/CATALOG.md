@@ -1,6 +1,6 @@
 # Module Catalog
 
-Complete reference of every CrespoGuard ZoneMod module available for your server. All modules listed below are production-ready and included with your license.
+Reference for the CrespoGuard ZoneMod modules available for your server. All modules listed below are production-ready and included with your license.
 
 !!! tip "How Modules Work"
 
@@ -18,19 +18,19 @@ Complete reference of every CrespoGuard ZoneMod module available for your server
 
     Some modules expose commands for regular players (e.g., `!stats`, `!bounty`, `!playtime`). These use the `!` (exclamation) prefix in circle chat and are noted in the module descriptions below. Player commands do **not** require GM rank.
 
-### Module Count by Category
+## Module Count by Category
 
 | Category             | Modules | Category           | Modules |
 | -------------------- | :-----: | ------------------ | :-----: |
-| Combat & PvP         |    9    | Economy & Trade    |    9    |
+| Combat & PvP         |    9    | Economy & Trade    |   10    |
 | Events & Scheduling  |    9    | Player Progression |   12    |
 | Guild System         |    5    | Monster & PvE      |   10    |
 | Skills & Buffs       |    8    | Mining & Resources |    4    |
-| Chat & Communication |   10    | Cosmetics          |    3    |
-| Admin Tools          |    8    | Maps & Portals     |    4    |
+| Chat & Communication |   11    | Cosmetics          |    3    |
+| Admin Tools          |    9    | Maps & Portals     |    4    |
 | Structures           |    4    | Units              |    4    |
 | Party                |    2    | Quests             |    4    |
-| Misc                 |   10    | **Total**          | **185** |
+| Misc                 |   10    | **Total**          | **118** |
 
 ---
 

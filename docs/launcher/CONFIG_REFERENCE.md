@@ -416,7 +416,7 @@ Custom encryption key parameters for the RF Online client connection handshake. 
 | `wCryptKey`                   | int  | `3`     | Base encryption key value sent during the handshake                |
 
 !!! warning "Advanced setting"
-Only modify these values if your server uses a custom encryption handshake. Incorrect values will prevent clients from connecting. Leave disabled for standard RF Online 2.2.3.2 servers.
+    Only modify these values if your server uses a custom encryption handshake. Incorrect values will prevent clients from connecting. Leave disabled for standard RF Online 2.2.3.2 servers.
 
 ## Complete Example
 

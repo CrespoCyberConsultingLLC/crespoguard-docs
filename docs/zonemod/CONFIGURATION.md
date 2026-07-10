@@ -38,9 +38,9 @@ Key points:
   same name can shadow the top-level toggle.
 
 !!! warning "JSON Syntax"
-`zonemod.json` must be valid JSON. A single misplaced comma or missing quote
-will prevent the entire file from loading. Use a JSON validator if you edit
-the file by hand.
+    `zonemod.json` must be valid JSON. A single misplaced comma or missing quote
+    will prevent the entire file from loading. Use a JSON validator if you edit
+    the file by hand.
 
 ---
 
@@ -74,8 +74,8 @@ to manage modules.
 | **LOCKED**   | Security module — always enabled, toggle is read-only. |
 
 !!! note "Locked Modules"
-Modules marked **LOCKED** are security-critical and cannot be disabled from
-the dashboard or config file. Their settings panel is read-only.
+    Modules marked **LOCKED** are security-critical and cannot be disabled from
+    the dashboard or config file. Their settings panel is read-only.
 
 ---
 
@@ -124,10 +124,10 @@ All modules support a common set of sub-commands:
 > Prints every sub-command available for the buff module.
 
 !!! tip "Runtime vs. Persistent"
-`.prefix set` changes the value **in memory only**. If the server restarts
-before the next config write, the old value from `zonemod.json` is restored.
-To make a change permanent, also update `zonemod.json` (via the dashboard or
-by hand).
+    `.prefix set` changes the value **in memory only**. If the server restarts
+    before the next config write, the old value from `zonemod.json` is restored.
+    To make a change permanent, also update `zonemod.json` (via the dashboard or
+    by hand).
 
 ---
 

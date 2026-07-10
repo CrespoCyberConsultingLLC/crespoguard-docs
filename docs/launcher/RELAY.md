@@ -21,18 +21,16 @@ You choose where the relay runs. Self-hosted Community relay is the default; hos
 You run the relay on your own machine or VPS. Community self-hosting covers the encrypted tunnel/proxy path, IP bans, and rate limiting. If the relay runs on a separate machine from your game server, players connect to the relay address instead of the origin game server. Dashboard, HWID bans, and managed edge routing are paid-tier capabilities.
 
 ```
-Player                          Your VPS / Machine
-┌──────────┐     plain TCP     ┌──────────────────┐
-│ Any RF    ├───────────────────┤ CrespoGuard      │    ┌──────────────┐
-│ Client    │   (transparent)   │ Relay             ├────┤ LoginServer  │
-│           │                   │ (port 10002)      │    │ (port 10001) │
-└──────────┘                   │                   │    └──────────────┘
-                               │ Rate limits/bans  │
-┌──────────┐    AES-256-GCM    │ Rate limiting     │    ┌──────────────┐
-│ CrespoGd ├───────────────────┤ Auto-ban          ├────┤ ZoneServer   │
-│ Launcher  │   (encrypted)     │ GeoIP + Threat DB │    │ (port 27780) │
-└──────────┘                   │ Dashboard         │
-                               └──────────────────┘
+Player                           Your VPS / Machine
+┌────────────┐    plain TCP     ┌───────────────────┐      ┌──────────────┐
+│ Any RF     ├──────────────────┤ CrespoGuard Relay ├──────┤ LoginServer  │
+│ client     │  (transparent)   │ (port 10002)      │      │ (port 10001) │
+└────────────┘                  │                   │      └──────────────┘
+                                │ Rate limiting     │
+┌────────────┐   AES-256-GCM    │ IP bans           │      ┌──────────────┐
+│ CrespoGuard├──────────────────┤ GeoIP + threat DB ├──────┤ ZoneServer   │
+│ Launcher   │   (encrypted)    │ Dashboard (paid)  │      │ (port 27780) │
+└────────────┘                  └───────────────────┘      └──────────────┘
 ```
 
 ### Edge-Hosted (Paid / Fortress Lane)
@@ -40,20 +38,19 @@ Player                          Your VPS / Machine
 CrespoGuard can host relay infrastructure for paid deployments that need managed edge routing. Players connect to the assigned edge route instead of a server-owner-managed VPS.
 
 ```
-Player                     CrespoGuard Edge           Your Server
-┌──────────┐              ┌──────────────────┐
-│ Any RF    ├──────────────┤ CrespoGuard      │       ┌──────────────┐
-│ Client    │  plain TCP   │ Edge Relay        ├───────┤ LoginServer  │
-│           │              │                   │       │ (port 10001) │
-└──────────┘              │ Rate limits/bans  │       └──────────────┘
-                          │ Rate limiting     │
-┌──────────┐  AES-256-GCM │ Auto-ban          │       ┌──────────────┐
-│ CrespoGd ├──────────────┤ GeoIP + Threat DB ├───────┤ ZoneServer   │
-│ Launcher  │  (encrypted) │ Dashboard         │       │ (port 27780) │
-└──────────┘              │                   │       └──────────────┘
-                          │ edge.crespoguard  │
-                          │ .com              │
-                          └──────────────────┘
+Player                           CrespoGuard Edge            Your Server
+┌────────────┐    plain TCP     ┌───────────────────┐      ┌──────────────┐
+│ Any RF     ├──────────────────┤ CrespoGuard       ├──────┤ LoginServer  │
+│ client     │  (transparent)   │ Edge Relay        │      │ (port 10001) │
+└────────────┘                  │                   │      └──────────────┘
+                                │ Rate limiting     │
+┌────────────┐   AES-256-GCM    │ IP bans           │      ┌──────────────┐
+│ CrespoGuard├──────────────────┤ GeoIP + threat DB ├──────┤ ZoneServer   │
+│ Launcher   │   (encrypted)    │ Dashboard         │      │ (port 27780) │
+└────────────┘                  │                   │      └──────────────┘
+                                │ edge.crespoguard  │
+                                │ .com              │
+                                └───────────────────┘
 ```
 
 **Which should you choose?**
@@ -159,11 +156,11 @@ Burst-tolerant rate limiting — allows short spikes of legitimate reconnect act
 Configure per-IP rate limits with `RateLimitPerIP` (max connections) and `RateLimitWindowSec` (time window in seconds).
 
 !!! note "Admin Portal Rate Limiting"
-The admin portal uses persistent rate limiting that survives restarts. The relay itself uses in-memory rate limiting, which is fine since it runs as a long-lived process.
+    The admin portal uses persistent rate limiting that survives restarts. The relay itself uses in-memory rate limiting, which is fine since it runs as a long-lived process.
 
 ### Tor Exit Node Blocking
 
-Third threat intelligence source. Tor exit nodes are blocked via URLs in the `ThreatIntelURLs` list — no separate toggle needed. Add a Tor exit node list URL to `ThreatIntelURLs` and the relay will automatically fetch and refresh it alongside other threat intel sources.
+Tor exit nodes are blocked via URLs in the `ThreatIntelURLs` list — no separate toggle needed. Add a Tor exit node list URL to `ThreatIntelURLs` and the relay will automatically fetch and refresh it alongside other threat intel sources.
 
 Connections from known Tor exit nodes are blocked alongside the existing Threat Intel and GeoIP layers.
 
@@ -231,7 +228,7 @@ Generate a secure key with:
 python -c "import secrets; print(secrets.token_urlsafe(32))"
 ```
 
-The bridge uses this key in the `X-Bridge-Key` header for all authenticated endpoints. Any request to an authenticated endpoint without a valid `X-Bridge-Key` header is rejected.
+The bridge uses this key in the `X-Bridge-Key` header for all authenticated endpoints. Any request to an authenticated endpoint without a valid `X-Bridge-Key` header is rejected. See the [Bridge HTTP API](../zonemod/BRIDGE_API.md) for the full endpoint reference.
 
 ## Admin API Authentication
 
@@ -365,7 +362,7 @@ The relay sends anonymous usage statistics on startup and every 24 hours. **No p
 
 `TelemetryEnabled` defaults to `true`. Opt out by setting it to `false` in `server.json`.
 
-## Upgrading
+## Upgrading the Relay Binary
 
 To upgrade the relay to a new version:
 

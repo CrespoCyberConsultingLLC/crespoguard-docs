@@ -234,4 +234,4 @@ Client Root/
 ```
 
 !!! warning "Delete modules.json after encrypting"
-Delete `modules.json` from the client directory after encrypting. Players should never have access to the plaintext config. Only keep it in your admin/build environment.
+    Delete `modules.json` from the client directory after encrypting. Players should never have access to the plaintext config. Only keep it in your admin/build environment.
