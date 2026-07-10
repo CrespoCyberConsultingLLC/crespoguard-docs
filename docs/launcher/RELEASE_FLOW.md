@@ -97,6 +97,17 @@ From the staging folder, run the admin launcher:
 
 The command reads `modules.json` from the current directory and writes `System\Launcher\Config\config.bin`.
 
+Use the config tool shipped with the player launcher. Current release packages must use CGCB format `0x02` with key generation `0x02`; player builds reject format `0x02` configs that use legacy key generation `0x01`.
+
+Verify the first six bytes before packaging:
+
+```powershell
+$bytes = [IO.File]::ReadAllBytes("System\Launcher\Config\config.bin")
+" " -join ($bytes[0..5] | ForEach-Object { $_.ToString("X2") })
+```
+
+The output must be `43 47 43 42 02 02`. Regenerate the config after changing the player launcher or config tool.
+
 ## Sign the Exact Launcher
 
 `RFLauncher.sig` must be generated from the exact executable that players will run:
@@ -106,6 +117,12 @@ The command reads `modules.json` from the current directory and writes `System\L
 ```
 
 A signature generated from a different raw/protected build will fail integrity checks.
+
+## Auto-Update Gate
+
+Player builds require an HMAC-signed SHA-256 `filelist.txt`. Set a 64-character hexadecimal `UpdateSigningKey` in `modules.json` before generating the manifest. The key in `config.bin` must match the key used to sign `filelist.txt`.
+
+Self-update also uses this signed metadata. Do not include `RFLauncher.exe.new` or `System\Launcher\pending_updates.txt` in a package.
 
 ## Russian-Client Setup
 
@@ -119,7 +136,8 @@ Record these values when handing off a package:
 - Package type: base operator kit, configured operator package, or player-facing archive.
 - `RFLauncher.exe` size and SHA-256.
 - `RFLauncher.sig` size.
-- `config.bin` path and SHA-256, if configured.
+- `config.bin` path, SHA-256, and key generation, if configured.
 - `modules.json` source path, if configured.
 - Whether relay/direct login is configured.
+- Whether auto-update uses a matching signed manifest.
 - Whether full-code language files are included for the configured `NationCode`.
