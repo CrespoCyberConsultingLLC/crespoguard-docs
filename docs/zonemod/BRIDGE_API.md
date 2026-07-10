@@ -294,7 +294,7 @@ Represents an active player connection to the game server.
 | `uuid`      | `string`  | Unique session identifier                            |
 | `serial`    | `number`  | Character serial number                              |
 | `username`  | `string?` | Character name (may be absent)                       |
-| `race`      | `number?` | Race code: `0` = Accretia, `1` = Bellato, `2` = Cora |
+| `race`      | `number?` | Race code: `0` = Bellato, `1` = Cora, `2` = Accretia |
 | `level`     | `number?` | Character level (may be absent)                      |
 | `mapId`     | `number?` | Current map ID (may be absent)                       |
 | `enteredAt` | `number`  | Session start time (Unix milliseconds)               |

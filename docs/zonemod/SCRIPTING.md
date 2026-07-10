@@ -10,7 +10,7 @@ compiler, no external runtime, no restarts required.
 | **Script folder** | `CrespoGuard/scripts/` |
 | **Plugin folder** | `CrespoGuard/plugins/` (protected `.cgp` bytecode) |
 | **Entry point** | `on()` — register a callback for any game event |
-| **Hot-reload** | `/js reload` in-game or via the Dashboard |
+| **Hot-reload** | `%zonemod js reload` in-game or via the Dashboard |
 
 ---
 
@@ -26,7 +26,7 @@ on('player.login', function(player) {
 
 !!! tip "Deploying"
     1. Save the file to `CrespoGuard/scripts/welcome.js`.
-    2. In-game, type `/js reload` — or press **Reload Scripts** in the Dashboard.
+    2. In-game, type `%zonemod js reload` — or press **Reload Scripts** in the Dashboard.
     3. Log in with a character and you should see the welcome message.
 
 No server restart needed.
@@ -200,8 +200,8 @@ on('player.login', function(player) {
 |-----------|-------|
 | `console.log(value)` | Prints to the server console window |
 | `scriptLog(text)` | Writes to the dedicated script log file |
-| `/js reload` | Reload all scripts without restarting |
-| `/js list` | Show loaded scripts and their status |
+| `%zonemod js reload` | Reload all scripts without restarting (add a folder name to reload just that folder) |
+| `%zonemod js list` | Show loaded script folders |
 
 !!! tip "Disable without deleting"
     Move a script into the `_disabled/` subfolder to skip it on load. Move it

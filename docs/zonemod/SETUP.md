@@ -163,7 +163,7 @@ You should see all enabled modules listed with their current settings.
 ## Adding JavaScript Scripts
 
 1. Create `.js` files in `CrespoGuard/scripts/`
-2. Use `/js reload` in-game or click **Reload Scripts** in the dashboard
+2. Use `%zonemod js reload` in-game or click **Reload Scripts** in the dashboard
 3. No server restart needed
 
 See [JS Scripting](SCRIPTING.md) for the quickstart guide.
