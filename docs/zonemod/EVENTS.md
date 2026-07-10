@@ -182,7 +182,7 @@ on("player.levelUp", function (player, newLevel) {
 All chat channel events. Most are blocking -- return `false` to suppress the message.
 
 !!! note
-Chat events receive `(player, message)` where `message` is the raw chat string. The event name `player.chat` corresponds to circle (local) chat, not the deprecated `player.chatCircle`.
+    Chat events receive `(player, message)` where `message` is the raw chat string. The event name `player.chat` corresponds to circle (local) chat, not the deprecated `player.chatCircle`.
 
 | Event Name               | Parameters            | Return Type | Description                        |
 | ------------------------ | --------------------- | ----------- | ---------------------------------- |
@@ -751,7 +751,7 @@ on("chipwar.winner", function (player) {
 Events for server economy rates and tax calculations.
 
 !!! info
-Economy events pass `raceCode` as an additional integer parameter. The callback receives `(null, value)` and should return the modified value.
+    Economy events pass `raceCode` as an additional integer parameter. The callback receives `(null, value)` and should return the modified value.
 
 | Event Name             | Parameters     | Return Type    | Description                        |
 | ---------------------- | -------------- | -------------- | ---------------------------------- |
@@ -929,10 +929,10 @@ on("server.tick", function () {
 | Party                 | 5        |
 | Guild                 | 18       |
 | Potions               | 10       |
-| Monsters              | 27       |
+| Monsters              | 28       |
 | Animus                | 14       |
 | MAU / Units           | 9        |
-| Traps / Towers        | 22       |
+| Traps / Towers        | 21       |
 | Holy Stone / Chip War | 25       |
 | Economy               | 4        |
 | Combat Formulas       | 4        |
@@ -943,4 +943,4 @@ on("server.tick", function () {
 | Patriarch             | 3        |
 | Voting                | 5        |
 | Misc                  | 7        |
-| **Total**             | **~262** |
+| **Total**             | **311**  |

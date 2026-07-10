@@ -56,8 +56,8 @@ Everything in Community, plus:
 | GameCP DB Sync     | Direct SQL Server database synchronization         |
 
 !!! tip "Try before you buy"
-The Community Edition is fully functional for basic conversion work. Upgrade
-to Premium when you need the visual editors or batch processing.
+    The Community Edition is fully functional for basic conversion work. Upgrade
+    to Premium when you need the visual editors or batch processing.
 
 ---
 
@@ -73,8 +73,8 @@ to Premium when you need the visual editors or batch processing.
 | **Dependencies** | None — standalone portable `.exe`                                          |
 
 !!! note "No installation required"
-The RF Dev Tool is a single `.exe` file. Download, run, and start converting.
-Settings and license cache are stored next to the executable.
+    The RF Dev Tool is a single `.exe` file. Download, run, and start converting.
+    Settings and license cache are stored next to the executable.
 
 ---
 
@@ -82,7 +82,7 @@ Settings and license cache are stored next to the executable.
 
 The tool handles all standard RF Online 2.2.3 data files:
 
-### Item Files (46 types)
+### Item Files (47 types)
 
 Weapons, armor, consumables, siege equipment, quest items, and more:
 

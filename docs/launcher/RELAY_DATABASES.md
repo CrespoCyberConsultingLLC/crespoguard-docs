@@ -1,4 +1,3 @@
-
 # Relay Database Files
 
 > The relay uses CSV database files for GeoIP and ASN filtering. These files are not included with the relay — you must download or generate them yourself.
