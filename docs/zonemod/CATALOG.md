@@ -2,6 +2,8 @@
 
 Reference for the CrespoGuard ZoneMod modules available for your server. All modules listed below are production-ready and included with your license.
 
+ZoneMod ships **185 native modules** in total, plus over 100 bundled JavaScript script modules. This catalog documents the **118 operator-facing modules** you configure day to day; the remainder are internal engine-fix, security, and anti-cheat modules that require no operator configuration.
+
 !!! tip "How Modules Work"
 
     - **Dashboard-configurable** -- all settings managed from the web UI or `crespoguard.json`, no code editing needed
