@@ -195,6 +195,46 @@ The updater downloads `RFLauncher.exe` as `RFLauncher.exe.new` and verifies its 
 
 On the next start, the launcher verifies the pending-list HMAC, file size, and SHA-256 hash while holding the staged executable open without write sharing. It renames that verified file handle into place, preventing a path swap between verification and replacement. Invalid staged files are discarded by handle.
 
+## Server-Side Deployment
+
+### CrespoGuard Relay (Optional)
+
+The relay is deployed from the separate relay package, not from the neutral launcher base operator kit. Deploy it only if you use `SecureLogin`, zone proxying, rate limiting, or origin IP protection.
+
+```text
+Server/
+|-- CrespoGuardRelay.exe
+|-- server.json
+```
+
+**Configuration:**
+
+```json
+{
+  "ServerName": "Your Server",
+  "ListenIP": "0.0.0.0",
+  "ListenPort": 10001,
+  "TargetIP": "127.0.0.1",
+  "TargetPort": 10001,
+  "PSK": "same_key_as_modules_json",
+  "MaxClients": 50,
+  "DashboardEnabled": false,
+  "DashboardPort": 8080
+}
+```
+
+Run: `CrespoGuardRelay.exe server.json`
+
+For full relay setup details, see [CrespoGuard Relay](RELAY.md).
+
+### Firewall Rules
+
+| Port        | Protocol | Direction          | Purpose                                |
+| ----------- | -------- | ------------------ | -------------------------------------- |
+| 10001/10002 | TCP      | Inbound            | Login server / relay                   |
+| 27780       | TCP      | Inbound            | Zone server or zone proxy              |
+| 8080/8081   | TCP      | Inbound (optional) | Relay dashboard; restrict to admin IPs |
+
 ## Updating Your Deployment
 
 ### Config Changes Only

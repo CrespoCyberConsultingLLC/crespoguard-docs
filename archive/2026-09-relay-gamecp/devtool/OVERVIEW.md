@@ -18,6 +18,7 @@ ready for deployment.
 | **Binary to Excel**  | Reverse-import `.dat` files back to `.xlsx` for editing                             |
 | **Visual Editors**   | Edit drop tables, monsters, portals, safezones, and ore cutting visually            |
 | **Map Viewers**      | 2D top-down and 3D OpenGL map visualization                                         |
+| **GameCP Sync**      | One-click SQL Server synchronization for your Game Control Panel                    |
 | **CGEF Encryption**  | Generate encrypted `.edf` client files with CrespoGuard's proprietary format        |
 | **Batch Processing** | Convert entire folders of spreadsheets in one click                                 |
 | **Item Explorer** | Search definitions and find supported recipe, drop, and GU shop references |
@@ -53,6 +54,7 @@ Everything in Community, plus:
 | Portal Editor      | Teleport connection management with client sync    |
 | 3D BSP Viewer      | OpenGL 3D map geometry rendering                   |
 | Ore Cutting Editor | Ore transmutation chance editing                   |
+| GameCP DB Sync     | Direct SQL Server database synchronization         |
 
 !!! tip "Try before you buy"
     The Community Edition is fully functional for basic conversion work. Upgrade

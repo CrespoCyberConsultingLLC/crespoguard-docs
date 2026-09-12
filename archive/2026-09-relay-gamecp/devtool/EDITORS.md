@@ -11,13 +11,9 @@
 
 ## Drop Editor
 
-![Drop Editor in 6.3.5 showing Load ItemLooting.xlsx, optional name/map inputs, and Save](../assets/devtool/6.3.5/drop-editor.png)
-
-*Entry screen before loading a workbook. Start with **Load ItemLooting.xlsx**.*
-
 Edit monster loot tables visually instead of working with raw `ItemLooting.xlsx` spreadsheets.
 
-**Open:** Click **Drop Editor** in the left sidebar, press **Ctrl+L**, or use **Tools > Drop Editor**.
+**Open:** Click **Drop Editor** on the Parser tab, press **Ctrl+L**, or use **Tools > Drop Editor**.
 
 ### Features
 
@@ -47,10 +43,6 @@ The editor shows both the raw value and the calculated percentage.
 ---
 
 ## Monster Editor
-
-![Monster Editor in 6.3.5 showing Browse Map Folder and Load Monster Names](../assets/devtool/6.3.5/monster-editor.png)
-
-*Entry screen before loading a map. Select the map folder containing its block DAT.*
 
 Manage monster spawn blocks per map — positions, counts, respawn timers, and spawn rates.
 
@@ -83,10 +75,6 @@ reload. Do not mix spawn DAT and SPT files from different map revisions.
 ---
 
 ## Safezone Editor
-
-![Safezone Editor in 6.3.5 showing Browse Map Folder](../assets/devtool/6.3.5/safezone-editor.png)
-
-*Entry screen before loading a map. Existing safezones are read from its EXT.spt.*
 
 Create and manage cylindrical safe zones (PvP-disabled areas) on any map.
 
@@ -122,10 +110,6 @@ closing the tab is not an undo operation. If save verification fails, follow
 ---
 
 ## Portal Editor
-
-![Portal Editor in 6.3.5 showing Browse Map for the server Map folder](../assets/devtool/6.3.5/portal-editor.png)
-
-*Entry screen before loading the server Map folder. No portal edits are shown.*
 
 Manage teleportation portals between maps — both server-side connections and client-side
 visual data.
@@ -247,6 +231,33 @@ processing raw ores.
 - Chance normalization (auto-adjust percentages to sum to 100%)
 - Undo support for reverting changes
 - Process customization per ore grade
+
+---
+
+## GameCP DB Sync (Premium)
+
+Synchronize item metadata directly to your Game Control Panel's SQL Server database.
+
+### Features
+
+- One-click sync from Item.edf folder
+- Scans numbered item subfolders for metadata
+- Syncs: Code, Name, Icon ID, Level, Attack, Defense, DSR
+- Auto-generates table names from item types
+- Supports both `pyodbc` and `pymssql` drivers
+- Connection testing before sync
+
+### Synced Fields
+
+| Column | Source |
+|--------|--------|
+| Code | Item code from binary data |
+| Name | Item name from spreadsheet |
+| IconID | Icon index |
+| Level | Required level |
+| Attack | Attack value |
+| Defense | Defense value |
+| DSR | Drop/Sale/Repair flags |
 
 ---
 

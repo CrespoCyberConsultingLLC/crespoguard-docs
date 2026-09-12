@@ -12,7 +12,7 @@
 
 ## What's in the Package
 
-The neutral Community launcher package is a base operator kit. It includes launcher/client files and templates, but no server-specific `modules.json`, generated `config.bin`.
+The neutral Community launcher package is a base operator kit. It includes launcher/client files and templates, but no server-specific `modules.json`, generated `config.bin`, or relay server binaries.
 
 ```text
 CrespoGuard-Community/
@@ -141,9 +141,16 @@ Launch `RFLauncher.exe` from the client directory. You should see:
 
 ## Connection Mode
 
-This guide covers a direct connection to your LoginServer. Use the connection
-settings supplied for your deployment; do not change an existing network setup
-based on this documentation refresh.
+The launcher can connect directly to your LoginServer or through the CrespoGuard Relay. The relay binary/config package is delivered separately from the neutral launcher operator kit.
+
+- **Direct login** — simplest setup; players connect to the configured LoginServer address.
+- **Encrypted tunnel (CGRD, AES-256-GCM)** — routes login traffic through CrespoGuard Relay using `SecureLogin` and a shared PSK.
+- **Zone proxy** — optional relay-side forwarding for enter-world traffic so the game client connects through the proxy instead of the real ZoneServer address.
+
+Use the relay when you need encrypted login transport, rate limiting, IP bans, or origin IP protection. If you do not deploy the relay, leave `SecureLogin.EnableSecureLogin` disabled and connect directly.
+
+!!! tip "Relay setup"
+    See [Relay Overview](RELAY.md) for relay deployment options and `server.json` setup. The relay package is separate from the launcher base operator kit.
 
 ## Sirin Server Setup
 
@@ -153,6 +160,7 @@ If your server uses Sirin, the Community launcher works out of the box:
 2. Place `sirin-launcher.dll` in the client directory alongside `RFLauncher.exe`
 3. Generate `config.bin` as normal
 
+The relay works with Sirin out of the box when configured for the same login path.
 
 ## Next Steps
 
@@ -160,6 +168,7 @@ If your server uses Sirin, the Community launcher works out of the box:
 - [Theming & Branding](THEMING.md) — Colors, fonts, effects, and layout
 - [Assets](ASSETS.md) — Logo, background, font, and music specs
 - [Deployment](DEPLOYMENT.md) — Packaging and distributing to players
+- [Relay Overview](RELAY.md) — Transparent proxy, encrypted tunnel, and zone proxy setup
 
 ## Troubleshooting
 

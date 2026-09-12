@@ -16,7 +16,8 @@ coverage from game compatibility and identify the actual files being changed.
 - [x] Draft the Item Explorer task guide.
 - [x] Correct Quick Start and Reference: settings, output selection, selection scope, round-trip limits, recovery.
 - [x] Add worked Drop, Monster, Portal, and Safezone tasks after checking their save behavior.
-- [ ] Capture real application screenshots using an isolated sample project; inspect for private information before adding them.
+- [x] Capture and inspect real Parser and four editor entry screens without customer or license data.
+- [ ] Capture Item Explorer with isolated sample data.
 - [x] Add Dev Tool home entry and guide navigation.
 - [x] Build with `mkdocs build --strict` (includes internal documentation link checks).
 - [ ] Follow the instructions in the published 6.3.5 app.
@@ -24,11 +25,33 @@ coverage from game compatibility and identify the actual files being changed.
 
 ## Validation handoff
 
-The strict MkDocs build and whitespace checks pass. Instructions were compared
-against the 6.3.5 application source. Screenshots and end-to-end walkthroughs in
-the published executable remain pending: the default local executable is 6.3.2,
-and the located 6.3.5 executables are retained failed-release candidates.
+Instructions were compared against the 6.3.5 application source. The user supplied
+the downloaded release executable and activated Premium. Its SHA-256 is
+`354f47dd1311dbcfc8b4f25da09ea50c066bde81ad352b597589368a92ed814d`, matching
+the content-addressed release object prefix. Parser and four editor entry screens
+were captured from that executable. They demonstrate navigation and loading
+controls, not completed edits or game compatibility.
+
+End-to-end conversion and editor save walkthroughs remain unverified in this pass.
 Neither source review nor a successful documentation build proves runtime behavior.
+
+Validation after the sunset and screenshot updates:
+
+- `mkdocs build --strict` passed.
+- 3,490 generated local links/anchors across 24 HTML pages resolved.
+- Retired page paths, archive output, and links to those paths are absent from
+  generated HTML, sitemap, and search-index files.
+- Five published images contain only the application entry screens; no file
+  picker, desktop overlay, activation dialog, license, or customer content is included.
+- The native folder picker did not accept automated input. The synthetic sample
+  input is ready, but Item Explorer sample capture awaits folder selection.
+
+## Relay and GameCP documentation sunset
+
+Retired standalone pages and original mixed-topic pages are preserved under
+`archive/2026-09-relay-gamecp/`, outside the published MkDocs tree. Public setup
+instructions, navigation links, sync instructions, and network-tier claims were
+removed. The application, deployments, and license state are unchanged.
 
 ## Findings to retain
 

@@ -2,6 +2,12 @@
 
 > Set up a working copy, convert one supported file, and check the result.
 
+![RF Dev Tool 6.3.5 Parser: input folder on the left, profile and output targets above the conversion controls](../assets/devtool/6.3.5/parser.png)
+
+*Parser before loading files, captured from 6.3.5 Premium. Start with **Browse**
+under **Input Folder** on the left. Some controls shown in the application are
+outside the scope of these guides.*
+
 ---
 
 ## Step 1: Download
