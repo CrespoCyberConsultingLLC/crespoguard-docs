@@ -131,6 +131,11 @@ Premium features appear locked unless the configured tier enables them.
 
 ## Getting Started
 
+**Using RF Dev Tool?** Start with the [first conversion walkthrough](devtool/QUICKSTART.md),
+then learn [Item Explorer / Where Used](devtool/ITEM_EXPLORER.md) or the
+[visual editors](devtool/EDITORS.md). Before editing, read
+[Backups & Recovery](devtool/RECOVERY.md).
+
 | Step                     | Guide                                                                        |
 | ------------------------ | ---------------------------------------------------------------------------- |
 | 1. Configure your server | [Setup Guide](launcher/SETUP.md) — running in 5 minutes                      |

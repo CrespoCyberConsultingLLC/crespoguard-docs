@@ -1,7 +1,8 @@
 # Visual Editors
 
 > Premium visual editors for game data — loot tables, spawns, portals, safezones,
-> ore cutting, and 3D map geometry. All editors save directly to binary format.
+> ore cutting, and 3D map geometry. Save behavior differs by editor;
+> start with [Backups & Recovery](RECOVERY.md).
 
 !!! info "Premium Feature"
     All editors except the 2D Map Viewer require a Premium license.
@@ -23,6 +24,17 @@ Edit monster loot tables visually instead of working with raw `ItemLooting.xlsx`
 - Color-coded Excel export of drop configurations
 - Filter monsters by name, code, or grade
 
+### Walkthrough: change one monster's drop entry
+
+1. Copy your source folder, then choose **Load ItemLooting.xlsx** and open the copied workbook.
+2. Search for the monster code. Load monster names if you need name-based navigation.
+3. Select the intended pool and entry, choose **Edit**, and change one value.
+4. Review the displayed item and rate, then click **Save**. Check for a success message.
+5. Reload the copied workbook and confirm the change persisted. Use Parser to convert the saved workbook into a separate test output folder.
+
+Saving here changes the workbook, not your deployed server binary. Keep a
+record of the original value so you can compare or restore it.
+
 ### Drop Rate Format
 
 Drop rates use RF Online's native integer format where `0x7FFF7FFF` (2,147,450,879) = 100%.
@@ -35,6 +47,17 @@ The editor shows both the raw value and the calculated percentage.
 Manage monster spawn blocks per map — positions, counts, respawn timers, and spawn rates.
 
 **Open:** Press **Ctrl+Shift+M** or use **Tools > Monster Editor**.
+
+### Walkthrough: inspect and edit one spawn
+
+1. Choose **Browse Map Folder** and select a copied map folder containing its related DAT and SPT files.
+2. Select the intended block/spawn. Record the monster code, count, and coordinates before editing.
+3. Change one supported field and use **Edit Selected**. This operation can write to the copied map files immediately.
+4. Check the status/error message, then **Refresh** and reselect the entry to confirm the value persisted.
+5. Test the copied map files in a staging environment before replacing live files.
+
+If loading fails or editing is disabled, correct the reported file problem and
+reload. Do not mix spawn DAT and SPT files from different map revisions.
 
 ### Features
 
@@ -54,6 +77,17 @@ Manage monster spawn blocks per map — positions, counts, respawn timers, and s
 ## Safezone Editor
 
 Create and manage cylindrical safe zones (PvP-disabled areas) on any map.
+
+### Walkthrough: resize an existing safezone
+
+1. Choose **Browse Map Folder** and open a copy of the complete map folder.
+2. Select the intended safezone and record its original coordinates, radius, and height.
+3. Change the desired size and choose **Edit Selected**. The action saves the loaded SPT data.
+4. Reload the copied folder and confirm the saved size. Check the zone in your staging client/server before deploying it.
+
+Create and delete actions also save changes. Keep an independent folder backup;
+closing the tab is not an undo operation. If save verification fails, follow
+[Backups & Recovery](RECOVERY.md) before continuing.
 
 ### Features
 
@@ -103,6 +137,18 @@ destination map.
 - Add and delete dummy portal entries
 - Reorder portals within maps
 - Race filtering (Bellato, Cora, Accretia, All Races)
+
+### Walkthrough: review and save an existing portal
+
+1. Copy the server map folder and the matching client files before editing.
+2. Choose **Browse Map/** and load the copied map root. Select the existing portal you want to inspect.
+3. Verify its source, destination, and arrival/clickable role. Run **Validate Links** before changing it.
+4. Change only the intended field in the portal view, then choose **Save** and check the result.
+5. Run **Validate Links** again and reload the saved data to confirm the change.
+6. If the operation also needs client data, load the matching copied `Map.dat` and `NDMap.dat` indicated by the workflow. A server-side save alone does not establish client synchronization.
+
+Test both travel direction and arrival position in staging. Validation can find
+link problems, but it does not replace checking the portal in your actual game.
 
 ### Color Coding
 

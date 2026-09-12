@@ -21,6 +21,7 @@ ready for deployment.
 | **GameCP Sync**      | One-click SQL Server synchronization for your Game Control Panel                    |
 | **CGEF Encryption**  | Generate encrypted `.edf` client files with CrespoGuard's proprietary format        |
 | **Batch Processing** | Convert entire folders of spreadsheets in one click                                 |
+| **Item Explorer** | Search definitions and find supported recipe, drop, and GU shop references |
 
 ---
 
@@ -69,18 +70,20 @@ Everything in Community, plus:
 | **RF Version**   | GU (Global Uprising) or BSB 2.2.3                                          |
 | **Input**        | `.xlsx` Excel files (OpenXML format)                                       |
 | **Internet**     | Required for first activation (Premium). 7-day offline grace period after. |
-| **Disk**         | ~50 MB for the application                                                 |
+| **Disk**         | Space for the application, source backups, and separate conversion outputs |
 | **Dependencies** | None — standalone portable `.exe`                                          |
 
 !!! note "No installation required"
     The RF Dev Tool is a single `.exe` file. Download, run, and start converting.
-    Settings and license cache are stored next to the executable.
+    UI preferences use `crespoguard.ini`; license storage uses `settings.json`
+    and `license_cache.json` alongside the executable. Keep license files private.
 
 ---
 
 ## Supported File Types
 
-The tool handles all standard RF Online 2.2.3 data files:
+The following describes supported conversion families. Availability depends on
+the selected profile and exact source layout; custom packages need verification.
 
 ### Item Files (47 types)
 
@@ -154,5 +157,7 @@ output/
 ## Next Steps
 
 - [Quick Start Guide](QUICKSTART.md) — Installation, activation, and your first conversion
+- [Item Explorer](ITEM_EXPLORER.md) — Definitions, references, coverage, and conflicts
+- [Backups & Recovery](RECOVERY.md) — Save behavior and restoring a working copy
 - [Editor Guide](EDITORS.md) — Using the visual editors (Drop, Monster, Portal, etc.)
 - [Reference](REFERENCE.md) — Keyboard shortcuts, troubleshooting, and technical details

@@ -65,6 +65,8 @@ nav:
   - RF Dev Tool:
       - Overview: devtool/OVERVIEW.md
       - Quick Start: devtool/QUICKSTART.md
+      - Item Explorer: devtool/ITEM_EXPLORER.md
+      - Backups & Recovery: devtool/RECOVERY.md
       - Visual Editors: devtool/EDITORS.md
       - Reference: devtool/REFERENCE.md
   - Features:

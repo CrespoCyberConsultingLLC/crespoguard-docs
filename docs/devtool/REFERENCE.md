@@ -9,10 +9,10 @@
 | Shortcut | Action | Tier |
 |----------|--------|------|
 | **F5** | Refresh file list | Free |
-| **Ctrl+S** | Convert SERVER only | Free (single-file) |
-| **Ctrl+I** | Convert CLIENT only | Free (single-file) |
-| **Ctrl+B** | Convert ALL (server + client) | Free (single-file) |
-| **Ctrl+C** | Cancel running conversion | Free |
+| **Ctrl+Shift+S** | Run Server | Free (single-file) |
+| **Ctrl+Shift+I** | Run Client | Free (single-file) |
+| **Ctrl+Shift+A** | Run Both | Free (single-file) |
+| **Escape** | Cancel running conversion | Free |
 | **Ctrl+M** | DAT to Excel import | Free |
 | **Ctrl+L** | Open Drop Editor | Premium |
 | **Ctrl+Shift+M** | Open Monster Editor | Premium |
@@ -27,7 +27,7 @@
 
 | Item | Action |
 |------|--------|
-| Refresh File List (F5) | Rescan input directory |
+| Refresh (F5) | Rescan input directory |
 | Exit | Close the application |
 
 ### Tools
@@ -55,7 +55,8 @@ The recommended layout for your working directory:
 ```
 MyServer/
 ├── CrespoGuardRFDevTool.exe    # The application
-├── settings.json                # User preferences (auto-created)
+├── crespoguard.ini              # UI preferences (auto-created)
+├── settings.json                # License settings; do not share
 ├── license_cache.json           # License validation cache
 │
 ├── input/                       # Your Excel spreadsheets
@@ -74,7 +75,7 @@ MyServer/
 │   └── Client/                  # Client .edf files
 │       └── en-gb/              # Localization (GU only)
 │
-└── backups/                     # Auto-backup before conversion
+└── source-backup/               # A copy you create before editing
 ```
 
 ---
@@ -98,8 +99,8 @@ The settings bar below the header controls conversion behavior:
 | Setting | Description |
 |---------|-------------|
 | **Version** | GU or BSB — must match your server version |
-| **Dry Run (Preview)** | Test conversion without writing files |
-| **CGEF Encrypt (Client)** | Enable encrypted `.edf` output (Premium) |
+| **Dry Run** | Preview conversion scope without writing files; not a full conversion validation |
+| **CGEF Encrypt** | Enable encrypted `.edf` output (Premium) |
 | **Server Output** | Path for `.dat` output files |
 | **Client Output** | Path for `.edf` output files |
 
@@ -113,7 +114,7 @@ No license required. The app opens immediately with core conversion features.
 
 ### Premium Activation
 
-1. Launch the app and click **Activate Premium**
+1. Launch the app and click **Activate**
 2. Copy your **Hardware ID** from the dialog
 3. Enter your **Activation Code** (`XXXX-XXXX-XXXX-XXXX`)
 4. Click **ACTIVATE**
@@ -133,13 +134,17 @@ Contact CrespoGuard support to transfer a license to a new machine.
 
 ## Troubleshooting
 
+For failed writes, partial output, and restoration steps, see
+[Backups & Recovery](RECOVERY.md). For missing or conflicting item references,
+see [Item Explorer](ITEM_EXPLORER.md#if-something-looks-wrong).
+
 | Issue | Solution |
 |-------|----------|
 | **"Activation required"** | Enter a valid activation code, or use Community Edition for free |
 | **Conversion produces 0 files** | Check that `.xlsx` files are in the `input/` folder and file list shows them |
 | **"No data rows"** | The spreadsheet has headers but no data rows — check the sheet content |
 | **Wrong output format** | Verify the Version dropdown matches your server (GU vs BSB) |
-| **EDF files not encrypted** | Enable **CGEF Encrypt (Client)** checkbox (Premium only) |
+| **EDF files not encrypted** | Enable **CGEF Encrypt** checkbox (Premium only) |
 | **GameCP sync fails** | Check SQL Server connection string, ensure pyodbc or pymssql driver is available |
 | **3D Viewer shows black screen** | Your GPU may not support OpenGL. Try updating graphics drivers |
 | **Update badge won't go away** | Click the badge to download the update, or restart the app |
