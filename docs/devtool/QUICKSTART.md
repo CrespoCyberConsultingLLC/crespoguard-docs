@@ -1,6 +1,12 @@
 # Quick Start Guide
 
-> From download to your first converted files in under 5 minutes.
+> Set up a working copy, convert one supported file, and check the result.
+
+![RF Dev Tool 6.3.5 Parser: input folder on the left, profile and output targets above the conversion controls](../assets/devtool/6.3.5/parser.png)
+
+*Parser before loading files, captured from 6.3.5 Premium. Start with **Browse**
+under **Input Folder** on the left. Some controls shown in the application are
+outside the scope of these guides.*
 
 ---
 
@@ -17,14 +23,24 @@ MyServer/
 ```
 
 !!! tip "Portable"
-    The tool creates `settings.json` and `license_cache.json` next to the
-    executable. Keep everything in one folder for easy backup.
+    UI preferences are stored in `crespoguard.ini` beside the executable.
+    License storage also uses `settings.json` and `license_cache.json`.
+    Do not share these files with screenshots or support reports.
+
+Work on a copy of your source data. Keep server and client output in separate
+test folders, away from the running server/client and away from your inputs.
+See [Backups & Recovery](RECOVERY.md) before editing or replacing files.
 
 ---
 
 ## Step 2: Prepare Your Files
 
 Create an `input/` folder next to the executable and place your `.xlsx` files in it.
+
+In **Parser**, use the input-folder **Browse** button to select that folder.
+Click **Refresh** and confirm your files appear. Preserve the workbook sheet
+names, metadata rows, and folder layout required by your existing project.
+Do not build a production workbook by guessing column names from this example.
 
 For **EDF composite files** (Item.edf, Quest.edf, etc.), organize sheets into subfolders:
 
@@ -59,7 +75,7 @@ input/
     Community Edition mode — single-file conversion and the Map Viewer work
     without activation.
 
-On first launch, click **Activate Premium** in the header bar:
+On first launch, click **Activate** in the header bar:
 
 1. Copy your **Hardware ID** (displayed in the dialog)
 2. Enter your **Activation Code** (format: `XXXX-XXXX-XXXX-XXXX`)
@@ -79,30 +95,35 @@ Choose your RF Online server version from the dropdown:
 | **GU** | Global Uprising — includes localization (nd files) and additional quest formats |
 | **BSB** | Standard 2.2.3 — classic server format |
 
+Choose the profile matching your source package, not simply the label used by
+your server's branding. Custom layouts need separate verification. AoP remains
+experimental and is not a substitute for GU or BSB support.
+
 ---
 
 ## Step 5: Convert
 
 ### Single File (Community + Premium)
 
-1. Select one file in the file list
-2. Click one of the conversion buttons:
+1. Set the server and client output paths using their **Browse** buttons. For your first test, use empty folders in your working copy.
+2. Select exactly one supported file in the file list.
+3. Click one of the conversion buttons:
 
 | Button | Output |
 |--------|--------|
-| **Convert SERVER** | `.dat` files in `output/ServerScript/` |
-| **Convert CLIENT** | `.edf` files in `output/Client/` |
-| **Convert ALL** | Both server and client output |
+| **Run Server** | Server output in the configured server folder |
+| **Run Client** | Client output in the configured client folder; composite outputs require their supported source set |
+| **Run Both** | Both server and client output |
 
 ### Batch Conversion (Premium Only)
 
-1. Select multiple files, or select nothing to convert everything
+1. Select the intended files. With no selection, the tool targets visible files; filters affect that scope.
 2. Click any conversion button
-3. All visible files are processed in sequence
+3. Read any scope confirmation before starting. A selected file or sheet and an unselected filtered list are different scopes.
 
 !!! warning "Dry Run"
-    Enable **Dry Run (Preview)** to test conversion without writing output files.
-    Useful for catching Excel format errors before committing to a full conversion.
+    Enable **Dry Run** to preview the planned conversion without writing output.
+    A preview is not proof that a full conversion or an in-game test will pass.
 
 ---
 
@@ -110,9 +131,15 @@ Choose your RF Online server version from the dropdown:
 
 After conversion:
 
-- Click **Server Output** to open the `output/ServerScript/` folder
-- Click **Client Output** to open the `output/Client/` folder
+- Click **Open Server Output** to open the configured server output folder
+- Click **Open Client Output** to open the configured client output folder
 - Check the log panel at the bottom for any warnings or errors
+
+For a first example, use a known supported server workbook from your package,
+select only that file, and choose **Run Server**. Confirm the log reports a
+successful conversion and that the expected output was created in your empty
+test folder. A pre-existing file in an output folder is not evidence of success.
+Test the result in your staging server/client before deploying it.
 
 ---
 
@@ -125,9 +152,10 @@ To edit existing server files:
 3. The tool creates an `.xlsx` spreadsheet with all the data
 4. Edit in Excel, then convert back
 
-!!! tip "Round-trip verified"
-    The import/export pipeline is byte-perfect — converting a `.dat` to `.xlsx`
-    and back produces an identical binary file.
+!!! warning "Verify your layout"
+    Import support and round-trip preservation depend on the format and profile.
+    Keep the original binary and first test an unchanged import/export cycle in
+    separate folders. Do not assume every custom DAT layout is byte-identical.
 
 ---
 
@@ -135,8 +163,8 @@ To edit existing server files:
 
 To generate encrypted client files:
 
-1. Check the **CGEF Encrypt (Client)** checkbox in the settings bar
-2. Run a CLIENT or ALL conversion
+1. Check the **CGEF Encrypt** checkbox in the settings bar
+2. Click **Run Client** or **Run Both**
 3. Output `.edf` files are encrypted with CrespoGuard's format
 
 Encrypted files require the CrespoGuard client to decrypt at runtime.
@@ -145,13 +173,15 @@ Encrypted files require the CrespoGuard client to decrypt at runtime.
 
 ## Auto-Updates
 
-The tool checks for updates automatically on startup (after 4 seconds).
-When a new version is available, a yellow **Update Available** badge appears
-in the status bar. Click it to download and install.
+The tool checks for updates in the background on startup. Open
+**Help > Updates** to review the available update and follow its prompts.
+Keep backups of your working files before updating.
 
 ---
 
 ## Next Steps
 
 - [Editor Guide](EDITORS.md) — Drop tables, monsters, portals, safezones
+- [Item Explorer](ITEM_EXPLORER.md) — Find definitions and supported references
+- [Backups & Recovery](RECOVERY.md) — Protect inputs and recover from failed writes
 - [Reference](REFERENCE.md) — Keyboard shortcuts, file types, troubleshooting

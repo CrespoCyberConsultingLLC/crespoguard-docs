@@ -88,6 +88,7 @@ Right-click on a file in the file list for additional options:
 |--------|--------|
 | Open in Excel | Open the selected `.xlsx` in your default editor |
 | DAT to Excel | Import a `.dat` file to spreadsheet |
+| GameCP DB Sync | Sync item data to SQL Server (Premium) |
 
 ---
 
@@ -144,6 +145,7 @@ see [Item Explorer](ITEM_EXPLORER.md#if-something-looks-wrong).
 | **"No data rows"** | The spreadsheet has headers but no data rows — check the sheet content |
 | **Wrong output format** | Verify the Version dropdown matches your server (GU vs BSB) |
 | **EDF files not encrypted** | Enable **CGEF Encrypt** checkbox (Premium only) |
+| **GameCP sync fails** | Check SQL Server connection string, ensure pyodbc or pymssql driver is available |
 | **3D Viewer shows black screen** | Your GPU may not support OpenGL. Try updating graphics drivers |
 | **Update badge won't go away** | Click the badge to download the update, or restart the app |
 | **License expired** | Re-activate with a valid code, or continue in Community mode |

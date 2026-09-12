@@ -33,7 +33,7 @@ Community Package/
         |-- fonts/
 ```
 
-The base kit intentionally does not include `modules.json`, `System\Launcher\Config\config.bin`.
+The base kit intentionally does not include `modules.json`, `System\Launcher\Config\config.bin`, or relay server binaries.
 
 ## Configured Operator Package
 
@@ -138,6 +138,6 @@ Record these values when handing off a package:
 - `RFLauncher.sig` size.
 - `config.bin` path, SHA-256, and key generation, if configured.
 - `modules.json` source path, if configured.
-- The deployment-specific login configuration and its verification result.
+- Whether relay/direct login is configured.
 - Whether auto-update uses a matching signed manifest.
 - Whether full-code language files are included for the configured `NationCode`.

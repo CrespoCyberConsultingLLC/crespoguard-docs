@@ -1,6 +1,15 @@
 # CrespoGuard Features
 
-> This page covers launcher and Client Guard features. Confirm package entitlements with support; retired network-tier tables are no longer a purchasing guide.
+> Community starts with the neutral launcher package, manual updates, and the self-hosted relay path. Paid tiers add management, automation, higher caps, and hosted/edge capabilities.
+
+## Tier Pricing
+
+| Tier          | Price     | Max Players | Primary Additions                                                  |
+| ------------- | --------- | ----------- | ------------------------------------------------------------------ |
+| **Community** | Free      | 50          | Launcher, self-hosted relay, IP bans/rate limiting, manual updates |
+| **Guard**     | $15/mo    | 50          | Dashboard, HWID bans, combat features, server IP masking           |
+| **Shield**    | $30/mo    | 200         | Multi-zone proxy, file logging                                     |
+| **Fortress**  | $50-75/mo | 500         | Edge relays, PROXY protocol, health checks                         |
 
 ## Launcher Features
 
@@ -10,6 +19,7 @@
 | Full color theme customization                  |    Yes    |    Yes     |
 | Custom fonts                                    |    Yes    |    Yes     |
 | Custom localization files                       |    Yes    |    Yes     |
+| Encrypted login through CrespoGuard Relay       |    Yes    |    Yes     |
 | Account manager                                 |    Yes    |    Yes     |
 | Manual package updates                          |    Yes    |    Yes     |
 | Auto-update system (patch server)               |     -     |    Yes     |
@@ -28,7 +38,9 @@
 | Proxy DLL detection                |    Yes    |    Yes     |
 | VM detection (Wine/Linux safe)     |    Yes    |    Yes     |
 | HWID collection                    |    Yes    |    Yes     |
+| IP bans and rate limiting in relay |    Yes    |    Yes     |
 | HWID ban enforcement               |     -     |    Yes     |
+| Relay dashboard actions            |     -     |    Yes     |
 
 ## Client Guard (dinput8.dll)
 
@@ -57,10 +69,19 @@ These use pattern-scanned addresses from the game binary and require a compatibl
 - Quest marker overlay
 - Premium combat automation and chat overlay where licensed
 
-## Binary Compatibility
+## Server Components
 
-The server-component documentation still covers the [ZoneMod setup](zonemod/SETUP.md).
-Confirm server-component availability and licensing with support for your deployment.
+| Component                            | Community | Paid Tiers |
+| ------------------------------------ | :-------: | :--------: |
+| CrespoGuard Relay (encrypted tunnel) |    Yes    |    Yes     |
+| IP bans and rate limiting            |    Yes    |    Yes     |
+| Relay dashboard                      |     -     |    Yes     |
+| CrespoGuard LoginServer              |     -     |    Yes     |
+| CrespoGuard ZoneMod                  |     -     |    Yes     |
+| SOC unified dashboard                |     -     |    Yes     |
+| Edge relay routing                   |     -     |  Fortress  |
+
+## Binary Compatibility
 
 - The launcher itself works with RF Online server/client variants as long as the configured login flow is valid.
 - Bin-independent Client Guard features work without RF_Online.bin memory hooks.
@@ -70,7 +91,8 @@ Confirm server-component availability and licensing with support for your deploy
 
 Contact the CrespoGuard team to:
 
-- Receive the correct package and license for your server.
-- Confirm supported features for your specific client/server build.
+1. Receive the correct package/tier license for your server.
+2. Enable paid relay/dashboard/HWID/automation features where needed.
+3. Increase player caps or add hosted edge routing.
 
 The neutral Community launcher package remains server-neutral; server-specific settings belong in `modules.json` and generated `config.bin`.

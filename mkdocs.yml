@@ -51,8 +51,6 @@ nav:
       - Assets: launcher/ASSETS.md
       - Deployment: launcher/DEPLOYMENT.md
       - Release Flow: launcher/RELEASE_FLOW.md
-      - Relay Setup: launcher/RELAY.md
-      - Relay Databases: launcher/RELAY_DATABASES.md
   - ZoneMod:
       - Setup Guide: zonemod/SETUP.md
       - Module Catalog: zonemod/CATALOG.md
@@ -61,15 +59,16 @@ nav:
       - JS Scripting: zonemod/SCRIPTING.md
       - Event Reference: zonemod/EVENTS.md
       - API Reference: zonemod/API.md
-      - Bridge HTTP API: zonemod/BRIDGE_API.md
   - RF Dev Tool:
       - Overview: devtool/OVERVIEW.md
       - Quick Start: devtool/QUICKSTART.md
+      - Item Explorer: devtool/ITEM_EXPLORER.md
+      - Backups & Recovery: devtool/RECOVERY.md
       - Visual Editors: devtool/EDITORS.md
       - Reference: devtool/REFERENCE.md
   - Features:
       - Feature Comparison: FEATURES.md
-      - Premium Tiers: PREMIUM_TIERS.md
+      - Packages & Licenses: PREMIUM_TIERS.md
 
 plugins:
   - search

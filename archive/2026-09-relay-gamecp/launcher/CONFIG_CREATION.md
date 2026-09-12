@@ -68,9 +68,34 @@ Start from the template or create a new file. Minimal working example:
 }
 ```
 
-See [CONFIG_REFERENCE.md](CONFIG_REFERENCE.md) for the settings covered by these guides.
+See [CONFIG_REFERENCE.md](CONFIG_REFERENCE.md) for every field and its default value.
 
-## Step 2: Add License Key
+## Step 2: Add Secure Login (Optional — All Tiers)
+
+If using the CrespoGuard Relay with the encrypted tunnel (available in all tiers including Community), add the SecureLogin section to enable the AES-256-GCM encrypted tunnel between the launcher and relay. Servers not using the encrypted tunnel skip this step — the launcher connects directly to your LoginServer or through the transparent proxy.
+
+```json
+{
+  "SecureLogin": {
+    "EnableSecureLogin": true,
+    "SecureLoginType": 1,
+    "SecureLoginHost": "YOUR.PUBLIC.IP",
+    "SecureLoginIP": "YOUR.PUBLIC.IP",
+    "SecureLoginPort": 10001,
+    "SecureLoginPSK": "YOUR_64_CHAR_HEX_PSK"
+  }
+}
+```
+
+Generate the PSK:
+
+```bash
+python -c "import secrets; print(secrets.token_hex(32))"
+```
+
+The same PSK must appear in both `modules.json` and the relay's `server.json`.
+
+## Step 3: Add License Key
 
 If you have a CrespoGuard license:
 
@@ -92,7 +117,7 @@ For Community tier without a license, use a placeholder master key:
 }
 ```
 
-## Step 3: Add Auto-Update Server (Optional)
+## Step 4: Add Auto-Update Server (Optional)
 
 If you host a patch server:
 
@@ -119,7 +144,7 @@ python -c "import secrets; print(secrets.token_hex(32))"
 
 Player builds require this key when auto-update runs. The admin tool uses the same value to add the HMAC signature to `filelist.txt`.
 
-## Step 4: Encrypt
+## Step 5: Encrypt
 
 Place `modules.json` in your **client root directory** (the folder with `RF_Online.bin`), then run:
 
@@ -145,7 +170,7 @@ Place `modules.json` in your **client root directory** (the folder with `RF_Onli
 
 The current tool writes CGCB format version `0x02` with key generation `0x02`. Current release packages must use that pair; player builds reject format `0x02` configs with key generation `0x01`.
 
-## Step 5: Verify
+## Step 6: Verify
 
 Test that the launcher loads your config:
 
@@ -184,6 +209,7 @@ Regenerate `config.bin` whenever you pair the package with a new player launcher
 | Encrypt command does nothing   | Not running from the right directory         | `cd` to the folder containing `modules.json` first                                                             |
 | `"JSON parse error"`           | Syntax error in modules.json                 | Validate JSON (trailing commas, missing quotes, etc.)                                                          |
 | Launcher ignores changes       | Forgot to re-encrypt                         | Re-run `--encrypt-config` after every modules.json edit                                                        |
+| PSK mismatch (relay rejects)   | Different PSK in modules.json vs server.json | Copy the exact same key to both files                                                                          |
 | `"modules.json not found"`     | Wrong working directory                      | Run the command from the folder where modules.json lives                                                       |
 | Old launcher loads old config  | Players still have the previous config.bin   | Publish a new manual patch package, or upload new config.bin and update filelist.txt if auto-update is enabled |
 | "Config not found or invalid" after a launcher update | config.bin uses legacy generation `0x01` or failed authentication | Regenerate it with the current admin tool, confirm header `43 47 43 42 02 02`, and republish |
@@ -192,7 +218,7 @@ Regenerate `config.bin` whenever you pair the package with a new player launcher
 
 `config.bin` uses AES-256-GCM authenticated encryption. The launcher rejects an altered authentication tag, an unknown key generation, and legacy generation `0x01` in player builds.
 
-The admin tool writes generation `0x02` with the key material compiled into that tool. Keep the matching player launcher and config tool together for each release. The loader retains narrow migration compatibility for legacy format `0x01` XOR configs only when their embedded HMAC validates; unsigned or HMAC-mismatched format `0x01` data is rejected. Do not create or ship format `0x01` in new packages.
+The admin tool writes generation `0x02` with the key material compiled into that tool. Keep the matching player launcher and config tool together for each release. The loader retains narrow migration compatibility for legacy format `0x01` XOR configs only when their embedded HMAC validates; unsigned or HMAC-mismatched format `0x01` data is rejected. Do not create or ship format `0x01` in new packages. The PSK inside the config provides per-server relay authentication.
 
 ## File Locations Summary
 

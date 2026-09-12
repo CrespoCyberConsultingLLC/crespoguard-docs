@@ -29,6 +29,7 @@ Most anti-cheat solutions hook deeply into the game executable — which means t
 - **Cheat window title scanning** — detects known cheat tool windows
 - **Proxy DLL detection** — catches known injection methods
 - **VM detection** — blocks virtual machines while keeping Wine/Linux players safe
+- **Encrypted transport** — the CrespoGuard Relay encrypts player credentials and game data with AES-256-GCM. When the relay runs on a separate machine, players connect to the relay and never see your game server IP
 
 All of this runs in the launcher process. No game binary patching. No conflicts with existing protections. Works on any RF Online version.
 
@@ -36,11 +37,15 @@ All of this runs in the launcher process. No game binary patching. No conflicts 
 
 CrespoGuard uses a **layered defense model** — multiple independent security systems that reinforce each other. Bypassing one layer doesn't compromise the others.
 
-**Layer 1: Config Tamper Protection**
+**Layer 1: Relay Transport**
+
+With the CrespoGuard Relay (included free at every tier), login traffic between players and your server can travel through an AES-256-GCM encrypted tunnel (requires the CrespoGuard Launcher) or a transparent TCP proxy (works with any vanilla RF client). The encrypted tunnel uses authenticated encryption with a pre-shared key, meaning traffic can't be intercepted, replayed, or tampered with in transit. When the relay runs on a separate machine from your game server, players connect to the relay address and never see your game server IP.
+
+**Layer 2: Config Tamper Protection**
 
 The launcher configuration (server IP, license, encryption keys) is stored in an encrypted binary format with integrity verification. If the file is modified — even a single byte — the launcher rejects it immediately. Players cannot extract your server details, modify connection parameters, or forge configurations. The encryption key is compiled into the binary, not stored alongside the config.
 
-**Layer 2: Continuous Runtime Scanning**
+**Layer 3: Continuous Runtime Scanning**
 
 The launcher doesn't just check once at startup — it runs continuous background scans every 10 seconds while the game is running:
 
@@ -51,7 +56,7 @@ The launcher doesn't just check once at startup — it runs continuous backgroun
 
 When any scan detects a violation, the session is terminated immediately. There's no warning period for cheaters to disconnect their tools.
 
-**Layer 3: Hardware Identification**
+**Layer 4: Hardware Identification**
 
 Every player's machine is fingerprinted using multiple hardware identifiers (CPU, disk, motherboard, network adapter) combined into a single hash. This enables:
 
@@ -61,9 +66,28 @@ Every player's machine is fingerprinted using multiple hardware identifiers (CPU
 
 The HWID is computed using system-level APIs that are difficult to spoof without kernel-level tools.
 
-**Layer 4: VM and Environment Detection**
+**Layer 5: Server-Side Enforcement**
+
+Critical security decisions happen on the server, not the client:
+
+- **License validation** is performed by paid-tier server components before the player reaches protected services. Community relay deployments still provide IP rate limiting and IP ban enforcement.
+- **Rate limiting** prevents brute-force attacks — configurable per-IP connection throttling and concurrent connection limits.
+- **Ban enforcement** is server-authoritative. Community relay deployments can block IPs before they reach the login server; paid tiers add HWID ban enforcement.
+
+**Layer 6: VM and Environment Detection**
 
 CrespoGuard detects virtual machines used to run multiple cheat-testing instances or evade hardware bans. The detection checks multiple system indicators — not just a single registry key or process name — making it resilient to basic spoofing. Wine/Linux users are specifically excluded from VM detection, so legitimate Linux players aren't affected.
+
+**Why This Matters**
+
+Most RF Online anti-cheat tools rely on a single layer — usually a game binary hook that checks for CheatEngine once at startup. That's trivially bypassed. CrespoGuard's approach means:
+
+- A cheater who bypasses process scanning still hits debugger detection
+- A cheater who spoofs one signal can still be caught by independent launcher and relay checks
+- A cheater who patches the client still gets blocked by server-side enforcement
+- A cheater who replays network traffic still fails authenticated encryption
+
+No single bypass defeats the system. That's the point of layered defense.
 
 ### Built for Server Owners
 
@@ -76,6 +100,21 @@ CrespoGuard isn't a one-size-fits-all tool — it's a platform designed around h
 - **Compatibility checker** — 11 automated checks on first launch (Game Mode, Game DVR, HAGS, AutoHDR, power plan, etc.) with auto-fixes where possible.
 - **Clean room mode** — per-session registry and INI isolation so the game doesn't pollute the player's system.
 - **Borderless windowed** — real borderless mode with resolution selection, not the game's broken windowed implementation.
+
+### Free to Start, Scales When You Need It
+
+The Community Edition is **free** and provides the neutral launcher/operator kit, self-hosted relay path, IP bans/rate limiting, launcher-side checks, and manual updates. Paid tiers add dashboards, HWID bans, combat features, larger caps, and edge/network features. No trial period, no nag screens.
+
+The only limit is player count. When your server grows, upgrade to increase your cap:
+
+| Tier          | Price     | Players | What It Adds                                      |
+| ------------- | --------- | ------- | ------------------------------------------------- |
+| **Community** | Free      | 50      | Launcher + relay + anti-cheat, manual updates     |
+| **Guard**     | $15/mo    | 50      | Dashboard, HWID bans, combat features, IP masking |
+| **Shield**    | $30/mo    | 200     | Multi-zone proxy, file logging                    |
+| **Fortress**  | $50-75/mo | 500     | Edge relays, PROXY protocol, health checks        |
+
+See [Features](FEATURES.md) for the full feature list and [Tiers](PREMIUM_TIERS.md) for detailed tier documentation.
 
 ### What CrespoGuard Gives Your Players
 
@@ -103,26 +142,25 @@ then learn [Item Explorer / Where Used](devtool/ITEM_EXPLORER.md) or the
 | 2. Brand your launcher   | [Theming & Branding](launcher/THEMING.md) — colors, fonts, effects           |
 | 3. Create config.bin     | [Creating config.bin](launcher/CONFIG_CREATION.md) — encryption walkthrough  |
 | 4. Prepare assets        | [Assets](launcher/ASSETS.md) — logo, background, font, music specs           |
-| 5. Deploy to players     | [Deployment](launcher/DEPLOYMENT.md) — packaging, manual updates, versioning |
+| 5. Set up the relay      | [Relay Overview](launcher/RELAY.md) — optional encrypted tunnel / proxy path |
+| 6. Deploy to players     | [Deployment](launcher/DEPLOYMENT.md) — packaging, manual updates, versioning |
 
+**Setting up the relay?** The launcher base kit is separate from the relay package. Use the relay when you need encrypted login transport, rate limiting, IP bans, or origin IP protection. See [Relay Overview](launcher/RELAY.md).
 
 ## Documentation
 
 | Document                                                | Description                                            |
 | ------------------------------------------------------- | ------------------------------------------------------ |
 | [Setup Guide](launcher/SETUP.md)                        | Quick start — configure and test in 5 minutes          |
-| [Configuration Reference](launcher/CONFIG_REFERENCE.md) | Launcher settings covered by the current guides       |
+| [Configuration Reference](launcher/CONFIG_REFERENCE.md) | Every `modules.json` field documented (12 sections)    |
 | [Creating config.bin](launcher/CONFIG_CREATION.md)      | Step-by-step encryption guide with examples            |
 | [Theming & Branding](launcher/THEMING.md)               | Colors, fonts, effects, layout — 6 ready-made presets  |
 | [Features](FEATURES.md)                                 | Community vs paid feature comparison                   |
 | [Assets](launcher/ASSETS.md)                            | Logo, background, font, music, and language file specs |
 | [Deployment](launcher/DEPLOYMENT.md)                    | Packaging, distribution, updates, and versioning       |
 | [Release Flow](launcher/RELEASE_FLOW.md)                | Operator/package handoff checklist                     |
-| [Packages & Licenses](PREMIUM_TIERS.md)                 | Package scope and license guidance                    |
-
-!!! note "Documentation scope"
-    Relay and GameCP documentation is paused. This does not change existing
-    installations. Contact support before changing a deployed network configuration.
+| [CrespoGuard Relay](launcher/RELAY.md)                  | Relay overview — transparent proxy + encrypted tunnel  |
+| [Tiers](PREMIUM_TIERS.md)                               | Community / Guard / Shield / Fortress tier reference   |
 
 ## Requirements
 
@@ -138,7 +176,7 @@ then learn [Item Explorer / Where Used](devtool/ITEM_EXPLORER.md) or the
 Yes. The launcher and game run under Wine/Proton. VM detection is specifically designed to allow Wine — it only blocks actual virtual machines (VMware, VirtualBox, etc.), not compatibility layers. Linux players can use CrespoGuard without issues.
 
 **Does it work with any RF Online version?**
-The launcher itself (login, branding, anti-cheat) works with any RF Online version. The Client Guard DLL features that interact with game memory (FOV overrides, stack patches, combat features) are validated for version 2.2.3.2. On other versions, those features gracefully deactivate — no crash, no errors.
+The launcher itself (login, branding, relay, anti-cheat) works with any RF Online version. The Client Guard DLL features that interact with game memory (FOV overrides, stack patches, combat features) are validated for version 2.2.3.2. On other versions, those features gracefully deactivate — no crash, no errors.
 
 **Does it conflict with FreeGuard / existing server protections?**
 No. CrespoGuard's security runs in the launcher process and uses system-level APIs — it doesn't modify the game binary or conflict with existing DLL protections. Your server's existing anti-cheat chain remains untouched.
@@ -147,7 +185,7 @@ No. CrespoGuard's security runs in the launcher process and uses system-level AP
 The launcher will work with any binary. Client Guard DLL features depend on finding known code patterns in the game executable. If your binary is heavily modified, some features may not activate. They fail safely — never a crash.
 
 **Does it work with Sirin servers?**
-Yes. The CrespoGuard Launcher works with Sirin servers — set `IsSirin: true` in your config and place `sirin-launcher.dll` in the client directory.
+Yes. The CrespoGuard Launcher works with Sirin servers — set `IsSirin: true` in your config and place `sirin-launcher.dll` in the client directory. The relay works with Sirin out of the box, including the encrypted tunnel. The CGRD encrypted tunnel bridges Sirin's authentication with full SDK integration.
 
 ### Multi-Player Households
 
@@ -157,7 +195,16 @@ No. CrespoGuard identifies machines by hardware fingerprint, not by IP address. 
 **What about two accounts on the same computer?**
 Multi-client mode allows multiple game instances on one machine. Each instance shares the same hardware ID but has a separate login session. This is fully supported — CrespoGuard's instance limiter (configurable, default 3) controls how many launchers can run at once, not how many accounts exist.
 
+**Does IP-based rate limiting affect shared connections?**
+Rate limiting applies to connection attempts, not active sessions. The default allows 15 login attempts per IP within 60 seconds and 5 concurrent connections. For internet cafes or shared networks, server owners can increase these limits in the relay config. Active players are not affected — rate limiting only throttles the login handshake.
+
 ### Security Concerns
+
+**Can players bypass the anti-cheat by patching the launcher?**
+Critical security decisions should be enforced server-side where possible. Community relay deployments enforce rate limits and IP bans; paid tiers add stronger server-side license and HWID enforcement.
+
+**Can players extract my server IP from the launcher?**
+No. The launcher configuration is encrypted with tamper detection. Players cannot read the plaintext contents. When using the relay (on a separate machine from your game server), your game server IP is never transmitted to the client — players only see the relay address.
 
 **What happens if a player is caught cheating?**
 The session is terminated immediately with no warning period. Events include the available hardware/IP context. Community operators can use IP-level controls; paid tiers add dashboard review and HWID ban workflows.
@@ -170,7 +217,19 @@ The detection database is compiled into the launcher binary. Community operators
 **Does CrespoGuard affect game performance?**
 The launcher minimizes to the system tray while the game runs. Background security scans use negligible CPU (a brief check every 10 seconds). The Client Guard DLL runs in the game process but performs no continuous heavy operations — its features are event-driven, not polling-based. Players will not notice any performance impact.
 
+**Does the encrypted relay add latency?**
+The relay adds minimal overhead — typically under 1ms for the encryption/decryption layer. For servers where players are geographically distant, edge relay routing actually _reduces_ latency by routing players to the nearest relay node instead of connecting directly across continents.
+
 ### Server Administration
+
+**Do I need to restart the relay to update bans?**
+No. The ban file is automatically reloaded every 30 seconds. Add a ban to the file and it takes effect within half a minute — no downtime.
+
+**Can I run CrespoGuard alongside my existing launcher?**
+Yes. CrespoGuard doesn't modify your server infrastructure. Players who use CrespoGuard connect through the relay; players using other launchers can still connect directly to your login server if you leave the port open. You can migrate gradually.
+
+**What happens if the CrespoGuard license server is down?**
+The relay caches the last successful license validation locally. If the license server is temporarily unreachable, the relay continues operating normally using the cached validation. Extended outages (beyond the cache period) will prevent the relay from starting, but your game server itself is completely unaffected — players can still connect directly.
 
 **Can I white-label CrespoGuard so players don't know what's behind it?**
 Absolutely. That's the entire point of the branding system. Every visible reference — window title, status bar, footer text, fonts, colors, logo — is configurable. Players see your server name, your brand, your design. CrespoGuard is invisible unless you choose to mention it.

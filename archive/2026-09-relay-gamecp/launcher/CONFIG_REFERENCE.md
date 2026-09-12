@@ -1,7 +1,6 @@
 # Configuration Reference
 
-> Reference for the launcher settings covered by these guides. Omitted sections
-> use application defaults; this is not a complete schema for every deployment.
+> Complete reference for every field in `modules.json`. All sections are optional — missing sections use defaults.
 
 ## Table of Contents
 
@@ -14,6 +13,7 @@
 - [AuthLimits](#authlimits)
 - [ClientLimiter](#clientlimiter)
 - [Localization](#localization)
+- [SecureLogin](#securelogin)
 - [SecurityCheck](#securitycheck)
 - [UpdateServers](#updateservers)
 - [NetworkRoutes](#networkroutes)
@@ -41,7 +41,7 @@ Core server connection settings. This is the only required section — the launc
 | Field             | Type   | Default     | Description                                                                                                                     |
 | ----------------- | ------ | ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | `ServerName`      | string | `""`        | Server name displayed in the sidebar and window title                                                                           |
-| `LoginServerIp`   | string | `""`        | IP address of your LoginServer                                                                 |
+| `LoginServerIp`   | string | `""`        | IP address of your LoginServer (or relay, if using SecureLogin)                                                                 |
 | `LoginServerPort` | int    | `10001`     | TCP port of your LoginServer                                                                                                    |
 | `ZoneServerIp`    | string | `""`        | IP address of your ZoneServer                                                                                                   |
 | `ZoneServerPort`  | int    | `27780`     | TCP port of your ZoneServer                                                                                                     |
@@ -269,6 +269,59 @@ Language settings.
 | `NationCode`    | string | `"en_gb"` | Language code. Supported: `en_gb`, `en_us`, `ko_kr`, `zh_tw`, `ja_jp`, `ru_ru`, `pt_br`, `id_id` |
 
 The launcher uses `NationCode` for both localization and the RF client nation id written into `System\DefaultSet.tmp`. Language files should use the full code, such as `System\Launcher\Language\ru_ru.json`; short files such as `ru.json` are fallback-compatible only.
+
+## SecureLogin
+
+Encrypted tunnel configuration for connecting through the CrespoGuard Relay. When enabled, the launcher establishes an AES-256-GCM encrypted tunnel to the relay instead of connecting directly to the LoginServer. See [Relay Overview](RELAY.md) for full setup details.
+
+```json
+{
+  "SecureLogin": {
+    "EnableSecureLogin": true,
+    "SecureLoginType": 1,
+    "SecureLoginHost": "YOUR.PUBLIC.IP",
+    "SecureLoginIP": "YOUR.PUBLIC.IP",
+    "SecureLoginPort": 10055,
+    "SecureLoginPSK": "YOUR_64_CHAR_HEX_PSK",
+    "EnableZoneProxy": false,
+    "ZoneProxyIP": "YOUR.PUBLIC.IP",
+    "ZoneProxyPort": 27780,
+    "RoutingCode": "",
+    "EnableEdgeRelays": false,
+    "AutoSelectRelay": true,
+    "EdgeRelays": []
+  }
+}
+```
+
+| Field               | Type   | Default | Description                                                                                                                                                                  |
+| ------------------- | ------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `EnableSecureLogin` | bool   | `false` | Enable the encrypted tunnel to the relay                                                                                                                                     |
+| `SecureLoginType`   | int    | `1`     | Connection mode: `0` = transparent proxy (plain TCP, no encryption), `1` = CGRD encrypted tunnel (AES-256-GCM)                                                               |
+| `SecureLoginHost`   | string | `""`    | Relay hostname or IP (used for DNS resolution)                                                                                                                               |
+| `SecureLoginIP`     | string | `""`    | Relay IP address (used for the TCP connection)                                                                                                                               |
+| `SecureLoginPort`   | int    | `10055` | Relay listen port                                                                                                                                                            |
+| `SecureLoginPSK`    | string | `""`    | 64-character hex pre-shared key for AES-256-GCM. Must match the `PSK` in the relay's `server.json`. Generate with `python -c "import secrets; print(secrets.token_hex(32))"` |
+| `EnableZoneProxy`   | bool   | `false` | Route ZoneServer traffic through the relay as well                                                                                                                           |
+| `ZoneProxyIP`       | string | `""`    | IP address for the zone proxy (when `EnableZoneProxy` is true)                                                                                                               |
+| `ZoneProxyPort`     | int    | `27780` | Port for the zone proxy                                                                                                                                                      |
+| `RoutingCode`       | string | `""`    | Edge routing code (used with edge-hosted relays)                                                                                                                             |
+| `EnableEdgeRelays`  | bool   | `false` | Enable CrespoGuard edge-hosted relay routing                                                                                                                                 |
+| `AutoSelectRelay`   | bool   | `true`  | Automatically select the lowest-latency edge relay                                                                                                                           |
+| `EdgeRelays`        | array  | `[]`    | List of edge relay endpoints (used with edge-hosted relays)                                                                                                                  |
+
+### EdgeRelay Object
+
+Each entry in the `EdgeRelays` array has the following fields:
+
+| Field       | Type   | Default | Description                                   |
+| ----------- | ------ | ------- | --------------------------------------------- |
+| `host`      | string | `""`    | Edge relay hostname or IP                     |
+| `port`      | uint16 | `0`     | Edge relay port                               |
+| `region`    | string | `""`    | Region label (e.g., `"US East"`, `"EU West"`) |
+| `patchPort` | uint16 | `0`     | Edge relay patch proxy port. `0` = disabled.  |
+
+See [Creating config.bin](CONFIG_CREATION.md) for PSK generation and the full encryption walkthrough.
 
 ## SecurityCheck
 
